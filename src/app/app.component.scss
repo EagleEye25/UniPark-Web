@@ -1,0 +1,8 @@
+@import '../styles.scss';
+
+.mat-sidenav-container {
+  .mat-sidenav {
+    width: 200px;
+    background: mat-color($mat-grey, 400);
+  }
+}
