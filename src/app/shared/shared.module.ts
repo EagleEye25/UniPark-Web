@@ -41,7 +41,6 @@ import { MatTableModule } from '@angular/material';
 
 @NgModule({
   imports: [
-    MatToolbarModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -74,7 +73,6 @@ import { MatTableModule } from '@angular/material';
     MatTableModule
   ],
   exports: [
-    MatToolbarModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,

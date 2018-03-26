@@ -1,8 +1,7 @@
-import {} from 'angular/core';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-    imports: [BrowserAnimationsModule]
+  imports: [BrowserAnimationsModule]
 })
 export class CoreModule {}
