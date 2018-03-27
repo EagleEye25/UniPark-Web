@@ -1,12 +1,13 @@
 <!-- Toolbar with menu button, menu items -->
 <div>
   <mat-toolbar color="primary">
-      <img src="assets/images/dragon-code-logo.png">
+      <img src="assets/images/branding/dc.png" alt="DC">
       <span>DragonCode</span>
       <span class="spacer"></span>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
+      <!-- Menu button -->
       <mat-menu #menu="matMenu">
           <button mat-menu-item>
             <mat-icon>fingerprint</mat-icon>
@@ -22,20 +23,44 @@
           </button>
         </mat-menu>
   </mat-toolbar>
-  <!-- TabGroup Creation under toolbar -->
+  <!-- TabGroup  under toolbar -->
   <mat-tab-group>
       <mat-tab label="Dragon Code">
-        <img src="assets/images/dragon-code-name.gif" alt="Dragon Code" class="center">
+        <img src="assets/images/branding/dragon-code-name.gif" alt="Dragon Code" class="center">
+
         <mat-tab-group class="center">
+          <!-- Dragon code information -->
           <mat-tab label="Information">
             <p>Dragon Code is a group of 3rd year students from Nelson Mandela University, that have formed
               together, to slay evil bugs and develop the most efficent, secure software for the fate of man kind!
             </p>
           </mat-tab>
+          <!-- Crew images, names -->
           <mat-tab label="Crew">
-            
+            <p><br></p>
+            <div class="align-text-picture">
+                <img src="assets/images/crew/jason.png" alt="Jason Eybers">
+                <p>Jason Eybers<br>(Steve Jobless)</p>
+            </div>
+            <div class="align-text-picture">
+                <img src="assets/images/crew/daniel.png" alt="Daniel Maree">
+                <p>Daniel Maree<br>(Copy Paster)</p>
+            </div>
+            <div class="align-text-picture">
+                <img src="assets/images/crew/wihan.png" alt="Wihan Du Plessis">
+                <p>Wihan Du Plessis<br>(Data Monkey)</p>
+            </div>
+            <div class="align-text-picture">
+                <img src="assets/images/crew/kobus.png" alt="Kobus Esterhuizen">
+                <p>Kobus Esterhuizen<br>(Code-Modo Dragon)</p>
+            </div>
+            <div class="align-text-picture">
+                <img src="assets/images/crew/maurice.png" alt="Maurice Garcies De Gois">
+                <p>Maurice Gareces<br>De Gois<br>(Ctrl-SpaceFreak)</p>
+            </div>
           </mat-tab>
         </mat-tab-group>
+
       </mat-tab>
       <mat-tab label="UniPark">
         
