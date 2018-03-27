@@ -1,8 +1,15 @@
-@import '../styles.scss';
-
+@import '../theme.scss';
 .mat-sidenav-container {
   .mat-sidenav {
     width: 200px;
     background: mat-color($mat-grey, 400);
   }
+}
+
+.icon {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
