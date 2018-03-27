@@ -13,6 +13,11 @@ $alt-accent:  mat-palette($mat-teal, A200);
 
 $alt-theme: mat-dark-theme($alt-primary, $alt-accent);
 
+.containerBackground {
+  background: rgba(68,68,68,0.71) url("assets/images/unipark-logo.png")
+  no-repeat scroll 1px 1px;
+}
+
 .alternative {
   @include angular-material-theme($alt-theme);
 }

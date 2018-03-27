@@ -1,72 +1,31 @@
+<!-- Toolbar with menu button, menu items -->
 <mat-toolbar color="primary">
-    <span>UniPark</span>
-    <button mat-button>Click me</button>
-  </mat-toolbar>
-
-<!--<div class="container">
-  <div class="jumbotron">
-    <h1>Welcome</h1>
-    <h2>Angular & Bootstrap demo</h2>
-  </div>
+    <span>DragonCode</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>fingerprint</mat-icon>
+          <span>Login</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>announcement</mat-icon>
+          <span>Issues</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
+</mat-toolbar>
+<!-- TabGroup Creation under toolbar -->
+<mat-tab-group>
+    <mat-tab label="Gallery">
   
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      Status
-    </div>
-    <div class="panel-body">
-      <h3>{{ title }}</h3>
-    </div>
-  </div>
-</div>-->
-
-<!--<div class="container">
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <span class="spacer"></span>
-          <button mat-button
-                  matTooltip="Add To Bookmarks"
-                  matTooltipPosition="above">
-            <mat-icon class="icon">favorite</mat-icon>
-          </button>
-          <button mat-button
-                  matTooltip="Login"
-                  matTooltipPosition="above">
-            <mat-icon class="icon">person</mat-icon>
-          </button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
-  <mat-card class="card">
-    <img mat-card-image src="assets/images/unipark-logo.png" alt="UniPark Logo">
-    <mat-card-content>
-      <p>
-        uniPark is a fully automated parking system, which will allow users that have access to a facilities parking area to enter safely, securely.
-        The program is securely setup to prevent unauthorized users access to the facility. uniPark will
-        also help the facility to control traffic, ensure that person/s in the facility park in the correct area
-        , which is assigned to them. The aim of the system is to improve security of the facility,
-        and ensure that little to no theft occurs regarding motor vehicles.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="accent">LIKE</button>
-      <button mat-raised-button color="accent">SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
--->
-
-<!--<div>
-  <mat-toolbar color="primary">
-    <button mat-button (click)="sidenav.toggle()">Menu</button>
-    <span>UniPark</span>
-  </mat-toolbar>    
-</div> -->
-
-<!--
-<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side">
-    Sidenav
-  </mat-sidenav>
-</mat-sidenav-container> -->
-
-
+    </mat-tab>
+    <mat-tab label="Settings">
+      
+    </mat-tab>
+</mat-tab-group>
