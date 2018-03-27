@@ -1,31 +1,44 @@
 <!-- Toolbar with menu button, menu items -->
-<mat-toolbar color="primary">
-    <span>DragonCode</span>
-    <span class="spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>fingerprint</mat-icon>
-          <span>Login</span>
-        </button>
-        <button mat-menu-item disabled>
-          <mat-icon>announcement</mat-icon>
-          <span>Issues</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
-        </button>
-      </mat-menu>
-</mat-toolbar>
-<!-- TabGroup Creation under toolbar -->
-<mat-tab-group>
-    <mat-tab label="Gallery">
-  
-    </mat-tab>
-    <mat-tab label="Settings">
-      
-    </mat-tab>
-</mat-tab-group>
+<div>
+  <mat-toolbar color="primary">
+      <img src="assets/images/dragon-code-logo.png">
+      <span>DragonCode</span>
+      <span class="spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>fingerprint</mat-icon>
+            <span>Login</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>announcement</mat-icon>
+            <span>Issues</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>
+  </mat-toolbar>
+  <!-- TabGroup Creation under toolbar -->
+  <mat-tab-group>
+      <mat-tab label="Dragon Code">
+        <img src="assets/images/dragon-code-name.gif" alt="Dragon Code" class="center">
+        <mat-tab-group class="center">
+          <mat-tab label="Information">
+            <p>Dragon Code is a group of 3rd year students from Nelson Mandela University, that have formed
+              together, to slay evil bugs and develop the most efficent, secure software for the fate of man kind!
+            </p>
+          </mat-tab>
+          <mat-tab label="Crew">
+            
+          </mat-tab>
+        </mat-tab-group>
+      </mat-tab>
+      <mat-tab label="UniPark">
+        
+      </mat-tab>
+  </mat-tab-group>
+</div>
