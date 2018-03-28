@@ -16,11 +16,9 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
   }
   // Displays login modal
-  openLoginDialog() {
-    this.loginDialogRef = this.dialog.open(LoginDialogComponent);
-  }
-
-  close(): void {
-    this.loginDialogRef.close();
+  openLoginDialog(data: any) {
+    this.loginDialogRef = this.dialog.open(LoginDialogComponent, {
+      disableClose: true
+    });
   }
 }
