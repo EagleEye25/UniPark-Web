@@ -11,13 +11,15 @@ import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LandingComponent } from './landing/landing.component';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { NgModel, FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
     CoreModule,
     SharedModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   entryComponents: [LoginDialogComponent],
   providers: [],

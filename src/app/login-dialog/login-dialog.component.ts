@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { EventEmitter } from 'protractor';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-login-dialog',
@@ -11,13 +11,13 @@ import { EventEmitter } from 'protractor';
 export class LoginDialogComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<LoginDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+    private dialogRef: MatDialogRef<LoginDialogComponent>) { }
 
   ngOnInit() {
   }
- 
+
+  submit() {
+  }
 
   // Closes the dialog
   close(): void {
