@@ -26,7 +26,7 @@ import { MatTabsModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material';
-import { MatIconRegistry, MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { MatProgressBarModule } from '@angular/material';
 // Popups & Modals
@@ -37,8 +37,6 @@ import { MatTooltipModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
-
-import { DomSanitizer } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -107,8 +105,4 @@ import { DomSanitizer } from '@angular/platform-browser';
     MatTableModule
   ]
 })
-export class SharedModule {
-  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
-    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'));
-  }
-}
+export class SharedModule {}
