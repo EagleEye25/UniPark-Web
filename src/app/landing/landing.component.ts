@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { LoginDialogComponent } from '../../app/login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-landing',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
+  // Imports login-dialog for use for modal
+  loginDialogRef: MatDialogRef<LoginDialogComponent>;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
   }
+  // Displays login modal
+  openLoginDialog() {
+    this.loginDialogRef = this.dialog.open(LoginDialogComponent);
+  }
 
+  close(): void {
+    this.loginDialogRef.close();
+  }
 }

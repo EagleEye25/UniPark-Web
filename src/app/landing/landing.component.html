@@ -3,12 +3,14 @@
     <mat-toolbar color="primary">
         <img src="assets/images/branding/dc.png" alt="DC">
         <span class="spacer"></span>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
+        <button mat-icon-button [matMenuTriggerFor]="menu"
+                matTooltip="Menu"
+                matTooltipPosition="before">
           <mat-icon>more_vert</mat-icon>
         </button>
         <!-- Menu button -->
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openLoginDialog()">
               <mat-icon>fingerprint</mat-icon>
               <span>Login</span>
             </button>

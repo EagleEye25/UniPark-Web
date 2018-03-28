@@ -1,13 +1,19 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      <h1>Login</h1>
-    </mat-card-title>
-  </mat-card-header>
+<div>
+  <!-- Display of login modal -->
+  <img src="assets/images/login/login.png" alt="Login">
   <hr>
-  <mat-card-content>
-    <button mat-button (click)="openDialog()">Open Dialog</button>
-    <hr>
-    <strong>Result: {{ dialogResult }}</strong>
-  </mat-card-content>
-</mat-card>
+  <mat-form-field>
+    <input matInput placeholder="Facility Number">
+  </mat-form-field>
+    <br>    
+  <mat-form-field>
+    <input matInput placeholder="Password">
+  </mat-form-field>
+    <br>
+  <button mat-button (click)="close()">
+    <mat-icon svgIcon="cancel"></mat-icon>
+    Cancel</button>
+  <button mat-button>
+    <mat-icon svgIcon="login-variant"></mat-icon> 
+    Login</button>
+</div>
