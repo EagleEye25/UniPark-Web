@@ -1,3 +1,21 @@
-<p>
-  view-assigned-parking works!
-</p>
+<div class="alternative">
+    <!-- Display of login modal -->
+    <!-- Displays assigned parking image -->
+    <img src="assets/images/user-options/assigned-parking/assigned-parking.png" alt="User Info">
+    <hr>
+    <!-- Mat list to display assigned parking -->
+    <mat-list role="list">
+      <mat-list-item role="listitem">Name: </mat-list-item>
+      <mat-list-item role="listitem">Surname: </mat-list-item>
+      <mat-list-item role="listitem">Password: </mat-list-item>
+      <mat-list-item role="listitem">Personel Type: </mat-list-item>
+      <mat-list-item role="listitem">Personel Level: </mat-list-item>
+    </mat-list>
+    <br>
+    <!-- CLose button -->
+    <button mat-button (click)="close()" class="center">
+    <mat-icon svgIcon="close"></mat-icon>
+      Close
+    </button>
+  </div>
+  

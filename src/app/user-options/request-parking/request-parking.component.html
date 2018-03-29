@@ -1,3 +1,33 @@
-<p>
-  request-parking works!
-</p>
+<div class="alternative">
+    <!-- Display of login modal -->
+    <!-- Displays request parking image -->
+    <img src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
+    <hr>
+    <!-- Mat form feild: cell phone number -->
+    <mat-form-field>
+      <input matInput  placeholder="Cell-Phone Number">
+    </mat-form-field>
+     <br>
+    <!-- Mat form feild: email address -->
+    <mat-form-field>
+      <input matInput  placeholder="E-mail Address">
+    </mat-form-field>
+      <br>
+    <!-- Mat form feild: password -->
+    <mat-form-field>
+      <input matInput placeholder="Password">
+    </mat-form-field>
+    <br>
+    <br>
+    <!-- Close button -->
+    <button mat-button (click)="close()">
+      <mat-icon svgIcon="cancel"></mat-icon>
+      Cancel
+    </button>
+    <!-- Update button -->
+    <button mat-button>
+      <mat-icon svgIcon="cube-send"></mat-icon> 
+      Update
+    </button>
+  </div>
+  

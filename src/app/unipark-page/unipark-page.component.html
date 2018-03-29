@@ -1,13 +1,14 @@
 <div class="alternative">
   <mat-toolbar color="primary">
+      <!-- Displays UniPark image -->
       <img src="assets/images/branding/up.png" alt="UniPark">
       <span class="spacer"></span>
       <button mat-icon-button [matMenuTriggerFor]="menu"
               matTooltip="Menu"
               matTooltipPosition="before">
         <mat-icon>more_vert</mat-icon>
-      </button>
       <!-- Menu button -->
+      </button>
       <mat-menu #menu="matMenu">
         <!-- View User Information -->
         <button mat-menu-item (click)="openUserInfoDialog()">

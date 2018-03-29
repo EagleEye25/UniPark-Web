@@ -1,23 +1,28 @@
 <!-- Toolbar with menu button, menu items -->
 <div>
     <mat-toolbar color="primary">
+        <!-- Displays DC image -->
         <img src="assets/images/branding/dc.png" alt="DC">
         <span class="spacer"></span>
+        <!-- Menu Button -->
         <button mat-icon-button [matMenuTriggerFor]="menu"
                 matTooltip="Menu"
                 matTooltipPosition="before">
           <mat-icon>more_vert</mat-icon>
         </button>
-        <!-- Menu button -->
+        <!-- Mat menu -->
         <mat-menu #menu="matMenu">
+            <!-- Login button -->
             <button mat-menu-item (click)="openLoginDialog()">
               <mat-icon>fingerprint</mat-icon>
               <span>Login</span>
             </button>
+            <!-- Issues button -->
             <button mat-menu-item disabled>
               <mat-icon>announcement</mat-icon>
               <span>Issues</span>
             </button>
+            <!-- Disable button -->
             <button mat-menu-item>
               <mat-icon>notifications_off</mat-icon>
               <span>Disable alerts</span>
@@ -26,9 +31,10 @@
     </mat-toolbar>
     <!-- TabGroup  under toolbar -->
     <mat-tab-group>
+        <!-- Dragon code tab -->
         <mat-tab label="Dragon Code">
+          <!-- Displays Dragon Code image -->
           <img src="assets/images/branding/dragon-code-name.gif" alt="Dragon Code" class="center">
-  
           <!-- Dragon code information -->
           <mat-tab-group class="center">
             <mat-tab label="Information">
@@ -98,6 +104,7 @@
           </mat-tab-group>
         </mat-tab>
         <mat-tab label="UniPark">
+          <!-- Displays UniPark image -->
           <img src="assets/images/branding/unipark.png" alt="UniPark" class="center-unipark">
             <!-- Unipark information -->  
             <mat-tab-group class="center">
@@ -111,10 +118,11 @@
                   is to improve security of the facility, and ensure that little to no theft occurs regarding motor vehicles.
                 </p>
               </mat-tab>
-              <!-- -->
+              <!-- The looks tab -->
               <mat-tab label="The Looks">
                 <p> Picutres of unipark goes here when its completed! </p>
               </mat-tab>
+              <!-- Intallation tab -->
               <mat-tab label="Installation">
                 <!-- install (developers) -->
                 <p>
@@ -124,6 +132,7 @@
                       <mat-icon svgIcon="github-circle"></mat-icon>
                       Repository
                     </button>
+                  <!-- install -->
                     <br>
                   To install Unipark click: &nbsp;
                     <button mat-button 

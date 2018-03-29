@@ -26,28 +26,28 @@ export class UniparkPageComponent implements OnInit {
   // Displays user-info modal
   openUserInfoDialog(): void {
     this.userInfoDialogRef = this.dialog.open(UserInfoComponent, {
-      // disableClose: true
+      disableClose: true
     });
   }
 
   // Displays update-user-info modal
   openUpdateUserInfoDialog(): void {
     this.UpdateUserDialog = this.dialog.open(UpdateUserInfoComponent, {
-      // disableClose: true
+      disableClose: true
     });
   }
 
   // Displays assigned-parking modal
   openAssignedParkingDialog(): void {
     this.AssignedParkingDialog = this.dialog.open(ViewAssignedParkingComponent, {
-      // disableClose: true
+      disableClose: true
     });
   }
 
   // Displays request-parking modal
   openRequestParkingDialog(): void {
     this.RequestParkingDialog = this.dialog.open(RequestParkingComponent, {
-      // disableClose: true
+      disableClose: true
     });
   }
 }
