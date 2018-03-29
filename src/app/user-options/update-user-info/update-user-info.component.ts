@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-update-user-info',
@@ -11,7 +11,6 @@ export class UpdateUserInfoComponent implements OnInit {
 
   // Creates email form control
   email = new FormControl('', [Validators.required, Validators.email]);
-
   hide = true;
 
   // Finds if the email entered is correct or not
@@ -21,7 +20,9 @@ export class UpdateUserInfoComponent implements OnInit {
   }
 
   constructor(
-    private dialogRef: MatDialogRef<UpdateUserInfoComponent>) { }
+    private dialogRef: MatDialogRef<UpdateUserInfoComponent>,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
   }
