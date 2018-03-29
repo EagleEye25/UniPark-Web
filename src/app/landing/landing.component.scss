@@ -1,0 +1,47 @@
+@import '../../theme.scss';
+.mat-sidenav-container {
+  .mat-sidenav {
+    width: 200px;
+    background: mat-color($mat-grey, 400);
+  }
+}
+
+.icon {
+  padding: 0 14px;
+}
+// Sets property to the end of the page
+.spacer {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+// Test container 
+.container {
+  font: 'Helvetica';
+  color: red;
+}
+// centers DC image
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+// Centers unipark picute
+.center-unipark {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
+// Aligns picture, with text under
+.align-text-picture {
+  width: 250px;
+	height: 300px;
+	float: left;
+  text-align: center;
+}
+// Changes pointer icon, icon color
+.mat-icon:hover { 
+  background-color: #FF1744;
+  cursor: pointer;
+}
