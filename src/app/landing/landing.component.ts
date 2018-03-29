@@ -13,6 +13,7 @@ export class LandingComponent implements OnInit {
   facilityNo: string;
   userPass: string;
   userinfo: string;
+
   // Imports login-dialog for use for modal
   loginDialogRef: MatDialogRef<LoginDialogComponent>;
 

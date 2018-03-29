@@ -1,6 +1,13 @@
+// Places element in center of page
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+// Changes pointer icon, icon color
+.mat-icon:hover { 
+  background-color: #FF1744;
+  cursor: pointer;
 }

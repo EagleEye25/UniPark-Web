@@ -10,8 +10,9 @@
    <br>
   <!-- Mat form field: password -->
   <mat-form-field>
-    <input matInput placeholder="Password">
-  </mat-form-field>
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
   <br>
   <!-- Close button -->
   <button mat-button (click)="close()">

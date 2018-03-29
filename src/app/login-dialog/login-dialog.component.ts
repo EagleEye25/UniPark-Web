@@ -10,6 +10,8 @@ import { NgModel } from '@angular/forms';
 })
 export class LoginDialogComponent implements OnInit {
 
+  hide = true;
+
   constructor(
     private dialogRef: MatDialogRef<LoginDialogComponent>) { }
 

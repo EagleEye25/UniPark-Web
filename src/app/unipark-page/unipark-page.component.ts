@@ -12,11 +12,13 @@ import { RequestParkingComponent } from '../../app/user-options/request-parking/
 })
 export class UniparkPageComponent implements OnInit {
 
-    // Imports dialogs for use for modal
-    userInfoDialogRef: MatDialogRef<UserInfoComponent>;
-    UpdateUserDialog: MatDialogRef<UpdateUserInfoComponent>;
-    AssignedParkingDialog: MatDialogRef<ViewAssignedParkingComponent>;
-    RequestParkingDialog: MatDialogRef<RequestParkingComponent>;
+  userName = 'Welcome Jason Eybers';
+
+  // Imports dialogs for use for modal
+  userInfoDialogRef: MatDialogRef<UserInfoComponent>;
+  UpdateUserDialog: MatDialogRef<UpdateUserInfoComponent>;
+  AssignedParkingDialog: MatDialogRef<ViewAssignedParkingComponent>;
+  RequestParkingDialog: MatDialogRef<RequestParkingComponent>;
 
   constructor(private dialog: MatDialog) { }
 
