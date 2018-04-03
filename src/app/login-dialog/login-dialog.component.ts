@@ -10,14 +10,24 @@ import { NgModel } from '@angular/forms';
 })
 export class LoginDialogComponent implements OnInit {
 
-  hide = true;
+  form: FormGroup;
+  facilityNo: string;
+  userPass: string;
 
   constructor(
-    private dialogRef: MatDialogRef<LoginDialogComponent>) { }
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<LoginDialogComponent>) {}
 
   ngOnInit() {
+    this.form = this.fb.group({
+      facilityNo: [this.facilityNo, []],
+      userPass: [this.userPass, []]
+    });
   }
 
+  login() {
+    this.dialogRef.close(this.form.value);
+  }
   // Closes the dialog
   close(): void {
     this.dialogRef.close();

@@ -12,7 +12,7 @@ import { filter } from 'rxjs/operators';
 export class LandingComponent implements OnInit {
   facilityNo: string;
   userPass: string;
-  userinfo: string;
+  
   // Imports login-dialog for use for modal
   loginDialogRef: MatDialogRef<LoginDialogComponent>;
 
@@ -31,7 +31,7 @@ export class LandingComponent implements OnInit {
         console.log('Dialog output:', data);
         this.facilityNo = data.facilityNo;
         this.userPass = data.userPass;
-        console.log('doedoe: ', this.facilityNo, '  ', this.userinfo);
+        console.log('doedoe: ', this.facilityNo, '  ', this.userPass)
       }
   );
   }
