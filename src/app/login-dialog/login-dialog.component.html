@@ -1,18 +1,28 @@
   <!-- Display of login modal -->
 <img src="assets/images/login/login.png" alt="Login">
   <hr>
-<mat-form-field>
-  <input matInput  placeholder="Facility Number">
-</mat-form-field>
-  <br>    
-<mat-form-field>
-  <input matInput placeholder="Password">
-</mat-form-field>
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput  
+            placeholder="Facility Number"
+            formControlName="facilityNo">
+  </mat-form-field>
+    <br>    
+  <mat-form-field>
+    <input matInput 
+            placeholder="Password"
+            formControlName="userPass">
+  </mat-form-field>
+</mat-dialog-content>
   <br>
-<button mat-button (click)="close()">
-  <mat-icon svgIcon="cancel"></mat-icon>
-  Cancel</button>
-<button mat-button>
-  <mat-icon svgIcon="login-variant"></mat-icon> 
-  Login</button>
+<mat-dialog-actions>
+  <button mat-button (click)="close()">
+    <mat-icon svgIcon="cancel"></mat-icon>
+    Cancel
+  </button>
+  <button mat-button (click)="login()">
+    <mat-icon svgIcon="login-variant"></mat-icon> 
+    Login
+  </button>  
+</mat-dialog-actions>
 

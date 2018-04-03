@@ -11,7 +11,7 @@ import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LandingComponent } from './landing/landing.component';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
-import { NgModel, FormsModule } from '@angular/forms';
+import { NgModel, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -28,7 +28,8 @@ import { NgModel, FormsModule } from '@angular/forms';
     SharedModule,
     MatIconModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [LoginDialogComponent],
   providers: [],
