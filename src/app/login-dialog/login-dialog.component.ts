@@ -18,9 +18,6 @@ export class LoginDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  submit() {
-  }
-
   // Closes the dialog
   close(): void {
     this.dialogRef.close();
