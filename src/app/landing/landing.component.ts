@@ -23,7 +23,16 @@ export class LandingComponent implements OnInit {
   // Displays login modal
   openLoginDialog(): void {
     this.loginDialogRef = this.dialog.open(LoginDialogComponent, {
-      disableClose: true
+      disableClose: true,
     });
+
+    this.loginDialogRef.afterClosed().subscribe(
+      data => {
+        console.log('Dialog output:', data);
+        this.facilityNo = data.facilityNo;
+        this.userPass = data.userPass;
+        console.log('doedoe: ', this.facilityNo, '  ', this.userinfo);
+      }
+  );
   }
 }

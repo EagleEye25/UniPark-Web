@@ -1,0 +1,30 @@
+<div class="alternative">
+  <!-- Display of login modal -->
+  <!-- Displays request parking image -->
+  <img src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
+  <hr>
+  <div class="center">
+    <!-- Mat form feild: parking area -->
+    <mat-form-field>
+      <input matInput  placeholder="Parking Area">
+    </mat-form-field>
+     <br>
+    <!-- Mat form feild: parking spot -->
+    <mat-form-field>
+      <input matInput  placeholder="Parking Spot">
+    </mat-form-field>
+    <br>
+  </div>
+    <hr>
+    <!-- Close button -->
+    <button mat-button (click)="close()">
+      <mat-icon svgIcon="cancel"></mat-icon>
+      Cancel
+    </button>
+    <!-- Update button -->
+    <button mat-button>
+      <mat-icon svgIcon="cube-send"></mat-icon> 
+      Update
+    </button>
+  </div>
+  
