@@ -4,27 +4,35 @@
   <img src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
   <hr>
   <div class="center">
+    <mat-dialog-content [formGroup]="form">
     <!-- Mat form feild: parking area -->
-    <mat-form-field>
-      <input matInput  placeholder="Parking Area">
-    </mat-form-field>
-     <br>
-    <!-- Mat form feild: parking spot -->
-    <mat-form-field>
-      <input matInput  placeholder="Parking Spot">
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput
+                placeholder="Parking Area"
+                formControlName="parkingArea">
+      </mat-form-field>
+      <br>
+      <!-- Mat form feild: parking spot -->
+      <mat-form-field>
+        <input matInput
+                placeholder="Parking Spot"
+                formControlName="parkingSpot">
+      </mat-form-field>
+    </mat-dialog-content>
     <br>
   </div>
-    <hr>
+  <hr>
+  <mat-dialog-actions>
     <!-- Close button -->
     <button mat-button (click)="close()">
       <mat-icon svgIcon="cancel"></mat-icon>
       Cancel
     </button>
     <!-- Update button -->
-    <button mat-button>
+    <button mat-button (click)="requestParking()">
       <mat-icon svgIcon="cube-send"></mat-icon> 
-      Update
+      request
     </button>
+  </mat-dialog-actions>
   </div>
   

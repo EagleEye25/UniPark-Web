@@ -28,6 +28,7 @@ export class LoginDialogComponent implements OnInit {
   login() {
     this.dialogRef.close(this.form.value);
   }
+
   // Closes the dialog
   close(): void {
     this.dialogRef.close();
