@@ -1,0 +1,47 @@
+<div class="alternative">
+    <!-- Display of login modal -->
+    <!-- Displays request parking image -->
+    <img src="assets/images/user-options/update-info/update-info.png" alt="User Info">
+    <hr>
+    <!-- Mat form feild: cell phone number -->
+    <mat-form-field hintLabel="Max 10 digits">
+      <input matInput #input maxlength="10" 
+              placeholder="Cell-Phone Number"
+              [formControl]="cellNo">
+      <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
+    </mat-form-field>
+     <br>
+    <!-- Mat form feild: email address -->
+    <mat-form-field>
+      <input matInput  placeholder="E-mail Address"
+              [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+      <br>
+    <!-- Mat form feild: password -->
+    <mat-form-field>
+      <input matInput placeholder="New Password"
+              [formControl]="newPass"
+              [type]="hide ? 'password' : 'text'">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Confirm Password"
+              [formControl]="passVerify"
+              [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+    <hr>
+    <br>
+    <!-- Close button -->
+    <button mat-button (click)="close()">
+      <mat-icon svgIcon="cancel"></mat-icon>
+      Cancel
+    </button>
+    <!-- Update button -->
+    <button mat-button>
+      <mat-icon svgIcon="cube-send"></mat-icon> 
+      Update
+    </button>
+  </div>
+  

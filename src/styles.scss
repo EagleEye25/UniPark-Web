@@ -6,3 +6,23 @@ body, html, .mat-sidenav-container {
   height: 100vh;
   color: white;
 }
+
+// Sets property to the end of the page
+.spacer {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+//Sets icon properly for menu items
+button.mat-menu-item {
+  line-height: 24px !important;
+}
+a.mat-menu-item > mat-icon {
+  margin-bottom: 14px;
+}
+.mat-icon svg {
+  height: 24px;
+  width: 24px;
+}
+

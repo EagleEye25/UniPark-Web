@@ -1,0 +1,57 @@
+<div class="alternative">
+  <mat-toolbar color="primary">
+      <!-- Displays UniPark image -->
+      <img src="assets/images/branding/up.png" alt="UniPark">
+      <span class="spacer"></span>
+      <p>{{ userName }}</p>
+      <button mat-icon-button [matMenuTriggerFor]="menu"
+              matTooltip="Menu"
+              matTooltipPosition="before">
+        <mat-icon>more_vert</mat-icon>
+      <!-- Menu button -->
+      </button>
+      <mat-menu #menu="matMenu">
+        <!-- View User Information -->
+        <button mat-menu-item (click)="openUserInfoDialog()">
+          <mat-icon svgIcon="account-card-details"></mat-icon>
+          <span>User Information</span>
+        </button>
+        <!-- Update User Info -->
+        <button mat-menu-item (click)="openUpdateUserInfoDialog()">
+          <mat-icon svgIcon="account-settings-variant"></mat-icon>
+          <span>Update User Info</span>
+          </button>
+        <!-- View User Parking Area -->
+        <button mat-menu-item (click)="openAssignedParkingDialog()">
+          <mat-icon svgIcon="parking"></mat-icon>
+          <span>Assigned Parking</span>
+        </button>
+        <!-- Request Parking -->
+        <button mat-menu-item (click)="openRequestParkingDialog()">
+            <mat-icon svgIcon="car-connected"></mat-icon>
+            <span>Request Parking</span>
+          </button>
+        <!-- Logout -->
+        <button mat-menu-item>
+          <mat-icon svgIcon="logout"></mat-icon>
+          <span>Logout</span>
+        </button>
+        </mat-menu>
+  </mat-toolbar>
+  <!-- going to incorportate user options into dialogs, while on defualt unipark page
+      will display unipark shit etc 
+  Tab group for all user options 
+  <mat-tab-group>
+    User Information 
+    <mat-tab label="User Information">
+      Content 1
+    </mat-tab>
+    Parking area information
+    <mat-tab label="Parking Area">
+      Content 2
+    </mat-tab>
+    <mat-tab label="U">
+        Content 2
+      </mat-tab>
+  </mat-tab-group> -->
+</div>
