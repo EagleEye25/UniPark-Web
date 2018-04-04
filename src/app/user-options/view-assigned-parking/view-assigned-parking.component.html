@@ -5,9 +5,15 @@
     <hr>
     <!-- Mat list to display assigned parking -->
     <mat-list role="list">
-      <mat-list-item role="listitem">Parking Name: </mat-list-item>
-      <mat-list-item role="listitem">Parking Access Level: </mat-list-item>
-      <mat-list-item role="listitem">Location: </mat-list-item>
+      <mat-list-item role="listitem">
+        <strong>Parking Name: &nbsp;</strong> {{ data.parkingName }}
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <strong>Parking Access Level: &nbsp;</strong> {{ data.parkingAl }}
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <strong>Location: &nbsp;</strong> {{ data.parkingLocation }}
+      </mat-list-item>
     </mat-list>
     <hr>
     <br>

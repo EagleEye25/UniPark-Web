@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -9,7 +9,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class UserInfoComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<UserInfoComponent>) { }
+    private dialogRef: MatDialogRef<UserInfoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
 
 @Component({
   selector: 'app-update-user-info',
@@ -8,6 +8,11 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
   styleUrls: ['./update-user-info.component.scss']
 })
 export class UpdateUserInfoComponent implements OnInit {
+
+  form: FormGroup;
+  cellNo: string;
+  newPass: string;
+  confirmNewPass: string;
 
   // Creates email form control
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -20,11 +25,21 @@ export class UpdateUserInfoComponent implements OnInit {
   }
 
   constructor(
-    private dialogRef: MatDialogRef<UpdateUserInfoComponent>,
-    private formBuilder: FormBuilder
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<UpdateUserInfoComponent>
   ) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      cellNo: [this.cellNo, []],
+      email: [this.email, []],
+      newPass: [this.newPass, []],
+      confirmNewPass: [this.confirmNewPass, []],
+    });
+  }
+
+  updateInfo() {
+    this.dialogRef.close(this.form.value);
   }
 
   // Closes the dialog
