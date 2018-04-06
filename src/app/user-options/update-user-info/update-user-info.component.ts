@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
 
@@ -16,6 +16,7 @@ export class UpdateUserInfoComponent implements OnInit {
 
   // Creates email form control
   email = new FormControl('', [Validators.required, Validators.email]);
+  // Hides password
   hide = true;
 
   // Finds if the email entered is correct or not
@@ -43,8 +44,20 @@ export class UpdateUserInfoComponent implements OnInit {
   }
 
   // Closes the dialog
-  close(): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
+
+  @HostListener('window:keydown', ['$event'])
+    enterKeyEvent(event: any) {
+      switch (event.keyCode) {
+        case 13:
+          this.updateInfo();
+          break;
+        case 27:
+          this.closeDialog();
+          break;
+      }
+    }
 
 }
