@@ -2,12 +2,14 @@
 <img src="assets/images/login/login.png" alt="Login">
   <hr>
 <mat-dialog-content [formGroup]="form">
+  <!-- mat form feild: facilityNO -->
   <mat-form-field>
-    <input matInput  
+    <input matInput
             placeholder="Facility Number"
             formControlName="facilityNo">
   </mat-form-field>
-    <br>    
+    <br>
+  <!-- Mat form feild: password -->
   <mat-form-field>
     <input matInput 
             placeholder="Password"
@@ -19,11 +21,13 @@
 </mat-dialog-content>
   <br>
 <mat-dialog-actions>
-  <button mat-button (click)="close()">
+  <!-- Close button -->
+  <button mat-button (click)="closeDialog()">
     <mat-icon svgIcon="cancel"></mat-icon>
     Cancel
   </button>
-  <button mat-button (click)="login()">
+  <!-- Login button -->
+  <button mat-button (click)="aquireLoginDetails()">
     <mat-icon svgIcon="login-variant"></mat-icon> 
     Login
   </button>  

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -28,7 +28,19 @@ export class RequestParkingComponent implements OnInit {
     this.dialogRef.close(this.form.value);
   }
 
-  close(): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
+
+  @HostListener('window:keydown', ['$event'])
+    enterKeyEvent(event: any) {
+      switch (event.keyCode) {
+        case 13:
+          this.requestParking();
+          break;
+        case 27:
+          this.closeDialog();
+          break;
+      }
+    }
 }

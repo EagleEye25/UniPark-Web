@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -15,8 +15,20 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
   }
 
-    // Closes the dialog
-    close(): void {
-      this.dialogRef.close();
+  // Closes the dialog
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
+  @HostListener('window:keydown', ['$event'])
+    enterKeyEvent(event: any) {
+      switch (event.keyCode) {
+        case 13:
+          this.closeDialog();
+          break;
+        case 27:
+          this.closeDialog();
+          break;
+      }
     }
 }

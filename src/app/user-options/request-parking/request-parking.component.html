@@ -3,7 +3,7 @@
   <!-- Displays request parking image -->
   <img src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
   <hr>
-  <div class="center">
+  <div>
     <mat-dialog-content [formGroup]="form">
     <!-- Mat form feild: parking area -->
       <mat-form-field>
@@ -24,7 +24,7 @@
   <hr>
   <mat-dialog-actions>
     <!-- Close button -->
-    <button mat-button (click)="close()">
+    <button mat-button (click)="closeDialog()">
       <mat-icon svgIcon="cancel"></mat-icon>
       Cancel
     </button>

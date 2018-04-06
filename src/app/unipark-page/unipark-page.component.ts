@@ -49,6 +49,7 @@ export class UniparkPageComponent implements OnInit {
   openUserInfoDialog(): void {
     this.userInfoDialogRef = this.dialog.open(UserInfoComponent, {
       disableClose: true,
+      // Sets data to appropriate variables
       data: {
         userName: this.userName,
         userSur: this.userSur,
@@ -65,6 +66,7 @@ export class UniparkPageComponent implements OnInit {
       disableClose: true
     });
 
+    // Sets data to appropriate variables
     this.UpdateUserDialog.afterClosed().subscribe(
         updateInfo => {
         console.log('Dialog output:', updateInfo);
@@ -80,6 +82,7 @@ export class UniparkPageComponent implements OnInit {
   openAssignedParkingDialog(): void {
     this.AssignedParkingDialog = this.dialog.open(ViewAssignedParkingComponent, {
       disableClose: true,
+      // Sets data to appropriate variables
       data: {
         parkingName: this.parkingName,
         parkingAL: this.parkingAL,
@@ -94,6 +97,7 @@ export class UniparkPageComponent implements OnInit {
       disableClose: true
     });
 
+    // Sets data to appropriate variables
     this.RequestParkingDialog.afterClosed().subscribe(
         requestParking => {
         console.log('Dialog output:', requestParking);
