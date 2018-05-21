@@ -1,5 +1,6 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component} from '@angular/core';
+import {Router} from '@angular/router';
 import 'hammerjs';
 
 @Component({
@@ -9,4 +10,7 @@ import 'hammerjs';
 })
 export class AppComponent {
   title = 'app';
+  constructor(
+    private _router: Router,
+  ) { }
 }

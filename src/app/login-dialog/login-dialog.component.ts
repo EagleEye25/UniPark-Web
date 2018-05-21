@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject, Output, EventEmitter, HostListener, NgModule } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import {Router} from '@angular/router';
+
 
 import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
 
@@ -24,6 +26,7 @@ export class LoginDialogComponent implements OnInit {
   hide = true;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<LoginDialogComponent>) {}
@@ -49,6 +52,7 @@ export class LoginDialogComponent implements OnInit {
     } else {
       // Open unipark page, close modal
       this.dialogRef.close(this.form.value);
+      this.router.navigateByUrl('/admin');
     }
   }
 

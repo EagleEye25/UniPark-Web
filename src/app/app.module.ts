@@ -18,6 +18,7 @@ import { UpdateUserInfoComponent } from './user-options/update-user-info/update-
 import { ViewAssignedParkingComponent } from './user-options/view-assigned-parking/view-assigned-parking.component';
 import { RequestParkingComponent } from './user-options/request-parking/request-parking.component';
 
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RequestParkingComponent } from './user-options/request-parking/request-
     MatIconModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    routing
   ],
   entryComponents: [
     LoginDialogComponent,

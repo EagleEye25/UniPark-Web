@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { UserInfoComponent } from '../../app/user-options/user-info/user-info.component';
 import { UpdateUserInfoComponent } from '../../app/user-options/update-user-info/update-user-info.component';
@@ -40,9 +41,15 @@ export class UniparkPageComponent implements OnInit {
   AssignedParkingDialog: MatDialogRef<ViewAssignedParkingComponent>;
   RequestParkingDialog: MatDialogRef<RequestParkingComponent>;
 
-  constructor(private dialog: MatDialog) { }
+  myDatas: any;
+  constructor(
+    private dialog: MatDialog,
+    private http: HttpClient,
+  ) { }
 
   ngOnInit() {
+    this.http.get('https://api.coinmarketcap.com/v2/ticker/?limit=2')
+      .subscribe((response: any) => this.myDatas = response);
   }
 
   // Displays user-info modal
@@ -51,8 +58,8 @@ export class UniparkPageComponent implements OnInit {
       disableClose: true,
       // Sets data to appropriate variables
       data: {
-        userName: this.userName,
-        userSur: this.userSur,
+        userName: this.myDatas.data[1].symbolname, // this.userName,
+        userSur: this.myDatas.data[1].symbol,
         password: this.password,
         personelType: this.personelType,
         personelLevel: this.personelLevel
