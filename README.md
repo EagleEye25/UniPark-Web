@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/EagleEye25/UniPark-Web.svg?branch=master)](https://travis-ci.org/EagleEye25/UniPark-Web)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1838379c6be9cb031d9c/maintainability)](https://codeclimate.com/github/EagleEye25/UniPark-Web/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1838379c6be9cb031d9c/test_coverage)](https://codeclimate.com/github/EagleEye25/UniPark-Web/test_coverage)
+[![codecov](https://codecov.io/gh/EagleEye25/UniPark-Web/branch/master/graph/badge.svg)](https://codecov.io/gh/EagleEye25/UniPark-Web)
+[![npm version](https://badge.fury.io/js/%40angular%2Fcore.svg)](https://badge.fury.io/js/%40angular%2Fcore)
+[![HitCount](http://hits.dwyl.io/EagleEye25/Unipark-Web.svg)](http://hits.dwyl.io/EagleEye25/Unipark-Web)
 # UniParkWeb
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
