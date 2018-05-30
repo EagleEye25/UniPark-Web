@@ -20,6 +20,7 @@ before_script:
   - npm install
 
 script:
+  - npm install codecov -g
   - echo 'Build Dist' && echo -en 'travis_fold:start:script.build\\r'
 
   - ng build --base-href="./"
@@ -45,3 +46,5 @@ script:
   - cat $TRAVIS_BUILD_DIR/dist.zip.sha256sum.txt
 
   - echo -en 'travis_fold:end:script.dist\\r'
+after_success:
+  - codecov

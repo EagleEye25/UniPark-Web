@@ -31,7 +31,7 @@ export class LandingComponent implements OnInit {
         console.log('Dialog output:', loginData);
         this.facilityNo = loginData.facilityNo;
         this.userPass = loginData.userPass;
-        console.log('doedoe: ', this.facilityNo, '  ', this.userPass);
+        console.log('landing: ', this.facilityNo, '  ', this.userPass);
       }
     );
   }
