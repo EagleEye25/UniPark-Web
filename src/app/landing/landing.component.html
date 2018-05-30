@@ -4,30 +4,13 @@
         <!-- Displays DC image -->
         <img src="assets/images/branding/dc.png" alt="DC">
         <span class="spacer"></span>
-        <!-- Menu Button -->
-        <button mat-icon-button [matMenuTriggerFor]="menu"
-                matTooltip="Menu"
-                matTooltipPosition="before">
-          <mat-icon>more_vert</mat-icon>
+        
+        <button mat-button (click)="openLoginDialog()"
+          matTooltip="CLick here to login"
+          matTooltipPosition="before">
+          <mat-icon>fingerprint</mat-icon>
+          <span>Login</span>
         </button>
-        <!-- Mat menu -->
-        <mat-menu #menu="matMenu">
-            <!-- Login button -->
-            <button mat-menu-item (click)="openLoginDialog()">
-              <mat-icon>fingerprint</mat-icon>
-              <span>Login</span>
-            </button>
-            <!-- Issues button -->
-            <button mat-menu-item disabled>
-              <mat-icon>announcement</mat-icon>
-              <span>Issues</span>
-            </button>
-            <!-- Disable button -->
-            <button mat-menu-item>
-              <mat-icon>notifications_off</mat-icon>
-              <span>Disable alerts</span>
-            </button>
-          </mat-menu>
     </mat-toolbar>
     <!-- TabGroup  under toolbar -->
     <mat-tab-group>
@@ -70,11 +53,12 @@
                     </mat-icon>
                     <mat-icon svgIcon="stack-overflow"
                               onclick="window.open('https://stackoverflow.com/users/9384658/eagleeye25')"
+                              onclick="window.close()"
                               matTooltip="Stack-Overflow"
-                              matTooltipPosition="below">>
+                              matTooltipPosition="below">>s
                     </mat-icon>
                     <mat-icon svgIcon="email"
-                              
+                              onclick="window.open('mailto:s216017173@mandela.ac.za?subject=Subject&body=message%20goes%20here')"
                               matTooltip="Email"
                               matTooltipPosition="below">>
                     </mat-icon>
@@ -84,21 +68,79 @@
               <div class="align-text-picture">
                   <img src="assets/images/crew/daniel.png" alt="Daniel Maree">
                   <p>Daniel Maree<br>(Copy Paster)</p>
+                    <mat-icon svgIcon="github-circle"
+                              onclick="window.open('https://github.com/DieWindpomp')"
+                              matTooltip="Github"
+                              matTooltipPosition="below">>
+                    </mat-icon>
+                    <mat-icon svgIcon="linkedin-box"
+                              onclick="window.open('https://www.linkedin.com/in/daniel-maree-53308b165/')"
+                              matTooltip="Linkedin"
+                              matTooltipPosition="below">>
+                    </mat-icon>
+                    <mat-icon svgIcon="instagram"
+                              onclick="window.open('https://www.instagram.com/diewindpomp/')"
+                              matTooltip="Instagram"
+                              matTooltipPosition="below">>
+                    </mat-icon>
+                    <mat-icon svgIcon="facebook"
+                              onclick="window.open('https://www.facebook.com/windpomp')"
+                              matTooltip="Facebook"
+                              matTooltipPosition="below">>
+                    </mat-icon>
+                    <mat-icon svgIcon="email"
+                              onclick="window.open('mailto:s216448816@mandela.ac.za?subject=Subject&body=message%20goes%20here')"
+                              matTooltip="Email"
+                              matTooltipPosition="below">>
+                    </mat-icon>
               </div>
               <!-- Wihan Du Plessis INFO -->
               <div class="align-text-picture">
                   <img src="assets/images/crew/wihan.png" alt="Wihan Du Plessis">
                   <p>Wihan Du Plessis<br>(Data Monkey)</p>
+                    <mat-icon svgIcon="github-circle"
+                              onclick="window.open('https://github.com/EagleEye25/')"
+                              matTooltip="Github"
+                              matTooltipPosition="below">>
+                    </mat-icon>
+
+                    <mat-icon svgIcon="email"
+                              onclick="window.open('mailto:s216060184@mandela.ac.za?subject=Subject&body=message%20goes%20here')"
+                              matTooltip="Email"
+                              matTooltipPosition="below">>
+                    </mat-icon>
               </div>
               <!-- Kobus Esterhuizen INFO -->
               <div class="align-text-picture">
                   <img src="assets/images/crew/kobus.png" alt="Kobus Esterhuizen">
                   <p>Kobus Esterhuizen<br>(Code-Modo Dragon)</p>
+                    <mat-icon svgIcon="github-circle"
+                              onclick="window.open('https://github.com/Kabousi/')"
+                              matTooltip="Github"
+                              matTooltipPosition="below">>
+                    </mat-icon>
+
+                    <mat-icon svgIcon="email"
+                              onclick="window.open('mailto:s216276586@mandela.ac.za?subject=Subject&body=message%20goes%20here')"
+                              matTooltip="Email"
+                              matTooltipPosition="below">>
+                    </mat-icon>
               </div>
               <!-- Maurice Garces De Gois INFO -->
               <div class="align-text-picture">
                   <img src="assets/images/crew/maurice.png" alt="Maurice Garcies De Gois">
                   <p>Maurice Garces<br>De Gois<br>(Ctrl-SpaceFreak)</p>
+                    <mat-icon svgIcon="github-circle"
+                              onclick="window.open('https://github.com/Mauricegdg/')"
+                              matTooltip="Github"
+                              matTooltipPosition="below">>
+                    </mat-icon>
+
+                    <mat-icon svgIcon="email"
+                              onclick="window.open('mailto:s216111919@mandela.ac.za?subject=Subject&body=message%20goes%20here')"
+                              matTooltip="Email"
+                              matTooltipPosition="below">>
+                    </mat-icon>
               </div>
             </mat-tab>
           </mat-tab-group>

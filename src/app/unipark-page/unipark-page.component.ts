@@ -41,12 +41,15 @@ export class UniparkPageComponent implements OnInit {
   AssignedParkingDialog: MatDialogRef<ViewAssignedParkingComponent>;
   RequestParkingDialog: MatDialogRef<RequestParkingComponent>;
 
+  // Decliration for data of user
   myDatas: any;
   constructor(
     private dialog: MatDialog,
     private http: HttpClient,
   ) { }
 
+  // Implimentation for gathering data from database
+  // Currently getting data from an API
   ngOnInit() {
     this.http.get('https://api.coinmarketcap.com/v2/ticker/?limit=2')
       .subscribe((response: any) => this.myDatas = response);
@@ -58,7 +61,7 @@ export class UniparkPageComponent implements OnInit {
       disableClose: true,
       // Sets data to appropriate variables
       data: {
-        userName: this.myDatas.data[1].symbolname, // this.userName,
+        userName: this.myDatas.data[1].name, // this.userName,
         userSur: this.myDatas.data[1].symbol,
         password: this.password,
         personelType: this.personelType,
