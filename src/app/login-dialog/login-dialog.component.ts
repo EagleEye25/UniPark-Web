@@ -38,6 +38,12 @@ export class LoginDialogComponent implements OnInit {
     });
   }
 
+  openSnackBar() {
+    this.snackBar.open('Incorrect login details', 'OK', {
+      duration: 2000,
+    });
+  }
+
   aquireLoginDetails() {
     // Set login information
     this.facilityNo = this.form.value.facilityNo;
@@ -45,12 +51,15 @@ export class LoginDialogComponent implements OnInit {
     this.facilityNoDB = '123';
     this.userPassDB = '123';
     // If information is incorrect, will inform user
-    if ((this.facilityNo !== this.facilityNoDB) && (this.userPass !== this.userPassDB)) {
-      this.snackBar.open('Incorrect login details', 'OK', {
-        duration: 2000,
-      });
+    // NEEDED AN IF ELSE FOR WAY DATA IS COLLECTED
+    if (this.facilityNoDB !== this.facilityNo) {
+          this.openSnackBar();
+    } else if
+        (this.userPassDB !== this.userPass) {
+          this.openSnackBar();
     } else {
       // Open unipark page, close modal
+      console.log('login Dialog: ', this.facilityNoDB, '  ', this.userPassDB);
       this.dialogRef.close(this.form.value);
       this.router.navigateByUrl('/admin');
     }
