@@ -22,7 +22,7 @@ export class LoginDialogComponent implements OnInit {
   facilityNoDB: string;
   userPassDB: string;
 
-  // Hides password
+  // Hides password on dialog
   hide = true;
 
   constructor(
@@ -38,25 +38,30 @@ export class LoginDialogComponent implements OnInit {
     });
   }
 
-  openSnackBar() {
+  openSnackBarFail() {
+    // opens the snackBar with error
     this.snackBar.open('Incorrect login details', 'OK', {
       duration: 2000,
     });
   }
 
   aquireLoginDetails() {
-    // Set login information
+    // aquire login details from dialog
     this.facilityNo = this.form.value.facilityNo;
     this.userPass = this.form.value.userPass;
     this.facilityNoDB = '123';
     this.userPassDB = '123';
+    this.verifyUser();
+  }
+
+  verifyUser() {
     // If information is incorrect, will inform user
     // NEEDED AN IF ELSE FOR WAY DATA IS COLLECTED
     if (this.facilityNoDB !== this.facilityNo) {
-          this.openSnackBar();
+      this.openSnackBarFail();
     } else if
-        (this.userPassDB !== this.userPass) {
-          this.openSnackBar();
+      (this.userPassDB !== this.userPass) {
+      this.openSnackBarFail();
     } else {
       // Open unipark page, close modal
       console.log('login Dialog: ', this.facilityNoDB, '  ', this.userPassDB);
@@ -70,7 +75,7 @@ export class LoginDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // captures keyboard events
+  // Captures keyboard events
   @HostListener('window:keydown', ['$event'])
     enterKeyEvent(event: any) {
       switch (event.keyCode) {
