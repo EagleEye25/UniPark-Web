@@ -17,8 +17,10 @@ import { UserInfoComponent } from './user-options/user-info/user-info.component'
 import { UpdateUserInfoComponent } from './user-options/update-user-info/update-user-info.component';
 import { ViewAssignedParkingComponent } from './user-options/view-assigned-parking/view-assigned-parking.component';
 import { RequestParkingComponent } from './user-options/request-parking/request-parking.component';
+import { HelpComponent } from './user-options/help/help.component';
 
 import { routing } from './app.routing';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { routing } from './app.routing';
     UpdateUserInfoComponent,
     ViewAssignedParkingComponent,
     RequestParkingComponent,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { routing } from './app.routing';
     UserInfoComponent,
     RequestParkingComponent,
     UpdateUserInfoComponent,
-    ViewAssignedParkingComponent
+    ViewAssignedParkingComponent,
+    HelpComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

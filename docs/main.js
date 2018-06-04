@@ -117,7 +117,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./user-options/update-user-info/update-user-info.component */ "./src/app/user-options/update-user-info/update-user-info.component.ts");
 /* harmony import */ var _user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./user-options/view-assigned-parking/view-assigned-parking.component */ "./src/app/user-options/view-assigned-parking/view-assigned-parking.component.ts");
 /* harmony import */ var _user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./user-options/request-parking/request-parking.component */ "./src/app/user-options/request-parking/request-parking.component.ts");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./user-options/help/help.component */ "./src/app/user-options/help/help.component.ts");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -127,6 +128,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -160,6 +162,7 @@ var AppModule = /** @class */ (function () {
                 _user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_13__["UpdateUserInfoComponent"],
                 _user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_14__["ViewAssignedParkingComponent"],
                 _user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_15__["RequestParkingComponent"],
+                _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_16__["HelpComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -170,14 +173,15 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ReactiveFormsModule"],
-                _app_routing__WEBPACK_IMPORTED_MODULE_16__["routing"]
+                _app_routing__WEBPACK_IMPORTED_MODULE_17__["routing"]
             ],
             entryComponents: [
                 _login_dialog_login_dialog_component__WEBPACK_IMPORTED_MODULE_9__["LoginDialogComponent"],
                 _user_options_user_info_user_info_component__WEBPACK_IMPORTED_MODULE_12__["UserInfoComponent"],
                 _user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_15__["RequestParkingComponent"],
                 _user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_13__["UpdateUserInfoComponent"],
-                _user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_14__["ViewAssignedParkingComponent"]
+                _user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_14__["ViewAssignedParkingComponent"],
+                _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_16__["HelpComponent"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
@@ -205,9 +209,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _landing_landing_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./landing/landing.component */ "./src/app/landing/landing.component.ts");
 /* harmony import */ var _unipark_page_unipark_page_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unipark-page/unipark-page.component */ "./src/app/unipark-page/unipark-page.component.ts");
 
-/* Preload strategry */
 
-/* end preload strategy */
 
 
 /* actual routing */
@@ -262,7 +264,7 @@ var CoreModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Toolbar with menu button, menu items -->\r\n<div>\r\n    <mat-toolbar color=\"primary\">\r\n        <!-- Displays DC image -->\r\n        <img src=\"assets/images/branding/dc.png\" alt=\"DC\">\r\n        <span class=\"spacer\"></span>\r\n        <!-- Menu Button -->\r\n        <button mat-icon-button [matMenuTriggerFor]=\"menu\"\r\n                matTooltip=\"Menu\"\r\n                matTooltipPosition=\"before\">\r\n          <mat-icon>more_vert</mat-icon>\r\n        </button>\r\n        <!-- Mat menu -->\r\n        <mat-menu #menu=\"matMenu\">\r\n            <!-- Login button -->\r\n            <button mat-menu-item (click)=\"openLoginDialog()\">\r\n              <mat-icon>fingerprint</mat-icon>\r\n              <span>Login</span>\r\n            </button>\r\n            <!-- Issues button -->\r\n            <button mat-menu-item disabled>\r\n              <mat-icon>announcement</mat-icon>\r\n              <span>Issues</span>\r\n            </button>\r\n            <!-- Disable button -->\r\n            <button mat-menu-item>\r\n              <mat-icon>notifications_off</mat-icon>\r\n              <span>Disable alerts</span>\r\n            </button>\r\n          </mat-menu>\r\n    </mat-toolbar>\r\n    <!-- TabGroup  under toolbar -->\r\n    <mat-tab-group>\r\n        <!-- Dragon code tab -->\r\n        <mat-tab label=\"Dragon Code\">\r\n          <!-- Displays Dragon Code image -->\r\n          <img src=\"assets/images/branding/dragon-code-name.gif\" alt=\"Dragon Code\" class=\"center\">\r\n          <!-- Dragon code information -->\r\n          <mat-tab-group class=\"center\">\r\n            <mat-tab label=\"Information\">\r\n              <p>Dragon Code is a group of 3rd year students from Nelson Mandela University, that have formed\r\n                together, to slay evil bugs and develop the most efficent, secure software for the fate of man kind!\r\n              </p>\r\n            </mat-tab>\r\n            <!-- Crew images, names -->\r\n            <mat-tab label=\"Crew\">\r\n              <p><br></p>\r\n              <div class=\"align-text-picture\">\r\n                <!-- Jason Eybers INFO -->\r\n                  <img src=\"assets/images/crew/jason.png\" alt=\"Jason Eybers\">\r\n                  <p> Jason Eybers<br>(Steve Jobless) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/EagleEye25/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"linkedin-box\"\r\n                              onclick=\"window.open('https://www.linkedin.com/in/jason-henry-eybers-b63422157/')\"\r\n                              matTooltip=\"Linkedin\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"slack\"\r\n                              matTooltip=\"Slack username\"\r\n                              matTooltipPosition=\"below\">\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"twitter\"\r\n                              onclick=\"window.open('https://twitter.com/JasonEybers')\"\r\n                              matTooltip=\"Twitter\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"stack-overflow\"\r\n                              onclick=\"window.open('https://stackoverflow.com/users/9384658/eagleeye25')\"\r\n                              matTooltip=\"Stack-Overflow\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"email\"\r\n                              \r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Daniel Maree INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/daniel.png\" alt=\"Daniel Maree\">\r\n                  <p>Daniel Maree<br>(Copy Paster)</p>\r\n              </div>\r\n              <!-- Wihan Du Plessis INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/wihan.png\" alt=\"Wihan Du Plessis\">\r\n                  <p>Wihan Du Plessis<br>(Data Monkey)</p>\r\n              </div>\r\n              <!-- Kobus Esterhuizen INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/kobus.png\" alt=\"Kobus Esterhuizen\">\r\n                  <p>Kobus Esterhuizen<br>(Code-Modo Dragon)</p>\r\n              </div>\r\n              <!-- Maurice Garces De Gois INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/maurice.png\" alt=\"Maurice Garcies De Gois\">\r\n                  <p>Maurice Garces<br>De Gois<br>(Ctrl-SpaceFreak)</p>\r\n              </div>\r\n            </mat-tab>\r\n          </mat-tab-group>\r\n        </mat-tab>\r\n        <mat-tab label=\"UniPark\">\r\n          <!-- Displays UniPark image -->\r\n          <img src=\"assets/images/branding/unipark.png\" alt=\"UniPark\" class=\"center-unipark\">\r\n            <!-- Unipark information -->  \r\n            <mat-tab-group class=\"center\">\r\n              <!-- Information -->\r\n              <mat-tab label=\"What is UniPark\">\r\n                <p>UniPark is an open souce project for a fully automated parking system, that will allow users that\r\n                  have access to a facilities parking area to enter. \r\n                  The program is securely setup to prevent unauthorized users\r\n                  access to the facility, also to help the facility to control traffic, ensure that person/s\r\n                  in the facility park in the correct area, which is assigned to them. The aim of the system\r\n                  is to improve security of the facility, and ensure that little to no theft occurs regarding motor vehicles.\r\n                </p>\r\n              </mat-tab>\r\n              <!-- The looks tab -->\r\n              <mat-tab label=\"The Looks\">\r\n                <p> Picutres of unipark goes here when its completed! </p>\r\n              </mat-tab>\r\n              <!-- Intallation tab -->\r\n              <mat-tab label=\"Installation\">\r\n                <!-- install (developers) -->\r\n                <p>\r\n                  To access UniPark repository (Developers): &nbsp;\r\n                    <button mat-button \r\n                            onclick=\"window.open('https://github.com/EagleEye25/uniPark-BackEnd')\">\r\n                      <mat-icon svgIcon=\"github-circle\"></mat-icon>\r\n                      Repository\r\n                    </button>\r\n                  <!-- install -->\r\n                    <br>\r\n                  To install Unipark click: &nbsp;\r\n                    <button mat-button \r\n                            onclick=\"window.open('https://github.com/EagleEye25/uniPark-BackEnd')\">\r\n                      <mat-icon svgIcon=\"download\"></mat-icon>\r\n                      DownLoad\r\n                    </button>\r\n                </p>\r\n              </mat-tab>\r\n            </mat-tab-group>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n  </div>\r\n  "
+module.exports = "<!-- Toolbar with menu button, menu items -->\r\n<div>\r\n    <mat-toolbar color=\"primary\">\r\n        <!-- Displays DC image -->\r\n        <img src=\"assets/images/branding/dc.png\" alt=\"DC\">\r\n        <span class=\"spacer\"></span>\r\n        \r\n        <button mat-button (click)=\"openLoginDialog()\"\r\n          matTooltip=\"CLick here to login\"\r\n          matTooltipPosition=\"before\">\r\n          <mat-icon>fingerprint</mat-icon>\r\n          <span>Login</span>\r\n        </button>\r\n    </mat-toolbar>\r\n    <!-- TabGroup  under toolbar -->\r\n    <mat-tab-group>\r\n        <!-- Dragon code tab -->\r\n        <mat-tab label=\"Dragon Code\">\r\n          <!-- Displays Dragon Code image -->\r\n          <img src=\"assets/images/branding/dragon-code-name.gif\" alt=\"Dragon Code\" class=\"center\">\r\n          <!-- Dragon code information -->\r\n          <mat-tab-group class=\"center\">\r\n            <mat-tab label=\"Information\">\r\n              <p>\r\n                Dragon Code is a group of third year students from Mandela University, that have been given\r\n                the task to create an \"Advanced\", secure parking system for the university. In which they saw\r\n                greater opertunities, and decided to develope their project, so that it could be used by not\r\n                only the university, but any other minor, major facilities that wish to ensure that their\r\n                personnel have save parking areas, with little to no chance of theft of vehicles, and also\r\n                improve the way in which they monitor and control who has access to the facility, and when.\r\n              </p>\r\n            </mat-tab>\r\n            <!-- Crew images, names -->\r\n            <mat-tab label=\"Crew\">\r\n              <p><br></p>\r\n              <div class=\"align-text-picture\">\r\n                <!-- Jason Eybers INFO -->\r\n                  <img src=\"assets/images/crew/jason.png\" alt=\"Jason Eybers\">\r\n                  <p> Jason Eybers<br>(Steve Jobless) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/EagleEye25/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"linkedin-box\"\r\n                              onclick=\"window.open('https://www.linkedin.com/in/jason-henry-eybers-b63422157/')\"\r\n                              matTooltip=\"Linkedin\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"slack\"\r\n                              matTooltip=\"Slack username\"\r\n                              matTooltipPosition=\"below\">\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"twitter\"\r\n                              onclick=\"window.open('https://twitter.com/JasonEybers')\"\r\n                              matTooltip=\"Twitter\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"stack-overflow\"\r\n                              onclick=\"window.open('https://stackoverflow.com/users/9384658/eagleeye25')\"\r\n                              onclick=\"window.close()\"\r\n                              matTooltip=\"Stack-Overflow\"\r\n                              matTooltipPosition=\"below\">>s\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216017173@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Daniel Maree INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/daniel.png\" alt=\"Daniel Maree\">\r\n                  <p>Daniel Maree<br>(Copy Paster) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/DieWindpomp')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"linkedin-box\"\r\n                              onclick=\"window.open('https://www.linkedin.com/in/daniel-maree-53308b165/')\"\r\n                              matTooltip=\"Linkedin\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"instagram\"\r\n                              onclick=\"window.open('https://www.instagram.com/diewindpomp/')\"\r\n                              matTooltip=\"Instagram\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"facebook\"\r\n                              onclick=\"window.open('https://www.facebook.com/windpomp')\"\r\n                              matTooltip=\"Facebook\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216448816@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Wihan Du Plessis INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/wihan.png\" alt=\"Wihan Du Plessis\">\r\n                  <p>Wihan Du Plessis<br>(Data Monkey) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/EagleEye25/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216060184@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Kobus Esterhuizen INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/kobus.png\" alt=\"Kobus Esterhuizen\">\r\n                  <p>Kobus Esterhuizen<br>(Code-Modo Dragon) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/Kabousi/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216276586@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Maurice Garces De Gois INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/maurice.png\" alt=\"Maurice Garcies De Gois\">\r\n                  <p>Maurice Garces<br>De Gois<br>(Ctrl-SpaceFreak) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/Mauricegdg/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216111919@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n            </mat-tab>\r\n          </mat-tab-group>\r\n        </mat-tab>\r\n        <mat-tab label=\"UniPark\">\r\n          <!-- Displays UniPark image -->\r\n          <img src=\"assets/images/branding/unipark.png\" alt=\"UniPark\" class=\"center-unipark\">\r\n            <!-- Unipark information -->  \r\n            <mat-tab-group class=\"center\">\r\n              <!-- Information -->\r\n              <mat-tab label=\"What is UniPark\">\r\n                <p>UniPark is an open souce project for a fully automated parking system, that will allow users that\r\n                  have access to a facilities parking area to enter. \r\n                  The program is securely setup to prevent unauthorized users\r\n                  access to the facility, also to help the facility to control traffic, ensure that person/s\r\n                  in the facility park in the correct area, which is assigned to them. The aim of the system\r\n                  is to improve security of the facility, and ensure that little to no theft occurs regarding motor vehicles.\r\n                </p>\r\n              </mat-tab>\r\n              <!-- The looks tab -->\r\n              <mat-tab label=\"The Looks\">\r\n                <p> Picutres of unipark goes here when its completed! </p>\r\n              </mat-tab>\r\n              <!-- Intallation tab -->\r\n              <mat-tab label=\"Installation\">\r\n                <!-- install (developers) -->\r\n                <p>\r\n                  To access UniPark repository (Developers): &nbsp;\r\n                    <button mat-button \r\n                            onclick=\"window.open('https://github.com/EagleEye25/uniPark-BackEnd')\">\r\n                      <mat-icon svgIcon=\"github-circle\"></mat-icon>\r\n                      Repository\r\n                    </button>\r\n                  <!-- install -->\r\n                    <br>\r\n                  To install Unipark click: &nbsp;\r\n                    <button mat-button \r\n                            onclick=\"window.open('https://github.com/EagleEye25/uniPark-BackEnd')\">\r\n                      <mat-icon svgIcon=\"download\"></mat-icon>\r\n                      DownLoad\r\n                    </button>\r\n                </p>\r\n              </mat-tab>\r\n            </mat-tab-group>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -310,15 +312,11 @@ var LandingComponent = /** @class */ (function () {
     };
     // Displays login modal
     LandingComponent.prototype.openLoginDialog = function () {
-        var _this = this;
         this.loginDialogRef = this.dialog.open(_app_login_dialog_login_dialog_component__WEBPACK_IMPORTED_MODULE_2__["LoginDialogComponent"], {
             disableClose: true,
         });
         this.loginDialogRef.afterClosed().subscribe(function (loginData) {
             console.log('Dialog output:', loginData);
-            _this.facilityNo = loginData.facilityNo;
-            _this.userPass = loginData.userPass;
-            console.log('doedoe: ', _this.facilityNo, '  ', _this.userPass);
         });
     };
     LandingComponent = __decorate([
@@ -393,7 +391,7 @@ var LoginDialogComponent = /** @class */ (function () {
         this.fb = fb;
         this.snackBar = snackBar;
         this.dialogRef = dialogRef;
-        // Hides password
+        // Hides password on dialog
         this.hide = true;
     }
     LoginDialogComponent.prototype.ngOnInit = function () {
@@ -402,20 +400,32 @@ var LoginDialogComponent = /** @class */ (function () {
             userPass: [this.userPass, []]
         });
     };
+    LoginDialogComponent.prototype.openSnackBarFail = function () {
+        // opens the snackBar with error
+        this.snackBar.open('Incorrect login details', 'OK', {
+            duration: 2000,
+        });
+    };
     LoginDialogComponent.prototype.aquireLoginDetails = function () {
-        // Set login information
+        // aquire login details from dialog
         this.facilityNo = this.form.value.facilityNo;
         this.userPass = this.form.value.userPass;
         this.facilityNoDB = '123';
         this.userPassDB = '123';
+        this.verifyUser();
+    };
+    LoginDialogComponent.prototype.verifyUser = function () {
         // If information is incorrect, will inform user
-        if ((this.facilityNo !== this.facilityNoDB) && (this.userPass !== this.userPassDB)) {
-            this.snackBar.open('Incorrect login details', 'OK', {
-                duration: 2000,
-            });
+        // NEEDED AN IF ELSE FOR WAY DATA IS COLLECTED
+        if (this.facilityNoDB !== this.facilityNo) {
+            this.openSnackBarFail();
+        }
+        else if (this.userPassDB !== this.userPass) {
+            this.openSnackBarFail();
         }
         else {
             // Open unipark page, close modal
+            console.log('login Dialog: ', this.facilityNoDB, '  ', this.userPassDB);
             this.dialogRef.close(this.form.value);
             this.router.navigateByUrl('/admin');
         }
@@ -424,7 +434,7 @@ var LoginDialogComponent = /** @class */ (function () {
     LoginDialogComponent.prototype.closeDialog = function () {
         this.dialogRef.close();
     };
-    // captures keyboard events
+    // Captures keyboard events
     LoginDialogComponent.prototype.enterKeyEvent = function (event) {
         switch (event.keyCode) {
             case 13:
@@ -575,7 +585,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n  <mat-toolbar color=\"primary\">\r\n      <!-- Displays UniPark image -->\r\n      <img src=\"assets/images/branding/up.png\" alt=\"UniPark\">\r\n      <span class=\"spacer\"></span>\r\n      <p>{{ userName }} &nbsp; {{ userSur }}</p>\r\n      <button mat-icon-button [matMenuTriggerFor]=\"menu\"\r\n              matTooltip=\"Menu\"\r\n              matTooltipPosition=\"before\">\r\n        <mat-icon>more_vert</mat-icon>\r\n      <!-- Menu button -->\r\n      </button>\r\n      <mat-menu #menu=\"matMenu\">\r\n        <!-- View User Information -->\r\n        <button mat-menu-item (click)=\"openUserInfoDialog()\">\r\n          <mat-icon svgIcon=\"account-card-details\"></mat-icon>\r\n          <span>User Information</span>\r\n        </button>\r\n        <!-- Update User Info -->\r\n        <button mat-menu-item (click)=\"openUpdateUserInfoDialog()\">\r\n          <mat-icon svgIcon=\"account-settings-variant\"></mat-icon>\r\n          <span>Update User Info</span>\r\n          </button>\r\n        <!-- View User Parking Area -->\r\n        <button mat-menu-item (click)=\"openAssignedParkingDialog()\">\r\n          <mat-icon svgIcon=\"parking\"></mat-icon>\r\n          <span>Assigned Parking</span>\r\n        </button>\r\n        <!-- Request Parking -->\r\n        <button mat-menu-item (click)=\"openRequestParkingDialog()\">\r\n            <mat-icon svgIcon=\"car-connected\"></mat-icon>\r\n            <span>Request Parking</span>\r\n          </button>\r\n        <!-- Logout -->\r\n        <button mat-menu-item>\r\n          <mat-icon svgIcon=\"logout\"></mat-icon>\r\n          <span routerLink=\"/\">Logout</span>\r\n        </button>\r\n        </mat-menu>\r\n  </mat-toolbar>\r\n  <!-- going to incorportate user options into dialogs, while on defualt unipark page\r\n      will display unipark shit etc \r\n  Tab group for all user options \r\n  <mat-tab-group>\r\n    User Information \r\n    <mat-tab label=\"User Information\">\r\n      Content 1\r\n    </mat-tab>\r\n    Parking area information\r\n    <mat-tab label=\"Parking Area\">\r\n      Content 2\r\n    </mat-tab>\r\n    <mat-tab label=\"U\">\r\n        Content 2\r\n      </mat-tab>\r\n  </mat-tab-group> -->\r\n  {{ myDatas }}\r\n</div>"
+module.exports = "<div class=\"alternative\">\r\n  <mat-toolbar color=\"primary\">\r\n      <!-- Displays UniPark image -->\r\n      <img src=\"assets/images/branding/up.png\" alt=\"UniPark\">\r\n      <span class=\"spacer\"></span>\r\n      <p>{{ userName }} &nbsp; {{ userSur }}</p>\r\n\r\n          <!-- View User Information -->\r\n          <button mat-button (click)=\"openUserInfoDialog()\">\r\n            <mat-icon svgIcon=\"account-card-details\"></mat-icon>\r\n            <span>User Information</span>\r\n          </button>\r\n          <!-- Update User Info -->\r\n          <button mat-button (click)=\"openUpdateUserInfoDialog()\">\r\n            <mat-icon svgIcon=\"account-settings-variant\"></mat-icon>\r\n            <span>Update User Info</span>\r\n            </button>\r\n          <!-- View User Parking Area -->\r\n          <button mat-button (click)=\"openAssignedParkingDialog()\">\r\n            <mat-icon svgIcon=\"parking\"></mat-icon>\r\n            <span>Assigned Parking</span>\r\n          </button>\r\n          <!-- Request Parking -->\r\n          <button mat-button (click)=\"openRequestParkingDialog()\">\r\n            <mat-icon svgIcon=\"car-connected\"></mat-icon>\r\n            <span>Request Parking</span>\r\n          </button>\r\n          <!-- Help -->\r\n          <button mat-button (click)=\"openHelpDialog()\">\r\n            <mat-icon svgIcon=\"help\"></mat-icon>\r\n            <span>Help</span>\r\n          </button>\r\n          <!-- Logout -->\r\n          <button mat-button routerLink=\"/\">\r\n            <mat-icon svgIcon=\"logout\"></mat-icon>\r\n            <span>Logout</span>\r\n          </button>\r\n  </mat-toolbar>\r\n  \r\n  <!-- going to incorportate user options into dialogs, while on defualt unipark page\r\n      will display unipark shit etc \r\n  Tab group for all user options \r\n  <mat-tab-group>\r\n    User Information \r\n    <mat-tab label=\"User Information\">\r\n      Content 1\r\n    </mat-tab>\r\n    Parking area information\r\n    <mat-tab label=\"Parking Area\">\r\n      Content 2\r\n    </mat-tab>\r\n    <mat-tab label=\"U\">\r\n        Content 2\r\n      </mat-tab>\r\n  </mat-tab-group> -->\r\n</div>"
 
 /***/ }),
 
@@ -607,6 +617,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../app/user-options/update-user-info/update-user-info.component */ "./src/app/user-options/update-user-info/update-user-info.component.ts");
 /* harmony import */ var _app_user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/user-options/view-assigned-parking/view-assigned-parking.component */ "./src/app/user-options/view-assigned-parking/view-assigned-parking.component.ts");
 /* harmony import */ var _app_user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../app/user-options/request-parking/request-parking.component */ "./src/app/user-options/request-parking/request-parking.component.ts");
+/* harmony import */ var _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../user-options/help/help.component */ "./src/app/user-options/help/help.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -623,11 +634,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var UniparkPageComponent = /** @class */ (function () {
     function UniparkPageComponent(dialog, http) {
         this.dialog = dialog;
         this.http = http;
     }
+    // Implimentation for gathering data from database
+    // Currently getting data from an API
     UniparkPageComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.http.get('https://api.coinmarketcap.com/v2/ticker/?limit=2')
@@ -639,7 +653,7 @@ var UniparkPageComponent = /** @class */ (function () {
             disableClose: true,
             // Sets data to appropriate variables
             data: {
-                userName: this.myDatas.data[1].symbolname,
+                userName: this.myDatas.data[1].name,
                 userSur: this.myDatas.data[1].symbol,
                 password: this.password,
                 personelType: this.personelType,
@@ -687,6 +701,12 @@ var UniparkPageComponent = /** @class */ (function () {
             _this.parkingSpot = requestParking.parkingSpot;
         });
     };
+    // Displays user-info modal
+    UniparkPageComponent.prototype.openHelpDialog = function () {
+        this.helpDialog = this.dialog.open(_user_options_help_help_component__WEBPACK_IMPORTED_MODULE_7__["HelpComponent"], {
+            disableClose: true,
+        });
+    };
     UniparkPageComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-unipark-page',
@@ -703,6 +723,93 @@ var UniparkPageComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/user-options/help/help.component.html":
+/*!*******************************************************!*\
+  !*** ./src/app/user-options/help/help.component.html ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"alternative\">\n  <!-- Display of help modal -->\n  <!-- Displays help image -->\n  <img src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\n  <hr>\n  <p>\n    \n    <b><u>User Information</u></b>\n    <br>\n    Will display all of your information.\n    <br>\n    <br>\n    <b><u>Update User Info</u></b>\n    <br>\n    This allows you to update either your: Cell-Phone Number, E-mail Address, Password.\n    <br>\n    Cell-Phone Number: Needs to have 10 digits entered as specified.\n    <br>\n    E-mail Address: Only valid email addresses will be accepted.\n    <br>\n    Password: When entering a new password, it will need to be entered\n    again inorder to ensure that you entered the same password.\n    <br>\n    By pressing the <mat-icon svgIcon=\"eye\"></mat-icon> or <mat-icon svgIcon=\"eye-off\"></mat-icon> icon it will display,\n    hide your newly entered password.\n    <br>\n    <br>\n    <b><u>Assigned Parking</u></b>\n    <br>\n    Will display all parking information associated to you.\n    <br>\n    <br>\n    <b><u>Request Parking</u></b>\n    This allows you to request for a different parking area / spot within the facility.\n    <br>\n    Only options that are viable to you will given, they can be selected by pressing on \"Parking Area\" and chooing an option\n    <br>\n    and also \"parking Spot\", once both feilds have been chosen you will be required to \"Request\" the parking, this can be done\n    by pressing enter or clicking the \"Request\" button\n    <br>\n    <br>\n    Options can be closed by clicking \"close\" or by pressing \"Esc\".\n    <br>\n    Options can be completed by clicking \"Submit\"/\"Request\" or by pressing Enter\" on the keyboard.\n    <br>\n    <br>\n    By pressing \"Logout\" <mat-icon svgIcon=\"logout\"></mat-icon> you will be logged off from the web app, and taken back to the \"Dragon Code\" website.\n  </p>\n  <hr>\n  <br>\n  <mat-dialog-actions>\n    <!-- Close button -->\n    <button mat-button mat-dialog-close>\n      <mat-icon svgIcon=\"close\"></mat-icon>\n      Close\n    </button>\n  </mat-dialog-actions>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/user-options/help/help.component.scss":
+/*!*******************************************************!*\
+  !*** ./src/app/user-options/help/help.component.scss ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/user-options/help/help.component.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/user-options/help/help.component.ts ***!
+  \*****************************************************/
+/*! exports provided: HelpComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HelpComponent", function() { return HelpComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var HelpComponent = /** @class */ (function () {
+    function HelpComponent(dialogRef) {
+        this.dialogRef = dialogRef;
+    }
+    HelpComponent.prototype.ngOnInit = function () {
+    };
+    // Closes the dialog
+    HelpComponent.prototype.closeDialog = function () {
+        this.dialogRef.close();
+    };
+    // Captures keyboard events
+    HelpComponent.prototype.enterKeyEvent = function (event) {
+        switch (event.keyCode) {
+            case 13:
+                this.closeDialog();
+                break;
+            case 27:
+                this.closeDialog();
+                break;
+        }
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"])('window:keydown', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], HelpComponent.prototype, "enterKeyEvent", null);
+    HelpComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-help',
+            template: __webpack_require__(/*! ./help.component.html */ "./src/app/user-options/help/help.component.html"),
+            styles: [__webpack_require__(/*! ./help.component.scss */ "./src/app/user-options/help/help.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
+    ], HelpComponent);
+    return HelpComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/user-options/request-parking/request-parking.component.html":
 /*!*****************************************************************************!*\
   !*** ./src/app/user-options/request-parking/request-parking.component.html ***!
@@ -710,7 +817,7 @@ var UniparkPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays request parking image -->\r\n  <img src=\"assets/images/user-options/request-parking/request-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <div>\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n    <!-- Mat form feild: parking area -->\r\n      <mat-form-field>\r\n        <input matInput\r\n                placeholder=\"Parking Area\"\r\n                formControlName=\"parkingArea\">\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: parking spot -->\r\n      <mat-form-field>\r\n        <input matInput\r\n                placeholder=\"Parking Spot\"\r\n                formControlName=\"parkingSpot\">\r\n      </mat-form-field>\r\n    </mat-dialog-content>\r\n    <br>\r\n  </div>\r\n  <hr>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button (click)=\"closeDialog()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Update button -->\r\n    <button mat-button (click)=\"requestParking()\">\r\n      <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n      request\r\n    </button>\r\n  </mat-dialog-actions>\r\n  </div>\r\n  "
+module.exports = "<div class=\"alternative\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays request parking image -->\r\n  <img src=\"assets/images/user-options/request-parking/request-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <div>\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n    <!-- Mat form feild: parking area -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Area\" formControlName=\"parkingArea\" name=\"area\">\r\n          <mat-option *ngFor=\"let area of areas\" [value]=\"area.value\">\r\n            {{area.viewValue}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: parking spot -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Spot\" formControlName=\"parkingSpot\" name=\"spot\">\r\n          <mat-option *ngFor=\"let spot of spots\" [value]=\"spot.value\">\r\n            {{spot.viewValue}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n    </mat-dialog-content>\r\n    <br>\r\n  </div>\r\n  <hr>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button mat-dialog-close>\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Update button -->\r\n    <button mat-button (click)=\"aquireParkingDetails()\">\r\n      <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n      request\r\n    </button>\r\n  </mat-dialog-actions>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -754,6 +861,18 @@ var RequestParkingComponent = /** @class */ (function () {
     function RequestParkingComponent(fb, dialogRef) {
         this.fb = fb;
         this.dialogRef = dialogRef;
+        // Mock data for dialog, implimentations for database
+        this.areas = [
+            { value: 'area01', viewValue: 'North' },
+            { value: 'area02', viewValue: 'South' },
+            { value: 'area03', viewValue: 'West' }
+        ];
+        // Mock data for dialog, implimentations for database
+        this.spots = [
+            { value: 'spots01', viewValue: 'A001' },
+            { value: 'spots02', viewValue: 'A002' },
+            { value: 'spots03', viewValue: 'A003' }
+        ];
     }
     RequestParkingComponent.prototype.ngOnInit = function () {
         this.form = this.fb.group({
@@ -761,12 +880,21 @@ var RequestParkingComponent = /** @class */ (function () {
             parkingSpot: [this.parkingSpot, []]
         });
     };
+    // Aquires the parking data from dialog
+    RequestParkingComponent.prototype.aquireParkingDetails = function () {
+        this.parkingArea = this.form.value.parkingArea;
+        this.parkingSpot = this.form.value.parkingSpot;
+        this.requestParking();
+    };
+    // Submits data
     RequestParkingComponent.prototype.requestParking = function () {
         this.dialogRef.close(this.form.value);
     };
+    // Closes dialog
     RequestParkingComponent.prototype.closeDialog = function () {
         this.dialogRef.close();
     };
+    // Captures keyboard events
     RequestParkingComponent.prototype.enterKeyEvent = function (event) {
         switch (event.keyCode) {
             case 13:
@@ -806,7 +934,7 @@ var RequestParkingComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n    <!-- Display of login modal -->\r\n    <!-- Displays request parking image -->\r\n    <img src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\r\n    <hr>\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n      <!-- Mat form feild: cell phone number -->\r\n      <mat-form-field hintLabel=\"Max 10 digits\">\r\n        <input matInput \r\n                #input maxlength=\"10\" \r\n                placeholder=\"Cell-Phone Number\"\r\n                formControlName=\"cellNo\">\r\n        <mat-hint align=\"end\">{{ input.value?.length || 0 }}/10</mat-hint>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: email address -->\r\n      <mat-form-field>\r\n        <input matInput  \r\n                placeholder=\"E-mail Address\"\r\n                [formControl]=\"email\" required>\r\n        <mat-error *ngIf=\"email.invalid\">{{ getErrorMessage() }}</mat-error>\r\n      </mat-form-field>\r\n        <br>\r\n      <!-- Mat form feild: password -->\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"New Password\"\r\n                [type]=\"hide ? 'password' : 'text'\"\r\n                formControlName=\"newPass\">\r\n      </mat-form-field>\r\n      <br>\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Confirm Password\"\r\n                [type]=\"hide ? 'password' : 'text'\"\r\n                formControlName=\"confirmNewPass\">\r\n        <mat-icon matSuffix\r\n          (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\r\n      </mat-form-field>\r\n  </mat-dialog-content>\r\n    <hr>\r\n    <br>\r\n    <mat-dialog-actions>\r\n      <!-- Close button -->\r\n      <button mat-button (click)=\"closeDialog()\">\r\n        <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n        Cancel\r\n      </button>\r\n      <!-- Update button -->\r\n      <button mat-button (click)=\"updateInfo()\">\r\n        <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n        Update\r\n      </button>\r\n    </mat-dialog-actions>\r\n  </div>\r\n  "
+module.exports = "<div class=\"alternative\">\r\n    <!-- Display of login modal -->\r\n    <!-- Displays request parking image -->\r\n    <img src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\r\n    <hr>\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n      <!-- Mat form feild: cell phone number -->\r\n      <mat-form-field hintLabel=\"Max 10 digits\">\r\n        <input matInput \r\n                #input maxlength=\"10\" \r\n                placeholder=\"Cell-Phone Number\"\r\n                formControlName=\"cellNo\">\r\n        <mat-hint align=\"end\">{{ input.value?.length || 0 }}/10</mat-hint>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: email address -->\r\n      <mat-form-field>\r\n        <input matInput  \r\n                placeholder=\"E-mail Address\"\r\n                [formControl]=\"email\" required>\r\n        <mat-error *ngIf=\"email.invalid\">{{ getErrorMessage() }}</mat-error>\r\n      </mat-form-field>\r\n        <br>\r\n      <!-- Mat form feild: password -->\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"New Password\"\r\n                [type]=\"hide ? 'password' : 'text'\"\r\n                formControlName=\"newPass\">\r\n      </mat-form-field>\r\n      <br>\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Confirm Password\"\r\n                [type]=\"hide ? 'password' : 'text'\"\r\n                formControlName=\"confirmNewPass\">\r\n        <mat-icon matSuffix\r\n          (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\r\n      </mat-form-field>\r\n  </mat-dialog-content>\r\n    <hr>\r\n    <br>\r\n    <mat-dialog-actions>\r\n      <!-- Close button -->\r\n      <button mat-button mat-dialog-close>\r\n        <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n        Cancel\r\n      </button>\r\n      <!-- Update button -->\r\n      <button mat-button (click)=\"updateInfo()\">\r\n        <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n        Update\r\n      </button>\r\n    </mat-dialog-actions>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -875,6 +1003,7 @@ var UpdateUserInfoComponent = /** @class */ (function () {
     UpdateUserInfoComponent.prototype.closeDialog = function () {
         this.dialogRef.close();
     };
+    // Captures keyboard events
     UpdateUserInfoComponent.prototype.enterKeyEvent = function (event) {
         switch (event.keyCode) {
             case 13:
@@ -914,7 +1043,7 @@ var UpdateUserInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img src=\"assets/images/user-options/user-info/user-info.png\" alt=\"User Info\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Mat list to display user info -->\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Name: &nbsp;</strong> {{ data.userName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Surname: &nbsp;</strong> {{ data.userSur }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Password: &nbsp;</strong> {{ data.password }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Personel Type: &nbsp;</strong> {{ data.personelType }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Personel Level: &nbsp;</strong> {{ data.personelLevel }}\r\n      </mat-list-item>\r\n    </mat-list> \r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button (click)=\"closeDialog()\" class=\"center\">\r\n    <mat-icon svgIcon=\"close\"></mat-icon>\r\n      Close\r\n    </button>\r\n</mat-dialog-actions>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img src=\"assets/images/user-options/user-info/user-info.png\" alt=\"User Info\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Mat list to display user info -->\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Name: &nbsp;</strong> {{ data.userName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Surname: &nbsp;</strong> {{ data.userSur }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Password: &nbsp;</strong> {{ data.password }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Personel Type: &nbsp;</strong> {{ data.personelType }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Personel Level: &nbsp;</strong> {{ data.personelLevel }}\r\n      </mat-list-item>\r\n    </mat-list> \r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button mat-dialog-close class=\"center\">\r\n    <mat-icon svgIcon=\"close\"></mat-icon>\r\n      Close\r\n    </button>\r\n</mat-dialog-actions>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -966,6 +1095,7 @@ var UserInfoComponent = /** @class */ (function () {
     UserInfoComponent.prototype.closeDialog = function () {
         this.dialogRef.close();
     };
+    // Captures keyboard events
     UserInfoComponent.prototype.enterKeyEvent = function (event) {
         switch (event.keyCode) {
             case 13:
@@ -1005,7 +1135,7 @@ var UserInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n    <!-- Display of login modal -->\r\n    <!-- Displays assigned parking image -->\r\n    <img src=\"assets/images/user-options/assigned-parking/assigned-parking.png\" alt=\"User Info\">\r\n    <hr>\r\n    <!-- Mat list to display assigned parking -->\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Name: &nbsp;</strong> {{ data.parkingName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Access Level: &nbsp;</strong> {{ data.parkingAl }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Location: &nbsp;</strong> {{ data.parkingLocation }}\r\n      </mat-list-item>\r\n    </mat-list>\r\n    <hr>\r\n    <br>\r\n    <!-- CLose button -->\r\n    <button mat-button (click)=\"closeDialog()\" class=\"center\">\r\n    <mat-icon svgIcon=\"close\"></mat-icon>\r\n      Close\r\n    </button>\r\n  </div>\r\n  "
+module.exports = "<div class=\"alternative\">\r\n    <!-- Display of login modal -->\r\n    <!-- Displays assigned parking image -->\r\n    <img src=\"assets/images/user-options/assigned-parking/assigned-parking.png\" alt=\"User Info\">\r\n    <hr>\r\n    <!-- Mat list to display assigned parking -->\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Name: &nbsp;</strong> {{ data.parkingName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Access Level: &nbsp;</strong> {{ data.parkingAl }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Location: &nbsp;</strong> {{ data.parkingLocation }}\r\n      </mat-list-item>\r\n    </mat-list>\r\n    <hr>\r\n    <br>\r\n    <!-- CLose button -->\r\n    <button mat-button mat-dialog-close class=\"center\">\r\n    <mat-icon svgIcon=\"close\"></mat-icon>\r\n      Close\r\n    </button>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -1057,6 +1187,7 @@ var ViewAssignedParkingComponent = /** @class */ (function () {
     ViewAssignedParkingComponent.prototype.closeDialog = function () {
         this.dialogRef.close();
     };
+    // Captures keyboard events
     ViewAssignedParkingComponent.prototype.enterKeyEvent = function (event) {
         switch (event.keyCode) {
             case 13:
