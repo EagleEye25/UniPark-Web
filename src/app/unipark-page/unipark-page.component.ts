@@ -5,6 +5,7 @@ import { UserInfoComponent } from '../../app/user-options/user-info/user-info.co
 import { UpdateUserInfoComponent } from '../../app/user-options/update-user-info/update-user-info.component';
 import { ViewAssignedParkingComponent } from '../../app/user-options/view-assigned-parking/view-assigned-parking.component';
 import { RequestParkingComponent } from '../../app/user-options/request-parking/request-parking.component';
+import { HelpComponent } from '../user-options/help/help.component';
 
 @Component({
   selector: 'app-unipark-page',
@@ -40,6 +41,7 @@ export class UniparkPageComponent implements OnInit {
   UpdateUserDialog: MatDialogRef<UpdateUserInfoComponent>;
   AssignedParkingDialog: MatDialogRef<ViewAssignedParkingComponent>;
   RequestParkingDialog: MatDialogRef<RequestParkingComponent>;
+  helpDialog: MatDialogRef<HelpComponent>;
 
   // Decliration for data of user
   myDatas: any;
@@ -109,11 +111,18 @@ export class UniparkPageComponent implements OnInit {
 
     // Sets data to appropriate variables
     this.RequestParkingDialog.afterClosed().subscribe(
-        requestParking => {
+      requestParking => {
         console.log('Dialog output:', requestParking);
         this.parkingArea = requestParking.parkingArea;
         this.parkingSpot = requestParking.parkingSpot;
       }
     );
+  }
+
+  // Displays user-info modal
+  openHelpDialog(): void {
+    this.helpDialog = this.dialog.open(HelpComponent, {
+      disableClose: true,
+    });
   }
 }

@@ -48,15 +48,16 @@ export class UpdateUserInfoComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  // Captures keyboard events
   @HostListener('window:keydown', ['$event'])
     enterKeyEvent(event: any) {
       switch (event.keyCode) {
         case 13:
           this.updateInfo();
-          break;
+        break;
         case 27:
           this.closeDialog();
-          break;
+        break;
       }
     }
 

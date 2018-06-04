@@ -17,6 +17,19 @@ export class RequestParkingComponent implements OnInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<RequestParkingComponent>) { }
 
+  // Mock data for dialog, implimentations for database
+  areas = [
+    {value: 'area01', viewValue: 'North'},
+    {value: 'area02', viewValue: 'South'},
+    {value: 'area03', viewValue: 'West'}
+  ];
+  // Mock data for dialog, implimentations for database
+  spots = [
+    {value: 'spots01', viewValue: 'A001'},
+    {value: 'spots02', viewValue: 'A002'},
+    {value: 'spots03', viewValue: 'A003'}
+  ];
+
   ngOnInit() {
     this.form = this.fb.group({
       parkingArea: [this.parkingArea, []],
@@ -24,23 +37,33 @@ export class RequestParkingComponent implements OnInit {
     });
   }
 
+  // Aquires the parking data from dialog
+  aquireParkingDetails() {
+    this.parkingArea = this.form.value.parkingArea;
+    this.parkingSpot = this.form.value.parkingSpot;
+    this.requestParking();
+  }
+
+  // Submits data
   requestParking() {
     this.dialogRef.close(this.form.value);
   }
 
+  // Closes dialog
   closeDialog(): void {
     this.dialogRef.close();
   }
 
+  // Captures keyboard events
   @HostListener('window:keydown', ['$event'])
     enterKeyEvent(event: any) {
       switch (event.keyCode) {
         case 13:
           this.requestParking();
-          break;
+        break;
         case 27:
           this.closeDialog();
-          break;
+        break;
       }
     }
 }
