@@ -109,7 +109,7 @@ export class UniparkPageComponent implements OnInit {
 
     // Sets data to appropriate variables
     this.RequestParkingDialog.afterClosed().subscribe(
-        requestParking => {
+      requestParking => {
         console.log('Dialog output:', requestParking);
         this.parkingArea = requestParking.parkingArea;
         this.parkingSpot = requestParking.parkingSpot;

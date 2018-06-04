@@ -29,9 +29,6 @@ export class LandingComponent implements OnInit {
     this.loginDialogRef.afterClosed().subscribe(
       loginData => {
         console.log('Dialog output:', loginData);
-        this.facilityNo = loginData.facilityNo;
-        this.userPass = loginData.userPass;
-        console.log('landing: ', this.facilityNo, '  ', this.userPass);
       }
     );
   }

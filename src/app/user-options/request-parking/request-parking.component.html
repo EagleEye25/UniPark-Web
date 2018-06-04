@@ -7,16 +7,20 @@
     <mat-dialog-content [formGroup]="form">
     <!-- Mat form feild: parking area -->
       <mat-form-field>
-        <input matInput
-                placeholder="Parking Area"
-                formControlName="parkingArea">
+        <mat-select placeholder="Parking Area" formControlName="parkingArea" name="area">
+          <mat-option *ngFor="let area of areas" [value]="area.value">
+            {{area.viewValue}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <br>
       <!-- Mat form feild: parking spot -->
       <mat-form-field>
-        <input matInput
-                placeholder="Parking Spot"
-                formControlName="parkingSpot">
+        <mat-select placeholder="Parking Spot" formControlName="parkingSpot" name="spot">
+          <mat-option *ngFor="let spot of spots" [value]="spot.value">
+            {{spot.viewValue}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </mat-dialog-content>
     <br>
@@ -24,12 +28,12 @@
   <hr>
   <mat-dialog-actions>
     <!-- Close button -->
-    <button mat-button (click)="closeDialog()">
+    <button mat-button mat-dialog-close>
       <mat-icon svgIcon="cancel"></mat-icon>
       Cancel
     </button>
     <!-- Update button -->
-    <button mat-button (click)="requestParking()">
+    <button mat-button (click)="aquireParkingDetails()">
       <mat-icon svgIcon="cube-send"></mat-icon> 
       request
     </button>
