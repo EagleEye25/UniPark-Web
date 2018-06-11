@@ -4,9 +4,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
-import { LoginDialogComponent } from '../../login-dialog/login-dialog.component';
-import { UniparkPageComponent } from '../../unipark-page/unipark-page.component';
-
 @Component({
   selector: 'app-request-parking',
   templateUrl: './request-parking.component.html',
@@ -23,8 +20,7 @@ export class RequestParkingComponent implements OnInit {
     private dialogRef: MatDialogRef<RequestParkingComponent>,
     private snackBar: MatSnackBar,
     private http: HttpClient,
-    private login: LoginDialogComponent,
-    private uniparkPage: UniparkPageComponent
+    // private uniparkPage: UniparkPageComponent
   ) { }
 
   // Mock data for dialog, implimentations for database

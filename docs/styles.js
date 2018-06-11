@@ -580,8 +580,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\Uni Stuff\Project\uniParkWeb\UniPark-Web\src\styles.scss */"./src/styles.scss");
-module.exports = __webpack_require__(/*! F:\Uni Stuff\Project\uniParkWeb\UniPark-Web\src\theme.scss */"./src/theme.scss");
+__webpack_require__(/*! C:\Users\Jason\Desktop\UniPark-Web\UniPark-Web\src\styles.scss */"./src/styles.scss");
+module.exports = __webpack_require__(/*! C:\Users\Jason\Desktop\UniPark-Web\UniPark-Web\src\theme.scss */"./src/theme.scss");
 
 
 /***/ })

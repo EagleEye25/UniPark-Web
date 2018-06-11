@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-
-import { LoginDialogComponent } from '../../login-dialog/login-dialog.component';
-import { UniparkPageComponent } from '../../unipark-page/unipark-page.component';
+import { AppService, BASE_URL } from '../../app.service';
  
 @Component({
   selector: 'app-update-user-info',
@@ -14,34 +12,26 @@ import { UniparkPageComponent } from '../../unipark-page/unipark-page.component'
 })
 export class UpdateUserInfoComponent implements OnInit {
 
-  constructor(
-    private fb: FormBuilder,
-    private dialogRef: MatDialogRef<UpdateUserInfoComponent>,
-    private snackBar: MatSnackBar,
-    private http: HttpClient,
-    private login: LoginDialogComponent,
-    private uniparkPage: UniparkPageComponent
-  ) { }
-
-  urlStart = this.uniparkPage.urlStart;
   form: FormGroup;
   cellNo: string;
   newPass: string;
   confirmNewPass: string;
   userInfoJson: any;
-
-  facilityNo = this.login.facilityNo;
+  updateResponse: any;
 
   // Creates email form control
   email = new FormControl('', [Validators.required, Validators.email]);
   // Hides password
   hide = true;
 
-  // Finds if the email entered is correct or not
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-      this.email.hasError('email') ? 'Not a valid email' : '';
-  }
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<UpdateUserInfoComponent>,
+    private snackBar: MatSnackBar,
+    private http: HttpClient,
+    private appService: AppService
+    // private uniparkPage: UniparkPageComponent
+  ) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -52,35 +42,50 @@ export class UpdateUserInfoComponent implements OnInit {
     });
   }
 
+  // Finds if the email entered is correct or not
+  getErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+      this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  // Opens the snackBar with error
   openSnackBarFail() {
-    // Opens the snackBar with error
-    this.snackBar.open('Please ensure passwords match!', 'OK', {
+    this.snackBar.open('Update Failed', 'OK', {
+      duration: 2000,
+    });
+  }
+  openSnackBarSuccess() {
+    this.snackBar.open('Update Success', 'OK', {
       duration: 2000,
     });
   }
 
-  // Vquires update information entered by user
-  aquireUpdateInfo() {
+  async prepareUpdate() {
+    // Aquires update information entered by user
     this.cellNo = this.form.value.cellNo;
-    this.email = this.form.value.email;
     this.newPass = this.form.value.newPass;
     this.confirmNewPass = this.form.value.confirmNewPass;
-  }
-
-  prepareUpdate() {
     // Sends update information to json
-    this.userInfoJson = 
-    {
-      "PersonnelID": this.facilityNo,
+    this.userInfoJson = {
+      "PersonnelID": this.appService.getState("FacilityID"),
       "PersonnelPhoneNumber": this.cellNo,
-      "PersonnelEmail": this.email,
+      "PersonnelEmail": this.email.value,
       "PersonnelPassword": this.newPass
-    }
-    /*
+    };
+    console.log( this.userInfoJson);
+    
     // sends data to api
-    this.http.put('http://' + this.urlStart + '/personnel/update')
-    .subscribe((response: any) => this.updatePersonelInfo = response);
-    */
+    const updateResponse: any = await this.http.put(`${BASE_URL}/personnel/update`, this.userInfoJson)
+    .toPromise()
+    .catch(console.error);
+    console.log(updateResponse);
+    if (updateResponse && updateResponse.data.trim() === "SUCCESS") {
+      this.openSnackBarSuccess()
+    } else {
+      this.openSnackBarFail();
+    }
+    //.subscribe((response: any) => this.updateResponse = response);
+
   }
 
   // Verifys information entered by user

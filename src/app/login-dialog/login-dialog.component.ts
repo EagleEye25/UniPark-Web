@@ -4,8 +4,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import {Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-
 import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
+
+import {AppService, BASE_URL} from '../app.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -34,7 +35,8 @@ export class LoginDialogComponent implements OnInit {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<LoginDialogComponent>,
-    private http: HttpClient) {}
+    private http: HttpClient,
+    private appService: AppService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -56,24 +58,19 @@ export class LoginDialogComponent implements OnInit {
     this.userPass = this.form.value.userPass;
 
     // Gets personel login info
-    this.http.get('http://localhost:9000/personnel/login/' + this.facilityNo)
-    .subscribe((response: any) => this.personelLoginInfo = response);
-    this.userPassDB = this.personelLoginInfo.PersonnelPassword;
-    console.log('login Dialog: ', this.userPassDB);
-    this.verifyUser();
+    this.http.post(`${BASE_URL}/personnel/login`,
+      {facilityNo: this.facilityNo, password: this.userPass})
+      .subscribe(this.loginUser.bind(this), this.openSnackBarFail.bind(this));
   }
 
-  verifyUser() {
+  loginUser() {
     // If information is incorrect, will inform user
     // NEEDED AN IF ELSE FOR WAY DATA IS COLLECTED
-    if (this.userPassDB == this.userPass) {
-      // Open unipark page, close modal
-      console.log('login Dialog: ', this.facilityNoDB, '  ', this.userPassDB);
-      this.dialogRef.close(this.form.value);
-      this.router.navigateByUrl('/admin');
-    } else {
-      this.openSnackBarFail();
-    }
+    // Open unipark page, close modal
+    console.log('login Dialog: ', this.facilityNoDB, '  ', this.userPassDB);
+    this.appService.setState("FacilityID", this.facilityNo);
+    this.dialogRef.close(this.form.value);
+    this.router.navigateByUrl('/admin');
   }
 
   // Closes the dialog
