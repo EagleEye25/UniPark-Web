@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+
 import { UserInfoComponent } from '../../app/user-options/user-info/user-info.component';
 import { UpdateUserInfoComponent } from '../../app/user-options/update-user-info/update-user-info.component';
 import { ViewAssignedParkingComponent } from '../../app/user-options/view-assigned-parking/view-assigned-parking.component';
 import { RequestParkingComponent } from '../../app/user-options/request-parking/request-parking.component';
 import { HelpComponent } from '../user-options/help/help.component';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-unipark-page',
@@ -14,23 +16,60 @@ import { HelpComponent } from '../user-options/help/help.component';
 })
 export class UniparkPageComponent implements OnInit {
 
+  constructor(
+    private dialog: MatDialog,
+    private http: HttpClient,
+    private login: LoginDialogComponent
+  ) { }
+
+  urlStart = "localhost:9000";
+  
+  // Decliration of objects for api calls
+  myDatas: any;
+  personelInfo: any;
+  personelParkingInfo: any;
+  updatePersonelInfo: any;
+  requestParkingInfo: any;
+  facilityNo = this.login.facilityNo;
+
+  // Implimentation for gathering data from database
+  // Currently getting data from an API
+  ngOnInit() {
+    // Test of implimentation
+    this.http.get('https://api.coinmarketcap.com/v2/ticker/?limit=2')
+      .subscribe((response: any) => this.myDatas = response);
+    // personel info according to facilityNoDB
+    this.http.get('http://' + this.urlStart + '/personnel/specified/' + this.facilityNo)
+      .subscribe((response: any) => this.personelInfo = response);
+    // Gets personel parking info
+    this.http.get('http://' + this.urlStart + '/assigned-parking/' + this.facilityNo)
+      .subscribe((response: any) => this.personelParkingInfo = response);
+    /*// Update personel info
+    this.http.put('http://' + this.urlStart + '/personnel/update')
+      .subscribe((response: any) => this.updatePersonelInfo = response);
+    // Request parking
+    this.http.post('http://' + this.urlStart + '/request-parking')
+      .subscribe((response: any) => this.requestParkingInfo = response);*/
+    //this.http.put("http://localhost:9000/personnel/update/"
+  }
+
   // User info variables
-  userName: string;
-  userSur: string;
-  password: string;
-  personelType: string;
-  personelLevel: string;
+  userName = this.personelInfo.PersonelName;
+  userPhone = this.personelInfo.PhoneNumber;
+  userEmail = this.personelInfo.Email;
+  userType = this.personelInfo.Type;
+  userLevel = this.personelInfo.PersonelLevel;
 
   // Update user info variables
-  cellNo: string;
-  email: string;
+  updatePhone: string;
+  updateEmail: string;
   newPass: string;
   confirmNewPass: string;
 
   // Assign parking variables
-  parkingName: string;
-  parkingAL: string;
-  parkingLocation: string;
+  parkingName = this.personelParkingInfo.ParkingName;
+  parkingAL = this.personelParkingInfo.ParkingAccessLevel;
+  parkingLocation = this.personelParkingInfo.Location;
 
   // Request parking variables
   parkingArea: string;
@@ -43,31 +82,17 @@ export class UniparkPageComponent implements OnInit {
   RequestParkingDialog: MatDialogRef<RequestParkingComponent>;
   helpDialog: MatDialogRef<HelpComponent>;
 
-  // Decliration for data of user
-  myDatas: any;
-  constructor(
-    private dialog: MatDialog,
-    private http: HttpClient,
-  ) { }
-
-  // Implimentation for gathering data from database
-  // Currently getting data from an API
-  ngOnInit() {
-    this.http.get('https://api.coinmarketcap.com/v2/ticker/?limit=2')
-      .subscribe((response: any) => this.myDatas = response);
-  }
-
   // Displays user-info modal
   openUserInfoDialog(): void {
     this.userInfoDialogRef = this.dialog.open(UserInfoComponent, {
       disableClose: true,
       // Sets data to appropriate variables
       data: {
-        userName: this.myDatas.data[1].name, // this.userName,
-        userSur: this.myDatas.data[1].symbol,
-        password: this.password,
-        personelType: this.personelType,
-        personelLevel: this.personelLevel
+        userName: this.userName,
+        userPhone: this.userPhone,
+        userEmail: this.userEmail,
+        userType: this.userType,
+        userLevel: this.userLevel
       }
     });
   }
@@ -82,8 +107,8 @@ export class UniparkPageComponent implements OnInit {
     this.UpdateUserDialog.afterClosed().subscribe(
         updateInfo => {
         console.log('Dialog output:', updateInfo);
-        this.cellNo = updateInfo.cellNo;
-        this.email = updateInfo.email;
+        this.updatePhone = updateInfo.cellNo;
+        this.updateEmail = updateInfo.email;
         this.newPass = updateInfo.newPass;
         this.confirmNewPass = updateInfo.confirmNewPass;
       }
