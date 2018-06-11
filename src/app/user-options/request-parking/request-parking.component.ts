@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-request-parking',
@@ -15,7 +17,11 @@ export class RequestParkingComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<RequestParkingComponent>) { }
+    private dialogRef: MatDialogRef<RequestParkingComponent>,
+    private snackBar: MatSnackBar,
+    private http: HttpClient,
+    // private uniparkPage: UniparkPageComponent
+  ) { }
 
   // Mock data for dialog, implimentations for database
   areas = [

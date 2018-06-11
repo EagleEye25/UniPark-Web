@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
+
 import { UserInfoComponent } from '../../app/user-options/user-info/user-info.component';
 import { UpdateUserInfoComponent } from '../../app/user-options/update-user-info/update-user-info.component';
 import { ViewAssignedParkingComponent } from '../../app/user-options/view-assigned-parking/view-assigned-parking.component';
 import { RequestParkingComponent } from '../../app/user-options/request-parking/request-parking.component';
 import { HelpComponent } from '../user-options/help/help.component';
+
+import {AppService, BASE_URL} from '../app.service';
 
 @Component({
   selector: 'app-unipark-page',
@@ -13,28 +17,11 @@ import { HelpComponent } from '../user-options/help/help.component';
   styleUrls: ['./unipark-page.component.scss']
 })
 export class UniparkPageComponent implements OnInit {
-
-  // User info variables
-  userName: string;
-  userSur: string;
-  password: string;
-  personelType: string;
-  personelLevel: string;
-
-  // Update user info variables
-  cellNo: string;
-  email: string;
-  newPass: string;
-  confirmNewPass: string;
-
-  // Assign parking variables
-  parkingName: string;
-  parkingAL: string;
-  parkingLocation: string;
-
-  // Request parking variables
-  parkingArea: string;
-  parkingSpot: string;
+  // Declaration for data of user 
+  personelInfo: any;
+  personelParkingInfo: any;
+  updatePersonelInfo: any;
+  requestParkingInfo: any;
 
   // Imports dialogs for use for modal
   userInfoDialogRef: MatDialogRef<UserInfoComponent>;
@@ -43,18 +30,23 @@ export class UniparkPageComponent implements OnInit {
   RequestParkingDialog: MatDialogRef<RequestParkingComponent>;
   helpDialog: MatDialogRef<HelpComponent>;
 
-  // Decliration for data of user
-  myDatas: any;
   constructor(
-    private dialog: MatDialog,
+    private router: Router,
+    private dialog: MatDialog, 
     private http: HttpClient,
-  ) { }
+    private appService: AppService
+  ) { } 
+ 
+  // Implimentation for gathering data from database 
+  // Currently getting data from an API 
+  ngOnInit() {    
+    if (!this.appService.getState("FacilityID")) {
+      this.router.navigateByUrl('/');
+    }
 
-  // Implimentation for gathering data from database
-  // Currently getting data from an API
-  ngOnInit() {
-    this.http.get('https://api.coinmarketcap.com/v2/ticker/?limit=2')
-      .subscribe((response: any) => this.myDatas = response);
+    // Gets user info api
+    this.http.get(`${BASE_URL}/personnel/specified/` + this.appService.getState("FacilityID"))
+    .subscribe((response: any) => this.personelInfo = response);
   }
 
   // Displays user-info modal
@@ -63,11 +55,11 @@ export class UniparkPageComponent implements OnInit {
       disableClose: true,
       // Sets data to appropriate variables
       data: {
-        userName: this.myDatas.data[1].name, // this.userName,
-        userSur: this.myDatas.data[1].symbol,
-        password: this.password,
-        personelType: this.personelType,
-        personelLevel: this.personelLevel
+        userName: this.personelInfo.PersonelName,
+        userPhone: this.personelInfo.PhoneNumber,
+        userEmail: this.personelInfo.Email,
+        userType: this.personelInfo.Type,
+        userLevel: this.personelInfo.PersonelLevel
       }
     });
   }
@@ -77,17 +69,6 @@ export class UniparkPageComponent implements OnInit {
     this.UpdateUserDialog = this.dialog.open(UpdateUserInfoComponent, {
       disableClose: true
     });
-
-    // Sets data to appropriate variables
-    this.UpdateUserDialog.afterClosed().subscribe(
-        updateInfo => {
-        console.log('Dialog output:', updateInfo);
-        this.cellNo = updateInfo.cellNo;
-        this.email = updateInfo.email;
-        this.newPass = updateInfo.newPass;
-        this.confirmNewPass = updateInfo.confirmNewPass;
-      }
-    );
   }
 
   // Displays assigned-parking modal
@@ -96,9 +77,9 @@ export class UniparkPageComponent implements OnInit {
       disableClose: true,
       // Sets data to appropriate variables
       data: {
-        parkingName: this.parkingName,
-        parkingAL: this.parkingAL,
-        parkingLocation: this.parkingLocation,
+        //parkingName: this.parkingName,
+        //parkingAL: this.parkingAL,
+        //parkingLocation: this.parkingLocation,
       }
     });
   }
@@ -108,15 +89,6 @@ export class UniparkPageComponent implements OnInit {
     this.RequestParkingDialog = this.dialog.open(RequestParkingComponent, {
       disableClose: true
     });
-
-    // Sets data to appropriate variables
-    this.RequestParkingDialog.afterClosed().subscribe(
-      requestParking => {
-        console.log('Dialog output:', requestParking);
-        this.parkingArea = requestParking.parkingArea;
-        this.parkingSpot = requestParking.parkingSpot;
-      }
-    );
   }
 
   // Displays user-info modal

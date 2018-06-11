@@ -222,6 +222,52 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRo
 
 /***/ }),
 
+/***/ "./src/app/app.service.ts":
+/*!********************************!*\
+  !*** ./src/app/app.service.ts ***!
+  \********************************/
+/*! exports provided: AppService, BASE_URL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppService", function() { return AppService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BASE_URL", function() { return BASE_URL; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var appState = {};
+var AppService = /** @class */ (function () {
+    function AppService() {
+    }
+    AppService.prototype.getState = function (key) {
+        return appState[key];
+    };
+    AppService.prototype.setState = function (key, value) {
+        return appState[key] = value;
+    };
+    AppService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], AppService);
+    return AppService;
+}());
+
+var BASE_URL = 'http://unipark.lunatech.co.za';
+
+
+/***/ }),
+
 /***/ "./src/app/core/core.module.ts":
 /*!*************************************!*\
   !*** ./src/app/core/core.module.ts ***!
@@ -370,7 +416,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app.service */ "./src/app/app.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -385,12 +433,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var LoginDialogComponent = /** @class */ (function () {
-    function LoginDialogComponent(router, fb, snackBar, dialogRef) {
+    function LoginDialogComponent(router, fb, snackBar, dialogRef, http, appService) {
         this.router = router;
         this.fb = fb;
         this.snackBar = snackBar;
         this.dialogRef = dialogRef;
+        this.http = http;
+        this.appService = appService;
         // Hides password on dialog
         this.hide = true;
     }
@@ -410,25 +462,18 @@ var LoginDialogComponent = /** @class */ (function () {
         // aquire login details from dialog
         this.facilityNo = this.form.value.facilityNo;
         this.userPass = this.form.value.userPass;
-        this.facilityNoDB = '123';
-        this.userPassDB = '123';
-        this.verifyUser();
+        // Gets personel login info
+        this.http.post(_app_service__WEBPACK_IMPORTED_MODULE_6__["BASE_URL"] + "/personnel/login", { facilityNo: this.facilityNo, password: this.userPass })
+            .subscribe(this.loginUser.bind(this), this.openSnackBarFail.bind(this));
     };
-    LoginDialogComponent.prototype.verifyUser = function () {
+    LoginDialogComponent.prototype.loginUser = function () {
         // If information is incorrect, will inform user
         // NEEDED AN IF ELSE FOR WAY DATA IS COLLECTED
-        if (this.facilityNoDB !== this.facilityNo) {
-            this.openSnackBarFail();
-        }
-        else if (this.userPassDB !== this.userPass) {
-            this.openSnackBarFail();
-        }
-        else {
-            // Open unipark page, close modal
-            console.log('login Dialog: ', this.facilityNoDB, '  ', this.userPassDB);
-            this.dialogRef.close(this.form.value);
-            this.router.navigateByUrl('/admin');
-        }
+        // Open unipark page, close modal
+        console.log('login Dialog: ', this.facilityNoDB, '  ', this.userPassDB);
+        this.appService.setState("FacilityID", this.facilityNo);
+        this.dialogRef.close(this.form.value);
+        this.router.navigateByUrl('/admin');
     };
     // Closes the dialog
     LoginDialogComponent.prototype.closeDialog = function () {
@@ -459,8 +504,10 @@ var LoginDialogComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
+            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_5__["MatSnackBar"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"],
+            _app_service__WEBPACK_IMPORTED_MODULE_6__["AppService"]])
     ], LoginDialogComponent);
     return LoginDialogComponent;
 }());
@@ -611,13 +658,15 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UniparkPageComponent", function() { return UniparkPageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _app_user_options_user_info_user_info_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../app/user-options/user-info/user-info.component */ "./src/app/user-options/user-info/user-info.component.ts");
-/* harmony import */ var _app_user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../app/user-options/update-user-info/update-user-info.component */ "./src/app/user-options/update-user-info/update-user-info.component.ts");
-/* harmony import */ var _app_user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/user-options/view-assigned-parking/view-assigned-parking.component */ "./src/app/user-options/view-assigned-parking/view-assigned-parking.component.ts");
-/* harmony import */ var _app_user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../app/user-options/request-parking/request-parking.component */ "./src/app/user-options/request-parking/request-parking.component.ts");
-/* harmony import */ var _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../user-options/help/help.component */ "./src/app/user-options/help/help.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _app_user_options_user_info_user_info_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../app/user-options/user-info/user-info.component */ "./src/app/user-options/user-info/user-info.component.ts");
+/* harmony import */ var _app_user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app/user-options/update-user-info/update-user-info.component */ "./src/app/user-options/update-user-info/update-user-info.component.ts");
+/* harmony import */ var _app_user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../app/user-options/view-assigned-parking/view-assigned-parking.component */ "./src/app/user-options/view-assigned-parking/view-assigned-parking.component.ts");
+/* harmony import */ var _app_user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../app/user-options/request-parking/request-parking.component */ "./src/app/user-options/request-parking/request-parking.component.ts");
+/* harmony import */ var _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../user-options/help/help.component */ "./src/app/user-options/help/help.component.ts");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../app.service */ "./src/app/app.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -635,75 +684,63 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var UniparkPageComponent = /** @class */ (function () {
-    function UniparkPageComponent(dialog, http) {
+    function UniparkPageComponent(router, dialog, http, appService) {
+        this.router = router;
         this.dialog = dialog;
         this.http = http;
+        this.appService = appService;
     }
-    // Implimentation for gathering data from database
-    // Currently getting data from an API
+    // Implimentation for gathering data from database 
+    // Currently getting data from an API 
     UniparkPageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('https://api.coinmarketcap.com/v2/ticker/?limit=2')
-            .subscribe(function (response) { return _this.myDatas = response; });
+        if (!this.appService.getState("FacilityID")) {
+            this.router.navigateByUrl('/');
+        }
+        // Gets user info api
+        this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_9__["BASE_URL"] + "/personnel/specified/" + this.appService.getState("FacilityID"))
+            .subscribe(function (response) { return _this.personelInfo = response; });
     };
     // Displays user-info modal
     UniparkPageComponent.prototype.openUserInfoDialog = function () {
-        this.userInfoDialogRef = this.dialog.open(_app_user_options_user_info_user_info_component__WEBPACK_IMPORTED_MODULE_3__["UserInfoComponent"], {
+        this.userInfoDialogRef = this.dialog.open(_app_user_options_user_info_user_info_component__WEBPACK_IMPORTED_MODULE_4__["UserInfoComponent"], {
             disableClose: true,
             // Sets data to appropriate variables
             data: {
-                userName: this.myDatas.data[1].name,
-                userSur: this.myDatas.data[1].symbol,
-                password: this.password,
-                personelType: this.personelType,
-                personelLevel: this.personelLevel
+                userName: this.personelInfo.PersonelName,
+                userPhone: this.personelInfo.PhoneNumber,
+                userEmail: this.personelInfo.Email,
+                userType: this.personelInfo.Type,
+                userLevel: this.personelInfo.PersonelLevel
             }
         });
     };
     // Displays update-user-info modal
     UniparkPageComponent.prototype.openUpdateUserInfoDialog = function () {
-        var _this = this;
-        this.UpdateUserDialog = this.dialog.open(_app_user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_4__["UpdateUserInfoComponent"], {
+        this.UpdateUserDialog = this.dialog.open(_app_user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_5__["UpdateUserInfoComponent"], {
             disableClose: true
-        });
-        // Sets data to appropriate variables
-        this.UpdateUserDialog.afterClosed().subscribe(function (updateInfo) {
-            console.log('Dialog output:', updateInfo);
-            _this.cellNo = updateInfo.cellNo;
-            _this.email = updateInfo.email;
-            _this.newPass = updateInfo.newPass;
-            _this.confirmNewPass = updateInfo.confirmNewPass;
         });
     };
     // Displays assigned-parking modal
     UniparkPageComponent.prototype.openAssignedParkingDialog = function () {
-        this.AssignedParkingDialog = this.dialog.open(_app_user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_5__["ViewAssignedParkingComponent"], {
+        this.AssignedParkingDialog = this.dialog.open(_app_user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_6__["ViewAssignedParkingComponent"], {
             disableClose: true,
             // Sets data to appropriate variables
-            data: {
-                parkingName: this.parkingName,
-                parkingAL: this.parkingAL,
-                parkingLocation: this.parkingLocation,
-            }
+            data: {}
         });
     };
     // Displays request-parking modal
     UniparkPageComponent.prototype.openRequestParkingDialog = function () {
-        var _this = this;
-        this.RequestParkingDialog = this.dialog.open(_app_user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_6__["RequestParkingComponent"], {
+        this.RequestParkingDialog = this.dialog.open(_app_user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_7__["RequestParkingComponent"], {
             disableClose: true
-        });
-        // Sets data to appropriate variables
-        this.RequestParkingDialog.afterClosed().subscribe(function (requestParking) {
-            console.log('Dialog output:', requestParking);
-            _this.parkingArea = requestParking.parkingArea;
-            _this.parkingSpot = requestParking.parkingSpot;
         });
     };
     // Displays user-info modal
     UniparkPageComponent.prototype.openHelpDialog = function () {
-        this.helpDialog = this.dialog.open(_user_options_help_help_component__WEBPACK_IMPORTED_MODULE_7__["HelpComponent"], {
+        this.helpDialog = this.dialog.open(_user_options_help_help_component__WEBPACK_IMPORTED_MODULE_8__["HelpComponent"], {
             disableClose: true,
         });
     };
@@ -713,8 +750,10 @@ var UniparkPageComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./unipark-page.component.html */ "./src/app/unipark-page/unipark-page.component.html"),
             styles: [__webpack_require__(/*! ./unipark-page.component.scss */ "./src/app/unipark-page/unipark-page.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+            _app_service__WEBPACK_IMPORTED_MODULE_9__["AppService"]])
     ], UniparkPageComponent);
     return UniparkPageComponent;
 }());
@@ -730,7 +769,7 @@ var UniparkPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\n  <!-- Display of help modal -->\n  <!-- Displays help image -->\n  <img src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\n  <hr>\n  <p>\n    \n    <b><u>User Information</u></b>\n    <br>\n    Will display all of your information.\n    <br>\n    <br>\n    <b><u>Update User Info</u></b>\n    <br>\n    This allows you to update either your: Cell-Phone Number, E-mail Address, Password.\n    <br>\n    Cell-Phone Number: Needs to have 10 digits entered as specified.\n    <br>\n    E-mail Address: Only valid email addresses will be accepted.\n    <br>\n    Password: When entering a new password, it will need to be entered\n    again inorder to ensure that you entered the same password.\n    <br>\n    By pressing the <mat-icon svgIcon=\"eye\"></mat-icon> or <mat-icon svgIcon=\"eye-off\"></mat-icon> icon it will display,\n    hide your newly entered password.\n    <br>\n    <br>\n    <b><u>Assigned Parking</u></b>\n    <br>\n    Will display all parking information associated to you.\n    <br>\n    <br>\n    <b><u>Request Parking</u></b>\n    This allows you to request for a different parking area / spot within the facility.\n    <br>\n    Only options that are viable to you will given, they can be selected by pressing on \"Parking Area\" and chooing an option\n    <br>\n    and also \"parking Spot\", once both feilds have been chosen you will be required to \"Request\" the parking, this can be done\n    by pressing enter or clicking the \"Request\" button\n    <br>\n    <br>\n    Options can be closed by clicking \"close\" or by pressing \"Esc\".\n    <br>\n    Options can be completed by clicking \"Submit\"/\"Request\" or by pressing Enter\" on the keyboard.\n    <br>\n    <br>\n    By pressing \"Logout\" <mat-icon svgIcon=\"logout\"></mat-icon> you will be logged off from the web app, and taken back to the \"Dragon Code\" website.\n  </p>\n  <hr>\n  <br>\n  <mat-dialog-actions>\n    <!-- Close button -->\n    <button mat-button mat-dialog-close>\n      <mat-icon svgIcon=\"close\"></mat-icon>\n      Close\n    </button>\n  </mat-dialog-actions>\n</div>\n"
+module.exports = "<div class=\"alternative\">\r\n  <!-- Display of help modal -->\r\n  <!-- Displays help image -->\r\n  <img src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\r\n  <hr>\r\n  <p>\r\n    \r\n    <b><u>User Information</u></b>\r\n    <br>\r\n    Will display all of your information.\r\n    <br>\r\n    <br>\r\n    <b><u>Update User Info</u></b>\r\n    <br>\r\n    This allows you to update either your: Cell-Phone Number, E-mail Address, Password.\r\n    <br>\r\n    Cell-Phone Number: Needs to have 10 digits entered as specified.\r\n    <br>\r\n    E-mail Address: Only valid email addresses will be accepted.\r\n    <br>\r\n    Password: When entering a new password, it will need to be entered\r\n    again inorder to ensure that you entered the same password.\r\n    <br>\r\n    By pressing the <mat-icon svgIcon=\"eye\"></mat-icon> or <mat-icon svgIcon=\"eye-off\"></mat-icon> icon it will display,\r\n    hide your newly entered password.\r\n    <br>\r\n    <br>\r\n    <b><u>Assigned Parking</u></b>\r\n    <br>\r\n    Will display all parking information associated to you.\r\n    <br>\r\n    <br>\r\n    <b><u>Request Parking</u></b>\r\n    This allows you to request for a different parking area / spot within the facility.\r\n    <br>\r\n    Only options that are viable to you will given, they can be selected by pressing on \"Parking Area\" and chooing an option\r\n    <br>\r\n    and also \"parking Spot\", once both feilds have been chosen you will be required to \"Request\" the parking, this can be done\r\n    by pressing enter or clicking the \"Request\" button\r\n    <br>\r\n    <br>\r\n    Options can be closed by clicking \"close\" or by pressing \"Esc\".\r\n    <br>\r\n    Options can be completed by clicking \"Submit\"/\"Request\" or by pressing Enter\" on the keyboard.\r\n    <br>\r\n    <br>\r\n    By pressing \"Logout\" <mat-icon svgIcon=\"logout\"></mat-icon> you will be logged off from the web app, and taken back to the \"Dragon Code\" website.\r\n  </p>\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button mat-dialog-close>\r\n      <mat-icon svgIcon=\"close\"></mat-icon>\r\n      Close\r\n    </button>\r\n  </mat-dialog-actions>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -843,8 +882,10 @@ module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-r
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestParkingComponent", function() { return RequestParkingComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -857,10 +898,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var RequestParkingComponent = /** @class */ (function () {
-    function RequestParkingComponent(fb, dialogRef) {
+    function RequestParkingComponent(fb, dialogRef, snackBar, http) {
         this.fb = fb;
         this.dialogRef = dialogRef;
+        this.snackBar = snackBar;
+        this.http = http;
         // Mock data for dialog, implimentations for database
         this.areas = [
             { value: 'area01', viewValue: 'North' },
@@ -917,8 +962,10 @@ var RequestParkingComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./request-parking.component.html */ "./src/app/user-options/request-parking/request-parking.component.html"),
             styles: [__webpack_require__(/*! ./request-parking.component.scss */ "./src/app/user-options/request-parking/request-parking.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
+            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], RequestParkingComponent);
     return RequestParkingComponent;
 }());
@@ -934,7 +981,7 @@ var RequestParkingComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n    <!-- Display of login modal -->\r\n    <!-- Displays request parking image -->\r\n    <img src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\r\n    <hr>\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n      <!-- Mat form feild: cell phone number -->\r\n      <mat-form-field hintLabel=\"Max 10 digits\">\r\n        <input matInput \r\n                #input maxlength=\"10\" \r\n                placeholder=\"Cell-Phone Number\"\r\n                formControlName=\"cellNo\">\r\n        <mat-hint align=\"end\">{{ input.value?.length || 0 }}/10</mat-hint>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: email address -->\r\n      <mat-form-field>\r\n        <input matInput  \r\n                placeholder=\"E-mail Address\"\r\n                [formControl]=\"email\" required>\r\n        <mat-error *ngIf=\"email.invalid\">{{ getErrorMessage() }}</mat-error>\r\n      </mat-form-field>\r\n        <br>\r\n      <!-- Mat form feild: password -->\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"New Password\"\r\n                [type]=\"hide ? 'password' : 'text'\"\r\n                formControlName=\"newPass\">\r\n      </mat-form-field>\r\n      <br>\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Confirm Password\"\r\n                [type]=\"hide ? 'password' : 'text'\"\r\n                formControlName=\"confirmNewPass\">\r\n        <mat-icon matSuffix\r\n          (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\r\n      </mat-form-field>\r\n  </mat-dialog-content>\r\n    <hr>\r\n    <br>\r\n    <mat-dialog-actions>\r\n      <!-- Close button -->\r\n      <button mat-button mat-dialog-close>\r\n        <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n        Cancel\r\n      </button>\r\n      <!-- Update button -->\r\n      <button mat-button (click)=\"updateInfo()\">\r\n        <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n        Update\r\n      </button>\r\n    </mat-dialog-actions>\r\n  </div>\r\n  "
+module.exports = "<div class=\"alternative\">\r\n    <!-- Display of login modal -->\r\n    <!-- Displays request parking image -->\r\n    <img src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\r\n    <hr>\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n      <!-- Mat form feild: cell phone number -->\r\n      <mat-form-field hintLabel=\"Max 10 digits\">\r\n        <input matInput \r\n                #input maxlength=\"10\" \r\n                placeholder=\"Cell-Phone Number\"\r\n                formControlName=\"cellNo\">\r\n        <mat-hint align=\"end\">{{ input.value?.length || 0 }}/10</mat-hint>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: email address -->\r\n      <mat-form-field>\r\n        <input matInput  \r\n                placeholder=\"E-mail Address\"\r\n                [formControl]=\"email\" required>\r\n        <mat-error *ngIf=\"email.invalid\">{{ getErrorMessage() }}</mat-error>\r\n      </mat-form-field>\r\n        <br>\r\n      <!-- Mat form feild: password -->\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"New Password\"\r\n                [type]=\"hide ? 'password' : 'text'\"\r\n                formControlName=\"newPass\">\r\n      </mat-form-field>\r\n      <br>\r\n      <mat-form-field>\r\n        <input matInput placeholder=\"Confirm Password\"\r\n                [type]=\"hide ? 'password' : 'text'\"\r\n                formControlName=\"confirmNewPass\">\r\n        <mat-icon matSuffix\r\n          (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\r\n      </mat-form-field>\r\n  </mat-dialog-content>\r\n    <hr>\r\n    <br>\r\n    <mat-dialog-actions>\r\n      <!-- Close button -->\r\n      <button mat-button mat-dialog-close>\r\n        <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n        Cancel\r\n      </button>\r\n      <!-- Update button -->\r\n      <button mat-button (click)=\"verifyUpdateInfo()\">\r\n        <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n        Update\r\n      </button>\r\n    </mat-dialog-actions>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -960,8 +1007,11 @@ module.exports = ".mat-icon:hover {\n  background-color: #00C853;\n  cursor: poi
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateUserInfoComponent", function() { return UpdateUserInfoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../app.service */ "./src/app/app.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -971,23 +1021,61 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
 
 
 
 var UpdateUserInfoComponent = /** @class */ (function () {
-    function UpdateUserInfoComponent(fb, dialogRef) {
+    function UpdateUserInfoComponent(fb, dialogRef, snackBar, http, appService
+    // private uniparkPage: UniparkPageComponent
+    ) {
         this.fb = fb;
         this.dialogRef = dialogRef;
+        this.snackBar = snackBar;
+        this.http = http;
+        this.appService = appService;
         // Creates email form control
-        this.email = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]);
+        this.email = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]);
         // Hides password
         this.hide = true;
     }
-    // Finds if the email entered is correct or not
-    UpdateUserInfoComponent.prototype.getErrorMessage = function () {
-        return this.email.hasError('required') ? 'You must enter a value' :
-            this.email.hasError('email') ? 'Not a valid email' : '';
-    };
     UpdateUserInfoComponent.prototype.ngOnInit = function () {
         this.form = this.fb.group({
             cellNo: [this.cellNo, []],
@@ -996,8 +1084,71 @@ var UpdateUserInfoComponent = /** @class */ (function () {
             confirmNewPass: [this.confirmNewPass, []],
         });
     };
-    UpdateUserInfoComponent.prototype.updateInfo = function () {
-        this.dialogRef.close(this.form.value);
+    // Finds if the email entered is correct or not
+    UpdateUserInfoComponent.prototype.getErrorMessage = function () {
+        return this.email.hasError('required') ? 'You must enter a value' :
+            this.email.hasError('email') ? 'Not a valid email' : '';
+    };
+    // Opens the snackBar with error
+    UpdateUserInfoComponent.prototype.openSnackBarFail = function () {
+        this.snackBar.open('Update Failed', 'OK', {
+            duration: 2000,
+        });
+    };
+    UpdateUserInfoComponent.prototype.openSnackBarSuccess = function () {
+        this.snackBar.open('Update Success', 'OK', {
+            duration: 2000,
+        });
+    };
+    UpdateUserInfoComponent.prototype.prepareUpdate = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var updateResponse;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        // Aquires update information entered by user
+                        this.cellNo = this.form.value.cellNo;
+                        this.newPass = this.form.value.newPass;
+                        this.confirmNewPass = this.form.value.confirmNewPass;
+                        // Sends update information to json
+                        this.userInfoJson = {
+                            "PersonnelID": this.appService.getState("FacilityID"),
+                            "PersonnelPhoneNumber": this.cellNo,
+                            "PersonnelEmail": this.email.value,
+                            "PersonnelPassword": this.newPass
+                        };
+                        console.log(this.userInfoJson);
+                        return [4 /*yield*/, this.http.put(_app_service__WEBPACK_IMPORTED_MODULE_5__["BASE_URL"] + "/personnel/update", this.userInfoJson)
+                                .toPromise()
+                                .catch(console.error)];
+                    case 1:
+                        updateResponse = _a.sent();
+                        console.log(updateResponse);
+                        if (updateResponse && updateResponse.data.trim() === "SUCCESS") {
+                            this.openSnackBarSuccess();
+                        }
+                        else {
+                            this.openSnackBarFail();
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    // Verifys information entered by user
+    UpdateUserInfoComponent.prototype.verifyUpdateInfo = function () {
+        // Will validate which option to choose send data, close dialog
+        if (this.newPass == this.confirmNewPass && this.confirmNewPass == this.newPass) {
+            this.prepareUpdate();
+            this.dialogRef.close(this.form.value);
+        }
+        else if (this.newPass === '' && this.confirmNewPass === '') {
+            this.prepareUpdate();
+            this.dialogRef.close(this.form.value);
+        }
+        else {
+            this.openSnackBarFail();
+        }
     };
     // Closes the dialog
     UpdateUserInfoComponent.prototype.closeDialog = function () {
@@ -1007,7 +1158,7 @@ var UpdateUserInfoComponent = /** @class */ (function () {
     UpdateUserInfoComponent.prototype.enterKeyEvent = function (event) {
         switch (event.keyCode) {
             case 13:
-                this.updateInfo();
+                this.verifyUpdateInfo();
                 break;
             case 27:
                 this.closeDialog();
@@ -1026,8 +1177,13 @@ var UpdateUserInfoComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./update-user-info.component.html */ "./src/app/user-options/update-user-info/update-user-info.component.html"),
             styles: [__webpack_require__(/*! ./update-user-info.component.scss */ "./src/app/user-options/update-user-info/update-user-info.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
+            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
+            _app_service__WEBPACK_IMPORTED_MODULE_5__["AppService"]
+            // private uniparkPage: UniparkPageComponent
+        ])
     ], UpdateUserInfoComponent);
     return UpdateUserInfoComponent;
 }());
@@ -1043,7 +1199,7 @@ var UpdateUserInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img src=\"assets/images/user-options/user-info/user-info.png\" alt=\"User Info\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Mat list to display user info -->\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Name: &nbsp;</strong> {{ data.userName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Surname: &nbsp;</strong> {{ data.userSur }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Password: &nbsp;</strong> {{ data.password }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Personel Type: &nbsp;</strong> {{ data.personelType }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Personel Level: &nbsp;</strong> {{ data.personelLevel }}\r\n      </mat-list-item>\r\n    </mat-list> \r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button mat-dialog-close class=\"center\">\r\n    <mat-icon svgIcon=\"close\"></mat-icon>\r\n      Close\r\n    </button>\r\n</mat-dialog-actions>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img src=\"assets/images/user-options/user-info/user-info.png\" alt=\"User Info\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Mat list to display user info -->\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Name: &nbsp;</strong> {{ data.userName }}\r\n      </mat-list-item>\r\n\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Phone Number: &nbsp;</strong> {{ data.userPhone }}\r\n      </mat-list-item>\r\n\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Email: &nbsp;</strong> {{ data.userEmail }}\r\n      </mat-list-item>\r\n\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Personel Type: &nbsp;</strong> {{ data.userType }}\r\n      </mat-list-item>\r\n      \r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Personel Level: &nbsp;</strong> {{ data.userLevel }}\r\n      </mat-list-item>\r\n    </mat-list> \r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button mat-dialog-close class=\"center\">\r\n    <mat-icon svgIcon=\"close\"></mat-icon>\r\n      Close\r\n    </button>\r\n</mat-dialog-actions>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1070,6 +1226,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserInfoComponent", function() { return UserInfoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../app.service */ "./src/app/app.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1084,10 +1242,14 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 };
 
 
+
+
 var UserInfoComponent = /** @class */ (function () {
-    function UserInfoComponent(dialogRef, data) {
+    function UserInfoComponent(dialogRef, data, http, appService) {
         this.dialogRef = dialogRef;
         this.data = data;
+        this.http = http;
+        this.appService = appService;
     }
     UserInfoComponent.prototype.ngOnInit = function () {
     };
@@ -1119,7 +1281,8 @@ var UserInfoComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./user-info.component.scss */ "./src/app/user-options/user-info/user-info.component.scss")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object, _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+            _app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"]])
     ], UserInfoComponent);
     return UserInfoComponent;
 }());
@@ -1274,7 +1437,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! F:\Uni Stuff\Project\uniParkWeb\UniPark-Web\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Jason\Desktop\UniPark-Web\UniPark-Web\src\main.ts */"./src/main.ts");
 
 
 /***/ })
