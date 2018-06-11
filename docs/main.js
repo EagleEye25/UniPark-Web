@@ -263,7 +263,7 @@ var AppService = /** @class */ (function () {
     return AppService;
 }());
 
-var BASE_URL = 'http://unipark.lunatech.co.za';
+var BASE_URL = 'https://unipark.lunatech.co.za';
 
 
 /***/ }),
