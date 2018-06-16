@@ -18,4 +18,5 @@ export class AppService {
   }
 }
 
-export const BASE_URL = 'http://unipark.lunatech.co.za';
+// export const BASE_URL = 'https://unipark.lunatech.co.za';
+export const BASE_URL = 'http://localhost:9000';

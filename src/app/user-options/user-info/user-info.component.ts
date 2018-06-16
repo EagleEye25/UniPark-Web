@@ -1,7 +1,5 @@
 import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { HttpClient } from '@angular/common/http';
-import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-user-info',
@@ -10,13 +8,10 @@ import { AppService } from '../../app.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  userInfo: any;
-
   constructor(
     private dialogRef: MatDialogRef<UserInfoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private http: HttpClient,
-    private appService: AppService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit() {
   }
