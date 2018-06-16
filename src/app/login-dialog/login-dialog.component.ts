@@ -68,7 +68,7 @@ export class LoginDialogComponent implements OnInit {
     // NEEDED AN IF ELSE FOR WAY DATA IS COLLECTED
     // Open unipark page, close modal
     console.log('login Dialog: ', this.facilityNoDB, '  ', this.userPassDB);
-    this.appService.setState("FacilityID", this.facilityNo);
+    this.appService.setState('FacilityID', this.facilityNo);
     this.dialogRef.close(this.form.value);
     this.router.navigateByUrl('/admin');
   }

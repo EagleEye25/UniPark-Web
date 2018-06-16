@@ -3,7 +3,7 @@
       <!-- Displays UniPark image -->
       <img src="assets/images/branding/up.png" alt="UniPark">
       <span class="spacer"></span>
-      <p>{{ userName }} &nbsp; {{ userSur }}</p>
+      <!--<p>{{ userName }} &nbsp; {{ userSur }}</p> -->
 
           <!-- View User Information -->
           <button mat-button (click)="openUserInfoDialog()">
@@ -25,6 +25,10 @@
             <mat-icon svgIcon="car-connected"></mat-icon>
             <span>Request Parking</span>
           </button>
+          <button mat-button (click)="openInfringements()">
+            <mat-icon svgIcon="alert-octagon"></mat-icon>
+            <span>Infringments</span>
+          </button>
           <!-- Help -->
           <button mat-button (click)="openHelpDialog()">
             <mat-icon svgIcon="help"></mat-icon>
@@ -36,21 +40,4 @@
             <span>Logout</span>
           </button>
   </mat-toolbar>
-  
-  <!-- going to incorportate user options into dialogs, while on defualt unipark page
-      will display unipark shit etc 
-  Tab group for all user options 
-  <mat-tab-group>
-    User Information 
-    <mat-tab label="User Information">
-      Content 1
-    </mat-tab>
-    Parking area information
-    <mat-tab label="Parking Area">
-      Content 2
-    </mat-tab>
-    <mat-tab label="U">
-        Content 2
-      </mat-tab>
-  </mat-tab-group> -->
 </div>

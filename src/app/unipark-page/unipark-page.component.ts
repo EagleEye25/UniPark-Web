@@ -7,6 +7,7 @@ import { UserInfoComponent } from '../../app/user-options/user-info/user-info.co
 import { UpdateUserInfoComponent } from '../../app/user-options/update-user-info/update-user-info.component';
 import { ViewAssignedParkingComponent } from '../../app/user-options/view-assigned-parking/view-assigned-parking.component';
 import { RequestParkingComponent } from '../../app/user-options/request-parking/request-parking.component';
+import { InfringementsComponent } from '../user-options/infringements/infringements.component';
 import { HelpComponent } from '../user-options/help/help.component';
 
 import {AppService, BASE_URL} from '../app.service';
@@ -27,6 +28,7 @@ export class UniparkPageComponent implements OnInit {
   UpdateUserDialog: MatDialogRef<UpdateUserInfoComponent>;
   AssignedParkingDialog: MatDialogRef<ViewAssignedParkingComponent>;
   RequestParkingDialog: MatDialogRef<RequestParkingComponent>;
+  InfringementsDialog: MatDialogRef<InfringementsComponent>;
   helpDialog: MatDialogRef<HelpComponent>;
 
   constructor(
@@ -103,6 +105,20 @@ export class UniparkPageComponent implements OnInit {
   openHelpDialog(): void {
     this.helpDialog = this.dialog.open(HelpComponent, {
       disableClose: true,
+    });
+  }
+
+   // Displays infringements modal
+   openInfringements(): void {
+    this.InfringementsDialog = this.dialog.open(InfringementsComponent, {
+      disableClose: true,
+      // Sets data to appropriate variables
+      data: {
+        reportDate: this.personelInfo.PersonelName,
+        reportDesc: this.personelInfo.PhoneNumber,
+        reportType: this.personelInfo.Email,
+        reportStatus: this.personelInfo.Type,
+      }
     });
   }
 }
