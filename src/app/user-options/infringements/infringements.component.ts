@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
-import { AppService } from '../../app.service';
+import { AppService, BASE_URL } from '../../app.service';
 
 @Component({
   selector: 'app-infringements',
@@ -10,18 +10,26 @@ import { AppService } from '../../app.service';
 })
 export class InfringementsComponent implements OnInit {
 
-  displayColumns = ['date', 'description', 'reportType', 'status'];
-  tableData = new MatTableDataSource<Infringemenets>(TABLE_DATA);
+  removeF = new RegExp(/\[/gi);
+  removeL = new RegExp(/\]/gi);
+  displayColumns = ['Date', 'Description', 'Report Type', 'Status'];
+  tableData: any;
+  infringBackend: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private dialogRef: MatDialogRef<InfringementsComponent>,
+    private http: HttpClient,
+    private appService: AppService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
+    this.http.get(`${BASE_URL}/infringements/` + this.appService.getState('FacilityID'))
+    .subscribe((response: any) => this.infringBackend = response);
+
     this.tableData.paginator = this.paginator;
     this.tableData.sort = this.sort;
   }
@@ -52,21 +60,23 @@ export class InfringementsComponent implements OnInit {
 }
 
 export interface Infringemenets {
-  date: string;
-  description: string;
-  reportType: string;
-  status: string;
+  Date: string;
+  Description: string;
+  ReportType: string;
+  Status: string;
 }
 
 const TABLE_DATA: Infringemenets[] = [
-  {date: '1', description: 'Hydrogen', reportType: '1.0079', status: 'H'},
-  {date: '2', description: 'Helium', reportType: '4.0026', status: 'He'},
-  {date: '3', description: 'Lithium', reportType: '6.941', status: 'Li'},
-  {date: '4', description: 'Beryllium', reportType: '9.0122', status: 'Be'},
-  {date: '5', description: 'Boron', reportType: '10.811', status: 'B'},
-  {date: '6', description: 'Carbon', reportType: '12.0107', status: 'C'},
-  {date: '7', description: 'Nitrogen', reportType: '14.0067', status: 'N'},
-  {date: '8', description: 'Oxygen', reportType: '15.9994', status: 'O'},
-  {date: '9', description: 'Fluorine', reportType: '18.9984', status: 'F'},
-  {date: '10', description: 'Neon', reportType: '20.1797', status: 'Ne'},
+  {
+    Date: '2018-06-16T00:00:00.000Z',
+    Description: 'Parked in Reserved parking not allocated to them',
+    ReportType: 'Parking Infringement',
+    Status: 'paid'
+},
+{
+    Date: '2018-06-18T00:00:00.000Z',
+    Description: 'Parked in Reserved parking not allocated to them',
+    ReportType: 'Parking Infringement',
+    Status: 'Pad'
+}
 ];
