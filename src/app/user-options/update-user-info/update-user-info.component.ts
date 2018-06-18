@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AppService, BASE_URL } from '../../app.service';
- 
+
 @Component({
   selector: 'app-update-user-info',
   templateUrl: './update-user-info.component.html',
@@ -67,34 +67,32 @@ export class UpdateUserInfoComponent implements OnInit {
     this.confirmNewPass = this.form.value.confirmNewPass;
     // Sends update information to json
     this.userInfoJson = {
-      "PersonnelID": this.appService.getState("FacilityID"),
-      "PersonnelPhoneNumber": this.cellNo,
-      "PersonnelEmail": this.email.value,
-      "PersonnelPassword": this.newPass
+      'PersonnelID': this.appService.getState('FacilityID'),
+      'PersonnelPhoneNumber': this.cellNo,
+      'PersonnelEmail': this.email.value,
+      'PersonnelPassword': this.newPass
     };
     console.log( this.userInfoJson);
-    
+
     // sends data to api
     const updateResponse: any = await this.http.put(`${BASE_URL}/personnel/update`, this.userInfoJson)
     .toPromise()
     .catch(console.error);
     console.log(updateResponse);
-    if (updateResponse && updateResponse.data.trim() === "SUCCESS") {
-      this.openSnackBarSuccess()
+    if (updateResponse && updateResponse.data.trim() === 'SUCCESS') {
+      this.openSnackBarSuccess();
     } else {
       this.openSnackBarFail();
     }
-    //.subscribe((response: any) => this.updateResponse = response);
-
   }
 
   // Verifys information entered by user
   verifyUpdateInfo() {
     // Will validate which option to choose send data, close dialog
-    if (this.newPass == this.confirmNewPass && this.confirmNewPass == this.newPass) {
+    if (this.newPass === this.confirmNewPass && this.confirmNewPass === this.newPass) {
       this.prepareUpdate();
       this.dialogRef.close(this.form.value);
-    } else if(this.newPass === '' && this.confirmNewPass === '') {
+    } else if (this.newPass === '' && this.confirmNewPass === '') {
       this.prepareUpdate();
       this.dialogRef.close(this.form.value);
     } else {
