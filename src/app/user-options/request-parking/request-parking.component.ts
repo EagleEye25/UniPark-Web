@@ -4,6 +4,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
+import {AppService, BASE_URL} from '../../app.service';
+
 @Component({
   selector: 'app-request-parking',
   templateUrl: './request-parking.component.html',
@@ -11,6 +13,7 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RequestParkingComponent implements OnInit {
 
+  requestOptions: any;
   form: FormGroup;
   parkingArea: string;
   parkingSpot: string;
@@ -20,6 +23,7 @@ export class RequestParkingComponent implements OnInit {
     private dialogRef: MatDialogRef<RequestParkingComponent>,
     private snackBar: MatSnackBar,
     private http: HttpClient,
+    private appService: AppService
     // private uniparkPage: UniparkPageComponent
   ) { }
 
@@ -41,6 +45,8 @@ export class RequestParkingComponent implements OnInit {
       parkingArea: [this.parkingArea, []],
       parkingSpot: [this.parkingSpot, []]
     });
+    this.http.get(`${BASE_URL}/parking/assigned/` + this.appService.getState('FacilityID'))
+    .subscribe((response: any) => this.requestOptions = response);
   }
 
   // Aquires the parking data from dialog
