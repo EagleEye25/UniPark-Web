@@ -28,10 +28,11 @@ export class InfringementsComponent implements OnInit {
 
   ngOnInit() {
     this.http.get(`${BASE_URL}/infringements/` + this.appService.getState('FacilityID'))
-    .subscribe((response: any) => this.infringBackend = response);
-
-    this.tableData.paginator = this.paginator;
-    this.tableData.sort = this.sort;
+    .subscribe((response: any) => { this.infringBackend = response,
+      this.tableData = new MatTableDataSource<Infringemenets>(this.infringBackend);
+      this.tableData.paginator = this.paginator;
+      this.tableData.sort = this.sort;
+    });
   }
 
   // Closes the dialog
@@ -65,18 +66,3 @@ export interface Infringemenets {
   ReportType: string;
   Status: string;
 }
-
-const TABLE_DATA: Infringemenets[] = [
-  {
-    Date: '2018-06-16T00:00:00.000Z',
-    Description: 'Parked in Reserved parking not allocated to them',
-    ReportType: 'Parking Infringement',
-    Status: 'paid'
-},
-{
-    Date: '2018-06-18T00:00:00.000Z',
-    Description: 'Parked in Reserved parking not allocated to them',
-    ReportType: 'Parking Infringement',
-    Status: 'Pad'
-}
-];
