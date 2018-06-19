@@ -28,7 +28,10 @@ export class InfringementsComponent implements OnInit {
 
   ngOnInit() {
     this.http.get(`${BASE_URL}/infringements/` + this.appService.getState('FacilityID'))
-    .subscribe((response: any) => { this.infringBackend = response,
+    .subscribe((response: any) => { this.infringBackend = response;
+      for (let k = 0; k < this.infringBackend.length; k++) {
+        this.infringBackend[k].Status === true ? this.infringBackend[k].Status = 'un-Paid' : this.infringBackend[k].Status = 'Paid';
+      }
       this.tableData = new MatTableDataSource<Infringemenets>(this.infringBackend);
       this.tableData.paginator = this.paginator;
       this.tableData.sort = this.sort;
