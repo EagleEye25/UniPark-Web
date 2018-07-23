@@ -57,7 +57,7 @@ export class LoginDialogComponent implements OnInit {
     this.facilityNo = this.form.value.facilityNo;
     this.userPass = this.form.value.userPass;
 
-    // Gets personel login info
+    // sends login info, veriefied on backend
     this.http.post(`${BASE_URL}/personnel/login`,
       {facilityNo: this.facilityNo, password: this.userPass})
       .subscribe(this.loginUser.bind(this), this.openSnackBarFail.bind(this));

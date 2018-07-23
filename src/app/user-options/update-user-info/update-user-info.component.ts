@@ -19,6 +19,11 @@ export class UpdateUserInfoComponent implements OnInit {
   userInfoJson: any;
   updateResponse: any;
 
+  checkBoxPos = 'before';
+  disabledCell = new FormControl(true);
+  disabledEmail = new FormControl(true);
+  disabledPass = new FormControl(true);
+
   // Creates email form control
   email = new FormControl('', [Validators.required, Validators.email]);
   // Hides password

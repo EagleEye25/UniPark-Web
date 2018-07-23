@@ -21,11 +21,13 @@
       <!-- Mat form feild: parking spot -->
       <mat-form-field>
         <mat-select placeholder="Parking Spot" 
-                    [disabled]="disableSelect.value" 
                     formControlName="parkingSpot" 
-                    name="spot">
-          <mat-option *ngFor="let ParkingSpace of spotsAssociated" [value]="ParkingSpace">
-            {{ParkingSpace}}
+                    [disabled]="disableSelect.value" 
+                    matInput
+                    [(value)]= "parkingSpot"
+                    (selectionChange)='getSpotFormSelect()'>
+          <mat-option *ngFor="let ParkingSpot of spotsAssociated" [value]="ParkingSpot.ParkingSpace">
+            {{ParkingSpot.ParkingSpace}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -39,7 +41,9 @@
       Cancel
     </button>
     <!-- Update button -->
-    <button mat-button (click)="aquireParkingDetails()">
+    <button mat-button
+      [disabled]="(areaSelected === false && spotSelected === false)"
+      (click)="submitRequestParking()">
       <mat-icon svgIcon="cube-send"></mat-icon> 
       request
     </button>
