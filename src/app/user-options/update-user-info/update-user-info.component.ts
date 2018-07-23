@@ -13,6 +13,7 @@ import { AppService, BASE_URL } from '../../app.service';
 export class UpdateUserInfoComponent implements OnInit {
 
   form: FormGroup;
+  formBuilder: FormBuilder;
   cellNo: string;
   newPass: string;
   confirmNewPass: string;
@@ -21,6 +22,10 @@ export class UpdateUserInfoComponent implements OnInit {
 
   checkBoxPos = 'before';
   disabledPass = true;
+  disableCell: boolean;
+  disableEmail: boolean;
+  disablePass: boolean;
+  disableConfirm: boolean;
 
   // Creates email form control
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -37,12 +42,30 @@ export class UpdateUserInfoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.disableCell = true;
+    this.disableEmail = true;
+    this.disablePass = true;
+    this.disableConfirm = true;
+
     this.form = this.fb.group({
-      cellNo: [this.cellNo, []],
-      email: [this.email, []],
-      newPass: [this.newPass, []],
-      confirmNewPass: [this.confirmNewPass, []],
+      cellNo: new FormControl({ value: '', disabled: this.disableCell}),
+      email: new FormControl({ value: '', disabled: this.disableEmail}),
+      newPass: new FormControl({ value: '', disabled: this.disablePass}),
+      confirmNewPass: new FormControl({ value: '', disabled: this.disableConfirm}),
     });
+  }
+
+  changeCell() {
+    this.form.controls.cellNo.enable();
+  }
+
+  changeEmail() {
+    this.form.controls.email.enable();
+  }
+
+  changePassword() {
+      this.form.controls.newPass.enable();
+      this.form.controls.confirmNewPass.enable();
   }
 
   // Finds if the email entered is correct or not

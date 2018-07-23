@@ -13,17 +13,19 @@
         <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
       </mat-form-field>
       <mat-checkbox
+        (change)="changeCell()"
         [labelPosition]="checkBoxPos">
       </mat-checkbox>
       <br>
       <!-- Mat form feild: email address -->
       <mat-form-field>
-        <input matInput  
+        <input  matInput
                 placeholder="E-mail Address"
                 [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
       </mat-form-field>
       <mat-checkbox
+        (change)="changeEmail()"
         [labelPosition]="checkBoxPos">
       </mat-checkbox>
       <br>
@@ -35,6 +37,7 @@
                 formControlName="newPass">
       </mat-form-field>
       <mat-checkbox
+        (change)="changePassword()"
         [labelPosition]="checkBoxPos">
       </mat-checkbox>
       <br>
