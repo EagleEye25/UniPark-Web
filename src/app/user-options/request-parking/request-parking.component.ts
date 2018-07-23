@@ -93,20 +93,27 @@ export class RequestParkingComponent implements OnInit {
     }
   }
 
+  // gets spot f
   getSpotFormSelect() {
     this.selectedSpot = this.form.value.parkingSpot;
     this.spotSelected = true;
   }
 
-  submitRequestParking() {
+  async submitRequestParking() {
     Number(this.selectedSpot);
     if (this.selectedArea === undefined || this.selectedSpot === undefined) {
       this.openSnackBarFail();
     } else {
         // sends request info to backend
-      this.http.post(`${BASE_URL}/request-parking`,
+        const reqResponse: any = await this.http.post(`${BASE_URL}/request-parking`,
       {PersonnelID: this.appService.getState('FacilityID'), ParkingSpaceID: this.selectedSpot})
-      .subscribe(this.openSnackBarPass.bind(this), this.openSnackBarFail.bind(this));
+      .toPromise()
+      .catch(console.error);
+      if (reqResponse && reqResponse.data.trim() === 'SUCCESS') {
+        this.openSnackBarPass();
+      } else {
+        this.openSnackBarFail();
+      }
     }
   }
 

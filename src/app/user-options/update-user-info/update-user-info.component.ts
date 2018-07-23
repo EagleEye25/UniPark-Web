@@ -20,9 +20,7 @@ export class UpdateUserInfoComponent implements OnInit {
   updateResponse: any;
 
   checkBoxPos = 'before';
-  disabledCell = new FormControl(true);
-  disabledEmail = new FormControl(true);
-  disabledPass = new FormControl(true);
+  disabledPass = true;
 
   // Creates email form control
   email = new FormControl('', [Validators.required, Validators.email]);
