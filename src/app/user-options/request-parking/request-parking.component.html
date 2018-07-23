@@ -21,8 +21,7 @@
       <!-- Mat form feild: parking spot -->
       <mat-form-field>
         <mat-select placeholder="Parking Spot" 
-                    formControlName="parkingSpot" 
-                    [disabled]="disableSelect.value" 
+                    formControlName="parkingSpot"  
                     matInput
                     [(value)]= "parkingSpot"
                     (selectionChange)='getSpotFormSelect()'>

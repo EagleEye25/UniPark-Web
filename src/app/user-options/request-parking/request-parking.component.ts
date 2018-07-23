@@ -21,7 +21,7 @@ export class RequestParkingComponent implements OnInit {
   parkingSpot: string;
   selectedArea: string;
   selectedSpot: any;
-  disableSelect = new FormControl(true);
+  disableSpot: boolean;
 
   distinctArea: any;
   spotsAssociated = [];
@@ -39,9 +39,10 @@ export class RequestParkingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.disableSpot = true;
     this.form = this.fb.group({
       parkingArea: [this.parkingArea, []],
-      parkingSpot: [this.parkingSpot, []]
+      parkingSpot: new FormControl({ value: '', disabled: this.disableSpot}),
     });
     this.http.get(`${BASE_URL}/parking/request/info/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => { this.requestOptions = response;
@@ -75,7 +76,7 @@ export class RequestParkingComponent implements OnInit {
   getAreaFromSelect() {
     this.selectedArea = this.form.value.parkingArea;
     if (this.selectedArea) {
-      this.disableSelect = new FormControl(false);
+      this.form.controls.parkingSpot.enable();
     }
     this.setSpotData(this.selectedArea);
     this.areaSelected = true;
