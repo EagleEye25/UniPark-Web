@@ -7,24 +7,30 @@
     <mat-dialog-content [formGroup]="form">
     <!-- Mat form feild: parking area -->
       <mat-form-field>
-        <mat-select placeholder="Parking Area" formControlName="parkingArea" name="area">
-          <mat-option *ngFor="let area of areas" [value]="area.value">
-            {{area.viewValue}}
+        <mat-select placeholder="Parking Area" 
+                    formControlName="parkingArea"
+                    matInput
+                    [(value)]= "parkingArea"
+                    (selectionChange)='getAreaFromSelect()'>
+          <mat-option *ngFor="let ParkingArea of distinctArea"  [value]="ParkingArea">
+            {{ParkingArea}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <br>
       <!-- Mat form feild: parking spot -->
       <mat-form-field>
-        <mat-select placeholder="Parking Spot" formControlName="parkingSpot" name="spot">
-          <mat-option *ngFor="let spot of spots" [value]="spot.value">
-            {{spot.viewValue}}
+        <mat-select placeholder="Parking Spot" 
+                    [disabled]="disableSelect.value" 
+                    formControlName="parkingSpot" 
+                    name="spot">
+          <mat-option *ngFor="let ParkingSpace of spotsAssociated" [value]="ParkingSpace">
+            {{ParkingSpace}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </mat-dialog-content>
     <br>
-  </div>
   <hr>
   <mat-dialog-actions>
     <!-- Close button -->
@@ -38,5 +44,5 @@
       request
     </button>
   </mat-dialog-actions>
-  </div>
+</div>
   

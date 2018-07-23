@@ -65,9 +65,8 @@ export class LoginDialogComponent implements OnInit {
 
   loginUser() {
     // If information is incorrect, will inform user
-    // NEEDED AN IF ELSE FOR WAY DATA IS COLLECTED
-    // Open unipark page, close modal
     this.appService.setState('FacilityID', this.facilityNo);
+    // Open unipark page, close modal
     this.dialogRef.close(this.form.value);
     this.router.navigateByUrl('/admin');
   }

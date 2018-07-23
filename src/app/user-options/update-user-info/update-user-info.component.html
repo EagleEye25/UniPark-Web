@@ -20,7 +20,7 @@
                 [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
       </mat-form-field>
-        <br>
+      <br>
       <!-- Mat form feild: password -->
       <mat-form-field>
         <input matInput placeholder="New Password"
@@ -33,7 +33,7 @@
                 [type]="hide ? 'password' : 'text'"
                 formControlName="confirmNewPass">
         <mat-icon matSuffix
-          (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
       </mat-form-field>
   </mat-dialog-content>
     <hr>
