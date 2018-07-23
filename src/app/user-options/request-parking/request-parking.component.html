@@ -11,13 +11,12 @@
                     formControlName="parkingArea"
                     matInput
                     [(value)]= "parkingArea"
-                    (selectionChange)='getAreaFromSelect($event.index)'>
-          <mat-option *ngFor="let ParkingArea of distinctArea"  [value]="distinctArea">
+                    (selectionChange)='getAreaFromSelect()'>
+          <mat-option *ngFor="let ParkingArea of distinctArea"  [value]="ParkingArea">
             {{ParkingArea}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <p>{{selectedArea}}</p>
       <br>
       <!-- Mat form feild: parking spot -->
       <mat-form-field>
@@ -25,22 +24,13 @@
                     [disabled]="disableSelect.value" 
                     formControlName="parkingSpot" 
                     name="spot">
-          <mat-option *ngFor="let ParkingSpace of spots" [value]="spots">
+          <mat-option *ngFor="let ParkingSpace of spotsAssociated" [value]="ParkingSpace">
             {{ParkingSpace}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </mat-dialog-content>
     <br>
-  </div>
-  <div id='map' style='width: 400px; height: 300px;'></div>
-    <script>
-      mapboxgl.accessToken = 'pk.eyJ1IjoiZWFnbGVleWUyNSIsImEiOiJjamp0NHcwbGcwaWVjM3BvMHdjOGx3dTZuIn0.wpJ4XdLSb2zBpJ8G36E7Fw';
-      const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9'
-      });
-    </script>
   <hr>
   <mat-dialog-actions>
     <!-- Close button -->
@@ -54,5 +44,5 @@
       request
     </button>
   </mat-dialog-actions>
-  </div>
+</div>
   

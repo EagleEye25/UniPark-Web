@@ -23,6 +23,7 @@ export class RequestParkingComponent implements OnInit {
   disableSelect = new FormControl(true);
 
   distinctArea: any;
+  spotsAssociated: any;
   areaObj: {[param: string]: any} = {};
 
   constructor(
@@ -33,21 +34,6 @@ export class RequestParkingComponent implements OnInit {
     private appService: AppService
     // private uniparkPage: UniparkPageComponent
   ) { }
-
-  // Mock data for dialog, implimentations for database
-  areasU = [
-    {value: 'area01', viewValue: 'North'},
-    {value: 'area02', viewValue: 'South'},
-    {value: 'area03', viewValue: 'West'}
-  ];
-  // Mock data for dialog, implimentations for database
-  spots = [
-    {value: 'spots01', viewValue: 'A001'},
-    {value: 'spots02', viewValue: 'A002'},
-    {value: 'spots03', viewValue: 'A003'}
-  ];
-
-  areas: any;
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -60,8 +46,13 @@ export class RequestParkingComponent implements OnInit {
       this.distinctArea = Array.from(new Set(this.requestOptions
         .map(area => area.ParkingArea)
       ));
-
-      this.areaObj.Area = <ParkingRequest>(this.requestOptions);
+      /*
+      this.requestOptions.forEach(element => {
+        if (!isDefined(this.spotsAssociated[element['ParkingArea']])) {
+          this.spotsAssociated[element['ParkingSpace']] = element;
+        }
+      });*/
+      console.log('trying: ' + this.spotsAssociated);
       // this.distinctArea = <ParkingRequest>(this.distinctArea);
       /*
       for (let k = 0; k < this.distinctArea.length; k++) {
@@ -79,7 +70,6 @@ export class RequestParkingComponent implements OnInit {
       };
       this.areas.push(createObject);
      }*/
-      console.log('working? ' + this.areas);
       console.log(this.areaObj);
       console.log('distinct: ' + this.distinctArea);
       console.log(this.requestOptions);
@@ -103,12 +93,37 @@ export class RequestParkingComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  getAreaFromSelect(index: number) {
-    // this.selectedArea = this.form.value.parkingArea;
-    console.log('selected: ' + this.parkingArea.ParkingArea);
-    console.log('test: ' + index);
-    this.disableSelect = new FormControl(false);
+  // Gets selected area
+  getAreaFromSelect() {
+    this.selectedArea = this.form.value.parkingArea;
+    if (this.selectedArea) {
+      this.disableSelect = new FormControl(false);
+    }
+   // this.setSpotData(this.selectedArea);
   }
+
+  // TODO: add data to array according to parking area
+  /*
+  setSpotData(selectedArea: any) {
+    const req = this.requestOptions;
+    for (const key in req) {
+      if ((req.hasOwnProperty(key)) && (req.ParkingArea === selectedArea)) {
+        this.spotsAssociated.push(req[key]);
+      }
+    }
+
+    for (let index = 0; index < req.length; index++) {
+      if (req.ParkingArea === this.selectedArea) {
+        this.spotsAssociated2.push(this.spotsAssociated[index]);
+      }
+    }
+    console.log('TESTING: ' + this.requestOptions[0].ParkingSpace);
+    this.areaObj[0] = this.requestOptions[0].ParkingSpace;
+    console.log('area: ' + selectedArea);
+    console.log('TESTING 22: ' + this.areaObj[0]);
+    console.log(this.spotsAssociated);
+  }
+  */
 
   // Captures keyboard events
   @HostListener('window:keydown', ['$event'])
@@ -122,13 +137,4 @@ export class RequestParkingComponent implements OnInit {
         break;
       }
     }
-}
-
-export interface ParkingRequest {
-  ParkingArea: string;
-  ParkingSpace: number;
-}
-export interface Test {
-  value: string;
-  viewValue: string;
 }
