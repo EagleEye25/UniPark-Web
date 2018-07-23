@@ -6,6 +6,7 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { mapboxgl } from 'mapbox-gl';
 
 import {AppService, BASE_URL} from '../../app.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-request-parking',
@@ -23,8 +24,10 @@ export class RequestParkingComponent implements OnInit {
   disableSelect = new FormControl(true);
 
   distinctArea: any;
-  spotsAssociated: any;
-  areaObj: {[param: string]: any} = {};
+  spotsAssociated = [];
+
+  areaSelected = false;
+  spotSelected = false;
 
   constructor(
     private fb: FormBuilder,
@@ -46,46 +49,21 @@ export class RequestParkingComponent implements OnInit {
       this.distinctArea = Array.from(new Set(this.requestOptions
         .map(area => area.ParkingArea)
       ));
-      /*
-      this.requestOptions.forEach(element => {
-        if (!isDefined(this.spotsAssociated[element['ParkingArea']])) {
-          this.spotsAssociated[element['ParkingSpace']] = element;
-        }
-      });*/
-      console.log('trying: ' + this.spotsAssociated);
-      // this.distinctArea = <ParkingRequest>(this.distinctArea);
-      /*
-      for (let k = 0; k < this.distinctArea.length; k++) {
-        this.objTest.Area = this.distinctArea[k];
-      }*/
-
-      /*
-        for (let k = 0; k < this.requestOptions.length; k++) {
-      }
-      */
-     /*for (let k = 0; k < this.distinctArea.length; k++) {
-      const createObject = {
-        id: k.toString(),
-        name: this.distinctArea[k]
-      };
-      this.areas.push(createObject);
-     }*/
-      console.log(this.areaObj);
-      console.log('distinct: ' + this.distinctArea);
-      console.log(this.requestOptions);
     });
   }
 
-  // Aquires the parking data from dialog
-  aquireParkingDetails() {
-    this.parkingArea = this.form.value.parkingArea;
-    this.parkingSpot = this.form.value.parkingSpot;
-    this.requestParking();
+  openSnackBarFail() {
+    // opens the snackBar with error
+    this.snackBar.open('Request Failed', 'OK', {
+      duration: 2000,
+    });
   }
 
-  // Submits data
-  requestParking() {
-    this.dialogRef.close(this.form.value);
+  openSnackBarPass() {
+    // opens the snackBar with error
+    this.snackBar.open('Successfully Requested!', 'OK', {
+      duration: 2000,
+    });
   }
 
   // Closes dialog
@@ -99,38 +77,45 @@ export class RequestParkingComponent implements OnInit {
     if (this.selectedArea) {
       this.disableSelect = new FormControl(false);
     }
-   // this.setSpotData(this.selectedArea);
+    this.setSpotData(this.selectedArea);
+    this.areaSelected = true;
   }
 
-  // TODO: add data to array according to parking area
-  /*
   setSpotData(selectedArea: any) {
     const req = this.requestOptions;
-    for (const key in req) {
-      if ((req.hasOwnProperty(key)) && (req.ParkingArea === selectedArea)) {
-        this.spotsAssociated.push(req[key]);
+    this.spotsAssociated = [];
+    this.parkingSpot = null;
+    // gets spots for selected area
+    for (const key of req) {
+      if (key.ParkingArea === selectedArea) {
+        this.spotsAssociated.push(key);
       }
     }
-
-    for (let index = 0; index < req.length; index++) {
-      if (req.ParkingArea === this.selectedArea) {
-        this.spotsAssociated2.push(this.spotsAssociated[index]);
-      }
-    }
-    console.log('TESTING: ' + this.requestOptions[0].ParkingSpace);
-    this.areaObj[0] = this.requestOptions[0].ParkingSpace;
-    console.log('area: ' + selectedArea);
-    console.log('TESTING 22: ' + this.areaObj[0]);
-    console.log(this.spotsAssociated);
   }
-  */
+
+  getSpotFormSelect() {
+    this.selectedSpot = this.form.value.parkingSpot;
+    this.spotSelected = true;
+  }
+
+  submitRequestParking() {
+    Number(this.selectedSpot);
+    if (this.selectedArea === undefined || this.selectedSpot === undefined) {
+      this.openSnackBarFail();
+    } else {
+        // sends request info to backend
+      this.http.post(`${BASE_URL}/request-parking`,
+      {PersonnelID: this.appService.getState('FacilityID'), ParkingSpaceID: this.selectedSpot})
+      .subscribe(this.openSnackBarPass.bind(this), this.openSnackBarFail.bind(this));
+    }
+  }
 
   // Captures keyboard events
   @HostListener('window:keydown', ['$event'])
     enterKeyEvent(event: any) {
       switch (event.keyCode) {
         case 13:
-          this.requestParking();
+          this.submitRequestParking();
         break;
         case 27:
           this.closeDialog();
