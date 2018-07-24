@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { mapboxgl } from 'mapbox-gl';
 
 import {AppService, BASE_URL} from '../../app.service';
-import { forEach } from '@angular/router/src/utils/collection';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-request-parking',
@@ -22,6 +22,8 @@ export class RequestParkingComponent implements OnInit {
   selectedArea: string;
   selectedSpot: any;
   disableSpot: boolean;
+  mapLink = 'https://www.google.com/';
+  mapLinkSafe: any;
 
   distinctArea: any;
   spotsAssociated = [];
@@ -34,7 +36,8 @@ export class RequestParkingComponent implements OnInit {
     private dialogRef: MatDialogRef<RequestParkingComponent>,
     private snackBar: MatSnackBar,
     private http: HttpClient,
-    private appService: AppService
+    private appService: AppService,
+    private sanitizer: DomSanitizer
     // private uniparkPage: UniparkPageComponent
   ) { }
 
@@ -51,6 +54,8 @@ export class RequestParkingComponent implements OnInit {
         .map(area => area.ParkingArea)
       ));
     });
+
+    this.mapLinkSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.mapLink);
   }
 
   openSnackBarFail() {
