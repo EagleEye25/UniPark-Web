@@ -21,6 +21,7 @@ import { InfringementsComponent } from './user-options/infringements/infringemen
 import { HelpComponent } from './user-options/help/help.component';
 
 import { routing } from './app.routing';
+import { MapComponent } from './map/map.component';
 
 
 
@@ -36,6 +37,7 @@ import { routing } from './app.routing';
     RequestParkingComponent,
     HelpComponent,
     InfringementsComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

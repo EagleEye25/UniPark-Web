@@ -53,12 +53,16 @@
     <br>
     <mat-dialog-actions>
       <!-- Close button -->
-      <button mat-button mat-dialog-close>
+      <button mat-button 
+        color="warn"
+        mat-dialog-close>
         <mat-icon svgIcon="cancel"></mat-icon>
         Cancel
       </button>
       <!-- Update button -->
-      <button mat-button (click)="verifyUpdateInfo()">
+      <button mat-stroked-button
+        color="accent"
+        (click)="verifyUpdateInfo()">
         <mat-icon svgIcon="cube-send"></mat-icon> 
         Update
       </button>

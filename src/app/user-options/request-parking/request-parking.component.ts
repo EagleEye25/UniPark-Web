@@ -55,7 +55,7 @@ export class RequestParkingComponent implements OnInit {
       ));
     });
 
-    this.mapLinkSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.mapLink);
+    this.mapLinkSafe = `${this.sanitizer.bypassSecurityTrustUrl(this.mapLink)}`;
   }
 
   openSnackBarFail() {

@@ -15,11 +15,21 @@
         <strong>Location: &nbsp;</strong> {{ data.parkingLocation }}
       </mat-list-item>
     </mat-list>
+    <div>
+      <iframe 
+        width="500" 
+        height="400" 
+        src="">
+      </iframe>
+    </div>
     <hr>
     <br>
     <!-- CLose button -->
-    <button mat-button mat-dialog-close class="center">
-    <mat-icon svgIcon="close"></mat-icon>
+    <button mat-stroked-button
+      color="accent"
+      mat-dialog-close
+      class="center">
+      <mat-icon svgIcon="close"></mat-icon>
       Close
     </button>
   </div>

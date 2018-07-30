@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AppService, BASE_URL } from '../../app.service';
+import { clearLine } from 'readline';
 
 @Component({
   selector: 'app-update-user-info',
@@ -21,7 +22,6 @@ export class UpdateUserInfoComponent implements OnInit {
   updateResponse: any;
 
   checkBoxPos = 'before';
-  disabledPass = true;
   disableCell: boolean;
   disableEmail: boolean;
   disablePass: boolean;
@@ -56,16 +56,39 @@ export class UpdateUserInfoComponent implements OnInit {
   }
 
   changeCell() {
-    this.form.controls.cellNo.enable();
+    if (this.disableCell === true) {
+      this.form.controls.cellNo.enable();
+      this.disableCell = false;
+    } else {
+      this.form.controls.cellNo.disable();
+      this.disableCell = true;
+      this.form.controls.cellNo.setValue('');
+    }
   }
 
   changeEmail() {
-    this.form.controls.email.enable();
+    if (this.disableEmail === true) {
+      this.form.controls.email.enable();
+      this.disableEmail = false;
+    } else {
+      this.form.controls.email.disable();
+      this.disableEmail = true;
+      this.form.controls.email.setValue('');
+    }
   }
 
   changePassword() {
+    if (this.disablePass === true) {
       this.form.controls.newPass.enable();
       this.form.controls.confirmNewPass.enable();
+      this.disablePass = false;
+    } else {
+      this.form.controls.newPass.disable();
+      this.form.controls.confirmNewPass.disable();
+      this.form.controls.newPass.setValue('');
+      this.form.controls.confirmNewPass.setValue('');
+      this.disablePass = true;
+    }
   }
 
   // Finds if the email entered is correct or not
