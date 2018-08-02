@@ -38,18 +38,18 @@ export class UniparkPageComponent implements OnInit {
     private appService: AppService
   ) { }
 
-  // Implimentation for gathering data from database
-  // Currently getting data from an API
+  // Initializes on load
   ngOnInit() {
+    // Checks if user is "logged in"
     if (!this.appService.getState('FacilityID')) {
       this.router.navigateByUrl('/');
     }
 
-    // Gets user info api
+    // Gets user info from backend
     this.http.get(`${BASE_URL}/personnel/specified/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => this.personelInfo = response);
 
-    // Gets user parking api
+    // Gets user parking info from backend
     this.http.get(`${BASE_URL}/parking/assigned/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => this.personelParkingInfo = response);
   }

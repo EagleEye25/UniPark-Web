@@ -26,12 +26,15 @@ export class InfringementsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  // Initializes on load
   ngOnInit() {
+    // Gathers infringement data from backend
     this.http.get(`${BASE_URL}/infringements/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => { this.infringBackend = response;
       for (let k = 0; k < this.infringBackend.length; k++) {
         this.infringBackend[k].Status === true ? this.infringBackend[k].Status = 'un-Paid' : this.infringBackend[k].Status = 'Paid';
       }
+      // sends data to table
       this.tableData = new MatTableDataSource<Infringemenets>(this.infringBackend);
       this.tableData.paginator = this.paginator;
       this.tableData.sort = this.sort;
@@ -43,6 +46,7 @@ export class InfringementsComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  // filter used on table
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
@@ -63,6 +67,7 @@ export class InfringementsComponent implements OnInit {
     }
 }
 
+// Interface for table
 export interface Infringemenets {
   Date: string;
   Description: string;

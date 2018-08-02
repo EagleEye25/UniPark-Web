@@ -4,7 +4,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AppService, BASE_URL } from '../../app.service';
-import { clearLine } from 'readline';
 
 @Component({
   selector: 'app-update-user-info',
@@ -41,6 +40,7 @@ export class UpdateUserInfoComponent implements OnInit {
     // private uniparkPage: UniparkPageComponent
   ) { }
 
+  // Initializes on load
   ngOnInit() {
     this.disableCell = true;
     this.disableEmail = true;
@@ -55,6 +55,7 @@ export class UpdateUserInfoComponent implements OnInit {
     });
   }
 
+  // Enables or Disables cell feild depending on state
   changeCell() {
     if (this.disableCell === true) {
       this.form.controls.cellNo.enable();
@@ -66,6 +67,7 @@ export class UpdateUserInfoComponent implements OnInit {
     }
   }
 
+  // Enables or Disables email feild depending on state
   changeEmail() {
     if (this.disableEmail === true) {
       this.form.controls.email.enable();
@@ -77,6 +79,7 @@ export class UpdateUserInfoComponent implements OnInit {
     }
   }
 
+  // Enables or Disables password feilds depending on state
   changePassword() {
     if (this.disablePass === true) {
       this.form.controls.newPass.enable();
@@ -103,12 +106,15 @@ export class UpdateUserInfoComponent implements OnInit {
       duration: 2000,
     });
   }
+
+  // Opens the snackBar with success
   openSnackBarSuccess() {
     this.snackBar.open('Update Success', 'OK', {
       duration: 2000,
     });
   }
 
+  // Prepares data to be sent to backend
   async prepareUpdate() {
     // Aquires update information entered by user
     this.cellNo = this.form.value.cellNo;
@@ -123,7 +129,7 @@ export class UpdateUserInfoComponent implements OnInit {
     };
     console.log( this.userInfoJson);
 
-    // sends data to api
+    // Sends data to api
     const updateResponse: any = await this.http.put(`${BASE_URL}/personnel/update`, this.userInfoJson)
     .toPromise()
     .catch(console.error);

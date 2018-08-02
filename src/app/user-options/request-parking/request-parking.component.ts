@@ -41,12 +41,14 @@ export class RequestParkingComponent implements OnInit {
     // private uniparkPage: UniparkPageComponent
   ) { }
 
+  // Initializes on load
   ngOnInit() {
     this.disableSpot = true;
     this.form = this.fb.group({
       parkingArea: [this.parkingArea, []],
       parkingSpot: new FormControl({ value: '', disabled: this.disableSpot}),
     });
+    // Gets request data fromn backend
     this.http.get(`${BASE_URL}/parking/request/info/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => { this.requestOptions = response;
       // Gets distinct parking areas for displaying in select
@@ -58,13 +60,14 @@ export class RequestParkingComponent implements OnInit {
     this.mapLinkSafe = `${this.sanitizer.bypassSecurityTrustUrl(this.mapLink)}`;
   }
 
+  // opens the snackBar with error
   openSnackBarFail() {
-    // opens the snackBar with error
     this.snackBar.open('Request Failed', 'OK', {
       duration: 2000,
     });
   }
 
+  // opens the snackBar with success
   openSnackBarPass() {
     // opens the snackBar with error
     this.snackBar.open('Successfully Requested!', 'OK', {
@@ -87,6 +90,7 @@ export class RequestParkingComponent implements OnInit {
     this.areaSelected = true;
   }
 
+  // Sets spot data to be used in control
   setSpotData(selectedArea: any) {
     const req = this.requestOptions;
     this.spotsAssociated = [];
@@ -99,12 +103,13 @@ export class RequestParkingComponent implements OnInit {
     }
   }
 
-  // gets spot f
+  // Gets spot from select
   getSpotFormSelect() {
     this.selectedSpot = this.form.value.parkingSpot;
     this.spotSelected = true;
   }
 
+  // Submits the request data to backend
   async submitRequestParking() {
     Number(this.selectedSpot);
     if (this.selectedArea === undefined || this.selectedSpot === undefined) {
