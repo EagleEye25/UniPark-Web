@@ -1,7 +1,6 @@
 // Centers object to middle of page
-.center {
+:host {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  margin: auto;
+  width:100%;
 }

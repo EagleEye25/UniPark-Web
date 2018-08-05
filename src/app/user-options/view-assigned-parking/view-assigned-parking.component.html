@@ -1,4 +1,4 @@
-<div class="alternative">
+<div class="alternative center">
     <!-- Display of login modal -->
     <!-- Displays assigned parking image -->
     <img src="assets/images/user-options/assigned-parking/assigned-parking.png" alt="User Info">
@@ -6,31 +6,22 @@
     <!-- Mat list to display assigned parking -->
     <mat-list role="list">
       <mat-list-item role="listitem">
-        <strong>Parking Name: &nbsp;</strong> {{ data.parkingName }}
+        <strong>Parking Name: &nbsp;</strong> {{ data.ParkingName }}
       </mat-list-item>
       <mat-list-item role="listitem">
-        <strong>Parking Access Level: &nbsp;</strong> {{ data.parkingAL }}
+        <strong>Parking Access Level: &nbsp;</strong> {{ data.ParkingAccessLevel }}
       </mat-list-item>
       <mat-list-item role="listitem">
-        <strong>Location: &nbsp;</strong> {{ data.parkingLocation }}
+        <strong>Location: &nbsp;</strong> {{ data.Location }}
       </mat-list-item>
     </mat-list>
     <div>
-      <iframe 
+      <!--iframe 
         width="500" 
         height="400" 
         src="">
-      </iframe>
+      </iframe-->
+      <app-map longitude="25.671278" latitude="-34.001097"></app-map>
     </div>
-    <hr>
-    <br>
-    <!-- CLose button -->
-    <button mat-stroked-button
-      color="accent"
-      mat-dialog-close
-      class="center">
-      <mat-icon svgIcon="close"></mat-icon>
-      Close
-    </button>
-  </div>
+</div>
   

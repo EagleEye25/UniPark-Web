@@ -49,9 +49,6 @@ export class UniparkPageComponent implements OnInit {
     this.http.get(`${BASE_URL}/personnel/specified/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => this.personelInfo = response);
 
-    // Gets user parking info from backend
-    this.http.get(`${BASE_URL}/parking/assigned/` + this.appService.getState('FacilityID'))
-    .subscribe((response: any) => this.personelParkingInfo = response);
   }
 
   // Displays user-info modal
@@ -108,8 +105,8 @@ export class UniparkPageComponent implements OnInit {
     });
   }
 
-   // Displays infringements modal
-   openInfringements(): void {
+  // Displays infringements modal
+  openInfringements(): void {
     this.InfringementsDialog = this.dialog.open(InfringementsComponent, {
       disableClose: true,
       // Sets data to appropriate variables

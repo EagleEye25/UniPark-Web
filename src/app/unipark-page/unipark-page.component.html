@@ -16,10 +16,11 @@
             <span>Update User Info</span>
             </button>
           <!-- View User Parking Area -->
-          <button mat-button (click)="openAssignedParkingDialog()">
+          <a mat-button routerLink="./assigned-parking"
+             routerLinkActive="mat-accent">
             <mat-icon svgIcon="parking"></mat-icon>
             <span>Assigned Parking</span>
-          </button>
+          </a>
           <!-- Request Parking -->
           <button mat-button (click)="openRequestParkingDialog()">
             <mat-icon svgIcon="car-connected"></mat-icon>
@@ -41,3 +42,5 @@
           </button>
   </mat-toolbar>
 </div>
+
+<router-outlet></router-outlet>
