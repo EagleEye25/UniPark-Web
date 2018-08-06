@@ -1,9 +1,9 @@
-<div class="alternative">
+<div class="alternative center">
   <!-- Display of login modal -->
   <!-- Displays request parking image -->
-  <img src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
+  <img class="padding-image" src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
   <hr>
-  <div>
+  <div class="padding-feilds">
     <mat-dialog-content [formGroup]="form">
     <!-- Mat form feild: parking area -->
       <mat-form-field>
@@ -31,21 +31,18 @@
         </mat-select>
       </mat-form-field>
     </mat-dialog-content>
-    <div>
-      <iframe 
-        width="500" 
-        height="400" 
-        src={{mapLinkSafe}}>
-      </iframe>
-    </div>
-    </div>
-    <br>
+  </div>
+  <br>
+  <div class="padding-map">
+    <app-map longitude={{longitude}} latitude={{latitude}}></app-map>
+  </div>
   <hr>
+  <div class="padding-buttons">
   <mat-dialog-actions>
     <!-- Close button -->
     <button mat-button
       color="warn"
-      mat-dialog-close>
+     (click)="cancle()">
       <mat-icon svgIcon="cancel"></mat-icon>
       Cancel
     </button>
@@ -58,5 +55,6 @@
       request
     </button>
   </mat-dialog-actions>
+  </div>
 </div>
   

@@ -13,27 +13,35 @@ import * as mapboxgl from 'mapbox-gl';
 })
 export class MapComponent implements OnInit {
 
-  @Input() longitude;
-  @Input() latitude;
+  @Input() longitude: any;
+  @Input() latitude: any;
   mapBoxAPI: any;
   map: mapboxgl.Map;
 
   constructor(
     private appService: AppService
   ) {
-    Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(MAPBOX_API);
+    Object.getOwnPropertyDescriptor(mapboxgl, 'accessToken').set(MAPBOX_API);
   }
 
-  ngOnInit() {
+  generateMap() {
+    const latLng = new mapboxgl.LngLat(this.longitude, this.latitude);
     this.map = new mapboxgl.Map({
-      container: 'map', // container id
-      style: 'mapbox://styles/eagleeye25/cjjyumx0a8cph2smuvg6kgp39', // stylesheet location
-      center: [this.longitude, this.latitude], // starting position [lng, lat]
-      zoom: 16 // starting zoom
+      container: 'map',
+      style: 'mapbox://styles/eagleeye25/cjjyumx0a8cph2smuvg6kgp39',
+      center: latLng,
+      zoom: 16,
     });
-    new mapboxgl.Marker()
-    .setLngLat([this.longitude, this.latitude])
-    .addTo(this.map);
-  }
 
+    const markerEl = new mapboxgl.Marker({
+      offset: [0, 0]
+    })
+    .setLngLat(latLng)
+    .addTo(this.map);
+    // this.map.scrollZoom.disable();
+    // this.map.dragPan.disable();
+  }
+  ngOnInit() {
+    this.generateMap();
+  }
 }

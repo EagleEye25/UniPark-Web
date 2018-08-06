@@ -1,42 +1,32 @@
-<div class="alternative">
+<div class="alternative center">
   <!-- Display of login modal -->
   <!-- Displays user info image -->
-  <img src="assets/images/user-options/user-info/user-info.png" alt="User Info">
+  <img class="padding-image" src="assets/images/user-options/user-info/user-info.png" alt="User Info">
   <hr>
   <mat-dialog-content>
     <!-- Mat list to display user info -->
     <mat-list role="list">
       <mat-list-item role="listitem">
-        <strong>Name: &nbsp;</strong> {{ data.userName }}
+        <strong>Name: &nbsp;</strong> {{ PersonelName }}
       </mat-list-item>
 
       <mat-list-item role="listitem">
-        <strong>Phone Number: &nbsp;</strong> {{ data.userPhone }}
+        <strong>Phone Number: &nbsp;</strong> {{ PhoneNumber }}
       </mat-list-item>
 
       <mat-list-item role="listitem">
-        <strong>Email: &nbsp;</strong> {{ data.userEmail }}
+        <strong>Email: &nbsp;</strong> {{ Email }}
       </mat-list-item>
 
       <mat-list-item role="listitem">
-        <strong>Personel Type: &nbsp;</strong> {{ data.userType }}
+        <strong>Personel Type: &nbsp;</strong> {{ Type }}
       </mat-list-item>
       
       <mat-list-item role="listitem">
-        <strong>Personel Level: &nbsp;</strong> {{ data.userLevel }}
+        <strong>Personel Level: &nbsp;</strong> {{ PersonelLevel }}
       </mat-list-item>
     </mat-list> 
   </mat-dialog-content>
   <hr>
   <br>
-  <mat-dialog-actions>
-    <!-- Close button -->
-    <button mat-stroked-button
-      color="accent"
-      mat-dialog-close
-      class="center">
-      <mat-icon svgIcon="close"></mat-icon>
-        Close
-    </button>
-</mat-dialog-actions>
 </div>

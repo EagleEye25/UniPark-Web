@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
@@ -22,8 +21,9 @@ export class RequestParkingComponent implements OnInit {
   selectedArea: string;
   selectedSpot: any;
   disableSpot: boolean;
-  mapLink = 'https://www.google.com/';
-  mapLinkSafe: any;
+
+  longitude: any;
+  latitude: any;
 
   distinctArea: any;
   spotsAssociated = [];
@@ -33,7 +33,6 @@ export class RequestParkingComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<RequestParkingComponent>,
     private snackBar: MatSnackBar,
     private http: HttpClient,
     private appService: AppService,
@@ -56,8 +55,6 @@ export class RequestParkingComponent implements OnInit {
         .map(area => area.ParkingArea)
       ));
     });
-
-    this.mapLinkSafe = `${this.sanitizer.bypassSecurityTrustUrl(this.mapLink)}`;
   }
 
   // opens the snackBar with error
@@ -76,8 +73,8 @@ export class RequestParkingComponent implements OnInit {
   }
 
   // Closes dialog
-  closeDialog(): void {
-    this.dialogRef.close();
+  cancle(): void {
+
   }
 
   // Gets selected area
@@ -88,6 +85,8 @@ export class RequestParkingComponent implements OnInit {
     }
     this.setSpotData(this.selectedArea);
     this.areaSelected = true;
+    this.longitude = '25.671278';
+    this.latitude = '-34.001097';
   }
 
   // Sets spot data to be used in control
@@ -136,7 +135,7 @@ export class RequestParkingComponent implements OnInit {
           this.submitRequestParking();
         break;
         case 27:
-          this.closeDialog();
+          this.cancle();
         break;
       }
     }

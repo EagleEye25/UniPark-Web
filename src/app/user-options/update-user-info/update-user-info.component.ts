@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AppService, BASE_URL } from '../../app.service';
@@ -33,7 +32,6 @@ export class UpdateUserInfoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<UpdateUserInfoComponent>,
     private snackBar: MatSnackBar,
     private http: HttpClient,
     private appService: AppService
@@ -146,18 +144,26 @@ export class UpdateUserInfoComponent implements OnInit {
     // Will validate which option to choose send data, close dialog
     if (this.newPass === this.confirmNewPass && this.confirmNewPass === this.newPass) {
       this.prepareUpdate();
-      this.dialogRef.close(this.form.value);
     } else if (this.newPass === '' && this.confirmNewPass === '') {
       this.prepareUpdate();
-      this.dialogRef.close(this.form.value);
     } else {
       this.openSnackBarFail();
     }
   }
 
   // Closes the dialog
-  closeDialog(): void {
-    this.dialogRef.close();
+  cancle(): void {
+    // Sets feild values
+    this.form.controls.cellNo.setValue('');
+    this.form.controls.email.setValue('');
+    this.form.controls.newPass.setValue('');
+    this.form.controls.confirmNewPass.setValue('');
+
+    // Disables feilds
+    this.form.controls.cellNo.disable();
+    this.form.controls.email.disable();
+    this.form.controls.newPass.disable();
+    this.form.controls.confirmNewPass.disable();
   }
 
   // Captures keyboard events
@@ -168,7 +174,7 @@ export class UpdateUserInfoComponent implements OnInit {
           this.verifyUpdateInfo();
         break;
         case 27:
-          this.closeDialog();
+          this.cancle();
         break;
       }
     }

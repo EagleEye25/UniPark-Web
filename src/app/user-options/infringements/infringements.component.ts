@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { AppService, BASE_URL } from '../../app.service';
 
@@ -10,8 +10,6 @@ import { AppService, BASE_URL } from '../../app.service';
 })
 export class InfringementsComponent implements OnInit {
 
-  removeF = new RegExp(/\[/gi);
-  removeL = new RegExp(/\]/gi);
   displayColumns = ['Date', 'Description', 'Report Type', 'Status'];
   tableData: any;
   infringBackend: any;
@@ -20,10 +18,8 @@ export class InfringementsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private dialogRef: MatDialogRef<InfringementsComponent>,
     private http: HttpClient,
     private appService: AppService,
-    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   // Initializes on load
@@ -32,7 +28,13 @@ export class InfringementsComponent implements OnInit {
     this.http.get(`${BASE_URL}/infringements/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => { this.infringBackend = response;
       for (let k = 0; k < this.infringBackend.length; k++) {
-        this.infringBackend[k].Status === true ? this.infringBackend[k].Status = 'un-Paid' : this.infringBackend[k].Status = 'Paid';
+        this.infringBackend[k].Status === true
+        ? this.infringBackend[k].Status = 'un-Paid'
+        : this.infringBackend[k].Status = 'Paid';
+      }
+      // Removes unnecessary chars from data
+      for (let k = 0; k < this.infringBackend.length; k++) {
+        this.infringBackend[k].Date = this.infringBackend[k].Date.slice(0, -14);
       }
       // sends data to table
       this.tableData = new MatTableDataSource<Infringemenets>(this.infringBackend);
@@ -42,8 +44,8 @@ export class InfringementsComponent implements OnInit {
   }
 
   // Closes the dialog
-  closeDialog(): void {
-    this.dialogRef.close();
+  cancle(): void {
+
   }
 
   // filter used on table
@@ -58,10 +60,10 @@ export class InfringementsComponent implements OnInit {
     enterKeyEvent(event: any) {
       switch (event.keyCode) {
         case 13:
-          this.closeDialog();
+          this.cancle();
         break;
         case 27:
-          this.closeDialog();
+          this.cancle();
         break;
       }
     }

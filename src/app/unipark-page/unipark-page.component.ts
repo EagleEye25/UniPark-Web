@@ -44,13 +44,9 @@ export class UniparkPageComponent implements OnInit {
     if (!this.appService.getState('FacilityID')) {
       this.router.navigateByUrl('/');
     }
-
-    // Gets user info from backend
-    this.http.get(`${BASE_URL}/personnel/specified/` + this.appService.getState('FacilityID'))
-    .subscribe((response: any) => this.personelInfo = response);
-
   }
 
+  /*
   // Displays user-info modal
   openUserInfoDialog(): void {
     this.userInfoDialogRef = this.dialog.open(UserInfoComponent, {
@@ -65,7 +61,9 @@ export class UniparkPageComponent implements OnInit {
       }
     });
   }
+  */
 
+  /*
   // Displays update-user-info modal
   openUpdateUserInfoDialog(): void {
     this.UpdateUserDialog = this.dialog.open(UpdateUserInfoComponent, {
@@ -77,7 +75,8 @@ export class UniparkPageComponent implements OnInit {
       }
     });
   }
-
+  */
+ /*
   // Displays assigned-parking modal
   openAssignedParkingDialog(): void {
     this.AssignedParkingDialog = this.dialog.open(ViewAssignedParkingComponent, {
@@ -90,21 +89,22 @@ export class UniparkPageComponent implements OnInit {
       }
     });
   }
-
+  */
+ /*
   // Displays request-parking modal
   openRequestParkingDialog(): void {
     this.RequestParkingDialog = this.dialog.open(RequestParkingComponent, {
       disableClose: true
     });
   }
-
+*/
   // Displays user-info modal
   openHelpDialog(): void {
     this.helpDialog = this.dialog.open(HelpComponent, {
       disableClose: true,
     });
   }
-
+  /*
   // Displays infringements modal
   openInfringements(): void {
     this.InfringementsDialog = this.dialog.open(InfringementsComponent, {
@@ -118,4 +118,5 @@ export class UniparkPageComponent implements OnInit {
       }
     });
   }
+  */
 }

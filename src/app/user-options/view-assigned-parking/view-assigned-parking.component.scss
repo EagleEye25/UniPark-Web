@@ -1,6 +1,19 @@
 // Centers object to middle of page
-:host {
+.center {
   display: block;
-  margin: auto;
-  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.padding-map {
+  padding-left: 14%;
+}
+
+.padding-image {
+  padding-left: 29%;
+}
+
+.padding-feilds {
+  padding-left: 32%;
 }

@@ -1,61 +1,63 @@
-<div class="alternative">
+<div class="alternative center">
     <!-- Display of login modal -->
     <!-- Displays request parking image -->
-    <img src="assets/images/user-options/update-info/update-info.png" alt="User Info">
+    <img class="padding-image" src="assets/images/user-options/update-info/update-info.png" alt="User Info">
     <hr>
-    <mat-dialog-content [formGroup]="form">
-      <!-- Mat form feild: cell phone number -->
-      <mat-form-field hintLabel="Max 10 digits">
-        <input matInput 
-                #input maxlength="10" 
-                placeholder="Cell-Phone Number"
-                formControlName="cellNo">
-        <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
-      </mat-form-field>
-      <mat-checkbox
-        (change)="changeCell()"
-        [labelPosition]="checkBoxPos">
-      </mat-checkbox>
-      <br>
-      <!-- Mat form feild: email address -->
-      <mat-form-field>
-        <input  matInput
-                placeholder="E-mail Address"
-                [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
-      </mat-form-field>
-      <mat-checkbox
-        (change)="changeEmail()"
-        [labelPosition]="checkBoxPos">
-      </mat-checkbox>
-      <br>
-      <!-- Mat form feild: password -->
-      <mat-form-field>
-        <input matInput 
-                placeholder="New Password"
-                [type]="hide ? 'password' : 'text'"
-                formControlName="newPass">
-      </mat-form-field>
-      <mat-checkbox
-        (change)="changePassword()"
-        [labelPosition]="checkBoxPos">
-      </mat-checkbox>
-      <br>
-      <mat-form-field>
-        <input matInput placeholder="Confirm Password"
-                [type]="hide ? 'password' : 'text'"
-                formControlName="confirmNewPass">
-        <mat-icon matSuffix
-          (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>
-      </mat-form-field>
-  </mat-dialog-content>
+    <div class="padding-feilds">
+      <mat-dialog-content [formGroup]="form">
+        <!-- Mat form feild: cell phone number -->
+        <mat-form-field hintLabel="Max 10 digits">
+          <input matInput 
+                  #input maxlength="10" 
+                  placeholder="Cell-Phone Number"
+                  formControlName="cellNo">
+          <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
+        </mat-form-field>
+        <mat-checkbox
+          (change)="changeCell()"
+          [labelPosition]="checkBoxPos">
+        </mat-checkbox>
+        <br>
+        <!-- Mat form feild: email address -->
+        <mat-form-field>
+          <input  matInput
+                  placeholder="E-mail Address"
+                  [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-checkbox
+          (change)="changeEmail()"
+          [labelPosition]="checkBoxPos">
+        </mat-checkbox>
+        <br>
+        <!-- Mat form feild: password -->
+        <mat-form-field>
+          <input matInput 
+                  placeholder="New Password"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="newPass">
+        </mat-form-field>
+        <mat-checkbox
+          (change)="changePassword()"
+          [labelPosition]="checkBoxPos">
+        </mat-checkbox>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Confirm Password"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="confirmNewPass">
+          <mat-icon matSuffix
+            (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>
+        </mat-form-field>
+      </mat-dialog-content>
+    </div>
     <hr>
     <br>
-    <mat-dialog-actions>
+    <div class="padding-buttons">
       <!-- Close button -->
       <button mat-button 
         color="warn"
-        mat-dialog-close>
+        (click)="cancle()">
         <mat-icon svgIcon="cancel"></mat-icon>
         Cancel
       </button>
@@ -66,6 +68,5 @@
         <mat-icon svgIcon="cube-send"></mat-icon> 
         Update
       </button>
-    </mat-dialog-actions>
-  </div>
-  
+    </div>
+</div>
