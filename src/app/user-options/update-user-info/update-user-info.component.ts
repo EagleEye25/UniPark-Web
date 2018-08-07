@@ -27,7 +27,7 @@ export class UpdateUserInfoComponent implements OnInit {
   disableConfirm: boolean;
 
   // Creates email form control
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.email]);
   // Hides password
   hide = true;
 
@@ -95,8 +95,7 @@ export class UpdateUserInfoComponent implements OnInit {
 
   // Finds if the email entered is correct or not
   getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-      this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
   // Opens the snackBar with error

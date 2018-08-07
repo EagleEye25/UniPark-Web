@@ -23,7 +23,7 @@
         <mat-form-field>
           <input  matInput
                   placeholder="E-mail Address"
-                  [formControl]="email" required>
+                  [formControl]="email">
           <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-checkbox
