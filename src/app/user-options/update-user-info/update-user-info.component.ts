@@ -19,7 +19,7 @@ export class UpdateUserInfoComponent implements OnInit {
   confirmNewPass: string;
   userInfoJson: any;
   updateResponse: any;
-  reset: boolean;
+
 
   checkBoxPos = 'before';
   disableCell: boolean;
@@ -27,10 +27,11 @@ export class UpdateUserInfoComponent implements OnInit {
   disablePass: boolean;
   disableConfirm: boolean;
 
-  // Creates email form control
-
   // Hides password
   hide = true;
+  resetCell = false;
+  resetEmail = false;
+  resetPass = false;
 
   constructor(
     private fb: FormBuilder,
@@ -59,10 +60,12 @@ export class UpdateUserInfoComponent implements OnInit {
     if (this.disableCell === true) {
       this.form.controls.cellNo.enable();
       this.disableCell = false;
+      this.resetCell = true;
     } else {
       this.form.controls.cellNo.disable();
-      this.disableCell = true;
       this.form.controls.cellNo.setValue('');
+      this.disableCell = true;
+      this.resetCell = false;
     }
   }
 
@@ -71,9 +74,11 @@ export class UpdateUserInfoComponent implements OnInit {
     if (this.disableEmail === true) {
       this.email.reset({value: '', disabled: false}, [Validators.email]);
       this.disableEmail = false;
+      this.resetEmail = true;
     } else {
       this.email.reset({value: '', disabled: true}, [Validators.email]);
       this.disableEmail = true;
+      this.resetEmail = false;
     }
   }
 
@@ -83,12 +88,14 @@ export class UpdateUserInfoComponent implements OnInit {
       this.form.controls.newPass.enable();
       this.form.controls.confirmNewPass.enable();
       this.disablePass = false;
+      this.resetPass = true;
     } else {
       this.form.controls.newPass.disable();
       this.form.controls.confirmNewPass.disable();
       this.form.controls.newPass.setValue('');
       this.form.controls.confirmNewPass.setValue('');
       this.disablePass = true;
+      this.resetPass = false;
     }
   }
 
@@ -150,21 +157,25 @@ export class UpdateUserInfoComponent implements OnInit {
     }
   }
 
-  // Closes the dialog
-  cancle(): void {
-    // Sets feild values
-    this.form.controls.cellNo.setValue('');
-    this.form.controls.email.setValue('');
-    this.form.controls.newPass.setValue('');
-    this.form.controls.confirmNewPass.setValue('');
-
-    // Disables feilds
+  // Clears user entered data
+  cancle() {
+    // Phone clear
     this.form.controls.cellNo.disable();
-    this.form.controls.email.disable();
+    this.form.controls.cellNo.setValue('');
+    this.disableCell = true;
+    // Email clear
+    this.email.reset({value: '', disabled: true}, [Validators.email]);
+    this.disableEmail = true;
+    // Password clear
     this.form.controls.newPass.disable();
     this.form.controls.confirmNewPass.disable();
+    this.form.controls.newPass.setValue('');
+    this.form.controls.confirmNewPass.setValue('');
+    this.disablePass = true;
     // Unchecks boxes
-    this.reset = false;
+    this.resetCell = false;
+    this.resetEmail = false;
+    this.resetPass = false;
   }
 
   // Captures keyboard events

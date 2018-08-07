@@ -14,7 +14,7 @@
           <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
         </mat-form-field>
         <mat-checkbox
-          [checked]="reset"
+          [checked]="resetCell"
           (change)="changeCell()"
           [labelPosition]="checkBoxPos">
         </mat-checkbox>
@@ -27,7 +27,7 @@
           <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-checkbox
-          [checked]="reset"
+          [checked]="resetEmail"
           (change)="changeEmail()"
           [labelPosition]="checkBoxPos">
         </mat-checkbox>
@@ -40,7 +40,7 @@
                   formControlName="newPass">
         </mat-form-field>
         <mat-checkbox
-          [checked]="reset"
+          [checked]="resetPass"
           (change)="changePassword()"
           [labelPosition]="checkBoxPos">
         </mat-checkbox>
@@ -65,7 +65,9 @@
         Cancel
       </button>
       <!-- Update button -->
-      <button mat-stroked-button
+      <button
+        [disabled]="email.invalid" 
+        mat-stroked-button
         color="accent"
         (click)="verifyUpdateInfo()">
         <mat-icon svgIcon="cube-send"></mat-icon> 
