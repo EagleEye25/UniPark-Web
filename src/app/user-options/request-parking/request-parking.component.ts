@@ -74,7 +74,12 @@ export class RequestParkingComponent implements OnInit {
 
   // Closes dialog
   cancle(): void {
-
+    this.areaSelected = false;
+    this.spotSelected = false;
+    this.selectedArea = null;
+    this.selectedSpot = null;
+    this.form.controls.parkingArea.reset();
+    this.form.controls.parkingSpot.reset();
   }
 
   // Gets selected area

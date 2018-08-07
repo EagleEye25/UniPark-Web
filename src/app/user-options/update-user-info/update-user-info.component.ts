@@ -18,6 +18,7 @@ export class UpdateUserInfoComponent implements OnInit {
   confirmNewPass: string;
   userInfoJson: any;
   updateResponse: any;
+  reset: boolean;
 
   checkBoxPos = 'before';
   disableCell: boolean;
@@ -164,6 +165,8 @@ export class UpdateUserInfoComponent implements OnInit {
     this.form.controls.email.disable();
     this.form.controls.newPass.disable();
     this.form.controls.confirmNewPass.disable();
+    // Unchecks boxes
+    this.reset = false;
   }
 
   // Captures keyboard events
