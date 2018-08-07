@@ -19,6 +19,8 @@ export class UpdateUserInfoComponent implements OnInit {
   newPass: string;
   confirmNewPass: string;
 
+  clean = true;
+
   userInfoJson: any;
   updateResponse: any;
 
@@ -73,10 +75,12 @@ export class UpdateUserInfoComponent implements OnInit {
       this.cellNo.reset({value: '', disabled: false}, [Validators.pattern(this.cellReg)]);
       this.disableCell = false;
       this.resetCell = true;
+      this.clean = false;
     } else {
       this.cellNo.reset({value: '', disabled: true}, [Validators.pattern(this.cellReg)]);
       this.disableCell = true;
       this.resetCell = false;
+      this.checkFeilds();
     }
   }
 
@@ -86,10 +90,12 @@ export class UpdateUserInfoComponent implements OnInit {
       this.email.reset({value: '', disabled: false}, [Validators.email]);
       this.disableEmail = false;
       this.resetEmail = true;
+      this.clean = false;
     } else {
       this.email.reset({value: '', disabled: true}, [Validators.email]);
       this.disableEmail = true;
       this.resetEmail = false;
+      this.checkFeilds();
     }
   }
 
@@ -100,6 +106,7 @@ export class UpdateUserInfoComponent implements OnInit {
       this.form.controls.confirmNewPass.enable();
       this.disablePass = false;
       this.resetPass = true;
+      this.clean = false;
     } else {
       this.form.controls.newPass.disable();
       this.form.controls.confirmNewPass.disable();
@@ -107,8 +114,23 @@ export class UpdateUserInfoComponent implements OnInit {
       this.form.controls.confirmNewPass.setValue('');
       this.disablePass = true;
       this.resetPass = false;
+      this.checkFeilds();
     }
   }
+
+  // checks if all feilds are empty
+  checkFeilds() {
+    const pass = this.form.value.newPass;
+    const cPass = this.form.value.confirmNewPass;
+    const cell = String(this.cellNo.value);
+    const email = this.email.value;
+
+    if (!pass && !cPass && !cell && !email &&
+      this.disableCell && this.disablePass && this.disableConfirm && this.disableEmail) {
+        this.clean = true;
+    }
+  }
+
 
   // Finds if the email entered is correct or not
   getErrorMessage() {
@@ -157,6 +179,8 @@ export class UpdateUserInfoComponent implements OnInit {
 
   // Verifys information entered by user
   verifyUpdateInfo() {
+    this.newPass = this.form.value.newPass;
+    this.confirmNewPass = this.form.value.confirmNewPass;
     // Will validate which option to choose send data, close dialog
     if (this.newPass === this.confirmNewPass && this.confirmNewPass === this.newPass) {
       this.prepareUpdate();

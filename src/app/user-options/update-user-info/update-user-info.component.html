@@ -68,7 +68,7 @@
       </button>
       <!-- Update button -->
       <button
-        [disabled]="email.invalid || cellNo.invalid" 
+        [disabled]="email.invalid || cellNo.invalid || clean" 
         mat-stroked-button
         color="accent"
         (click)="verifyUpdateInfo()">
