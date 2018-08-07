@@ -7,11 +7,13 @@
       <mat-dialog-content [formGroup]="form">
         <!-- Mat form feild: cell phone number -->
         <mat-form-field hintLabel="Max 10 digits">
-          <input matInput 
+          <input (keypress)= "onlyNumberKey($event)"
+                  matInput 
                   #input maxlength="10" 
                   placeholder="Cell-Phone Number"
-                  formControlName="cellNo">
+                  [formControl]="cellNo">
           <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
+          <mat-error *ngIf="cellNo.invalid">Please enter all 10 digits!</mat-error>
         </mat-form-field>
         <mat-checkbox
           [checked]="resetCell"
@@ -66,7 +68,7 @@
       </button>
       <!-- Update button -->
       <button
-        [disabled]="email.invalid" 
+        [disabled]="email.invalid || cellNo.invalid" 
         mat-stroked-button
         color="accent"
         (click)="verifyUpdateInfo()">
