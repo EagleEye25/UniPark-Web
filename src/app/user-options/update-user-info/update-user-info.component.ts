@@ -14,6 +14,7 @@ export class UpdateUserInfoComponent implements OnInit {
   form: FormGroup;
   formBuilder: FormBuilder;
   cellNo: string;
+  email: any;
   newPass: string;
   confirmNewPass: string;
   userInfoJson: any;
@@ -27,7 +28,7 @@ export class UpdateUserInfoComponent implements OnInit {
   disableConfirm: boolean;
 
   // Creates email form control
-  email = new FormControl('', [Validators.email]);
+
   // Hides password
   hide = true;
 
@@ -45,10 +46,9 @@ export class UpdateUserInfoComponent implements OnInit {
     this.disableEmail = true;
     this.disablePass = true;
     this.disableConfirm = true;
-
+    this.email = new FormControl({value: '', disabled: this.disableEmail}, [Validators.email]);
     this.form = this.fb.group({
       cellNo: new FormControl({ value: '', disabled: this.disableCell}),
-      email: new FormControl({ value: '', disabled: this.disableEmail}),
       newPass: new FormControl({ value: '', disabled: this.disablePass}),
       confirmNewPass: new FormControl({ value: '', disabled: this.disableConfirm}),
     });
@@ -69,12 +69,11 @@ export class UpdateUserInfoComponent implements OnInit {
   // Enables or Disables email feild depending on state
   changeEmail() {
     if (this.disableEmail === true) {
-      this.form.controls.email.enable();
+      this.email.reset({value: '', disabled: false}, [Validators.email]);
       this.disableEmail = false;
     } else {
-      this.form.controls.email.disable();
+      this.email.reset({value: '', disabled: true}, [Validators.email]);
       this.disableEmail = true;
-      this.form.controls.email.setValue('');
     }
   }
 
