@@ -33,7 +33,7 @@
     </mat-dialog-content>
   </div>
   <br>
-  <div class="padding-map">
+  <div *ngIf="areaSelected" class="padding-map">
     <app-map longitude={{longitude}} latitude={{latitude}}></app-map>
   </div>
   <hr>
@@ -49,7 +49,7 @@
     <!-- Update button -->
     <button mat-stroked-button
       color="accent"
-      [disabled]="(areaSelected === false && spotSelected === false)"
+      [disabled]="(!areaSelected || !spotSelected)"
       (click)="submitRequestParking()">
       <mat-icon svgIcon="cube-send"></mat-icon> 
       request

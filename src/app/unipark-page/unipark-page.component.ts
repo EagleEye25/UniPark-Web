@@ -46,6 +46,9 @@ export class UniparkPageComponent implements OnInit {
     }
   }
 
+  logoutUser() {
+    this.appService.setState('FacilityID', null);
+  }
   /*
   // Displays user-info modal
   openUserInfoDialog(): void {

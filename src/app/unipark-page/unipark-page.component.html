@@ -39,7 +39,8 @@
         <span>Help</span>
       </button>
       <!-- Logout -->
-      <button mat-button routerLink="/">
+      <button mat-button routerLink="/"
+        (click)="logoutUser()">
         <mat-icon svgIcon="logout"></mat-icon>
         <span>Logout</span>
       </button>

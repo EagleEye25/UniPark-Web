@@ -82,11 +82,11 @@ export class RequestParkingComponent implements OnInit {
     this.selectedArea = this.form.value.parkingArea;
     if (this.selectedArea) {
       this.form.controls.parkingSpot.enable();
+      this.setSpotData(this.selectedArea);
+      this.areaSelected = true;
+      this.longitude = '25.672261';
+      this.latitude = '-33.999720';
     }
-    this.setSpotData(this.selectedArea);
-    this.areaSelected = true;
-    this.longitude = '25.671278';
-    this.latitude = '-34.001097';
   }
 
   // Sets spot data to be used in control
@@ -94,6 +94,7 @@ export class RequestParkingComponent implements OnInit {
     const req = this.requestOptions;
     this.spotsAssociated = [];
     this.parkingSpot = null;
+    this.spotSelected = null;
     // gets spots for selected area
     for (const key of req) {
       if (key.ParkingArea === selectedArea) {
@@ -105,7 +106,9 @@ export class RequestParkingComponent implements OnInit {
   // Gets spot from select
   getSpotFormSelect() {
     this.selectedSpot = this.form.value.parkingSpot;
-    this.spotSelected = true;
+    if (this.selectedSpot) {
+      this.spotSelected = true;
+    }
   }
 
   // Submits the request data to backend
