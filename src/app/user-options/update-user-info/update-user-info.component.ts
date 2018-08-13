@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, Validators, FormGroup, FormBuilder, FormControlName } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
@@ -10,6 +10,10 @@ import { AppService, BASE_URL } from '../../app.service';
   styleUrls: ['./update-user-info.component.scss']
 })
 export class UpdateUserInfoComponent implements OnInit {
+
+  @ViewChild('inputCell') viewCell: ElementRef;
+  @ViewChild('inputEmail') viewEmail: ElementRef;
+  @ViewChild('inputNewPass') viewNewPass: ElementRef;
 
   form: FormGroup;
   formBuilder: FormBuilder;
@@ -76,6 +80,7 @@ export class UpdateUserInfoComponent implements OnInit {
       this.disableCell = false;
       this.resetCell = true;
       this.clean = false;
+      this.viewCell.nativeElement.focus();
     } else {
       this.cellNo.reset({value: '', disabled: true}, [Validators.pattern(this.cellReg)]);
       this.disableCell = true;
@@ -91,6 +96,7 @@ export class UpdateUserInfoComponent implements OnInit {
       this.disableEmail = false;
       this.resetEmail = true;
       this.clean = false;
+      this.viewEmail.nativeElement.focus();
     } else {
       this.email.reset({value: '', disabled: true}, [Validators.email]);
       this.disableEmail = true;
@@ -107,6 +113,7 @@ export class UpdateUserInfoComponent implements OnInit {
       this.disablePass = false;
       this.resetPass = true;
       this.clean = false;
+      this.viewNewPass.nativeElement.focus();
     } else {
       this.form.controls.newPass.disable();
       this.form.controls.confirmNewPass.disable();
@@ -194,7 +201,7 @@ export class UpdateUserInfoComponent implements OnInit {
   // Clears user entered data
   cancle() {
     // Phone clear
-    this.email.reset({value: '', disabled: true}, [Validators.email]);
+    this.cellNo.reset({value: '', disabled: true}, [Validators.pattern(this.cellReg)]);
     this.disableCell = true;
     // Email clear
     this.email.reset({value: '', disabled: true}, [Validators.email]);
@@ -216,7 +223,13 @@ export class UpdateUserInfoComponent implements OnInit {
     enterKeyEvent(event: any) {
       switch (event.keyCode) {
         case 13:
-          this.verifyUpdateInfo();
+          if (this.email.valid) {
+            this.verifyUpdateInfo();
+          } else if (this.cellNo.valid) {
+            this.verifyUpdateInfo();
+          } else if (!this.clean) {
+            this.verifyUpdateInfo();
+          }
         break;
         case 27:
           this.cancle();

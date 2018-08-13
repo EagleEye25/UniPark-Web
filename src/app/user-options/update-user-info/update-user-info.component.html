@@ -9,10 +9,11 @@
         <mat-form-field hintLabel="Max 10 digits">
           <input (keypress)= "onlyNumberKey($event)"
                   matInput 
-                  #input maxlength="10" 
+                  #inputCell 
+                  maxlength="10" 
                   placeholder="Cell-Phone Number"
                   [formControl]="cellNo">
-          <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
+          <mat-hint align="end">{{ inputCell.value?.length || 0 }}/10</mat-hint>
           <mat-error *ngIf="cellNo.invalid">Please enter all 10 digits!</mat-error>
         </mat-form-field>
         <mat-checkbox
@@ -24,6 +25,7 @@
         <!-- Mat form feild: email address -->
         <mat-form-field>
           <input  matInput
+                  #inputEmail
                   placeholder="E-mail Address"
                   [formControl]="email">
           <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
@@ -36,7 +38,8 @@
         <br>
         <!-- Mat form feild: password -->
         <mat-form-field>
-          <input matInput 
+          <input matInput
+                  #inputNewPass 
                   placeholder="New Password"
                   [type]="hide ? 'password' : 'text'"
                   formControlName="newPass">
@@ -48,7 +51,8 @@
         </mat-checkbox>
         <br>
         <mat-form-field>
-          <input matInput placeholder="Confirm Password"
+          <input matInput
+                  placeholder="Confirm Password"
                   [type]="hide ? 'password' : 'text'"
                   formControlName="confirmNewPass">
           <mat-icon matSuffix
