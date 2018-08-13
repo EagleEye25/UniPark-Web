@@ -43,6 +43,7 @@
                   placeholder="New Password"
                   [type]="hide ? 'password' : 'text'"
                   formControlName="newPass">
+                  <mat-error *ngIf="newPass.invalid">Please enter all 10 digits!</mat-error>
         </mat-form-field>
         <mat-checkbox
           [checked]="resetPass"

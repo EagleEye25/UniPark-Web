@@ -20,8 +20,8 @@ export class UpdateUserInfoComponent implements OnInit {
   // FormControl variables
   cellNo: any;
   email: any;
-  newPass: string;
-  confirmNewPass: string;
+  newPass: any;
+  confirmNewPass: any;
 
   clean = true;
 
@@ -60,9 +60,13 @@ export class UpdateUserInfoComponent implements OnInit {
     this.disableConfirm = true;
     this.email = new FormControl({value: '', disabled: this.disableEmail}, [Validators.email]);
     this.cellNo = new FormControl({value: '', disabled: this.disableCell}, [Validators.pattern(this.cellReg)]);
+    this.newPass = new FormControl({ value: '', disabled: this.disablePass}, [Validators.pattern(this.strongPassReg)]);
+    this.confirmNewPass = new FormControl({ value: '', disabled: this.disableConfirm});
     this.form = this.fb.group({
-      newPass: new FormControl({ value: '', disabled: this.disablePass}),
-      confirmNewPass: new FormControl({ value: '', disabled: this.disableConfirm}),
+      'email': this.email,
+      'cellNo': this.cellNo,
+      'newPass': this.newPass,
+      'confirmNewPass': this.confirmNewPass
     });
   }
 
