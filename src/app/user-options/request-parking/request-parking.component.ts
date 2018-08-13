@@ -24,6 +24,7 @@ export class RequestParkingComponent implements OnInit {
   latitude: any;
 
   distinctArea: any;
+  drawingCo: any;
   spotsAssociated = [];
 
   areaSelected = false;
@@ -52,8 +53,6 @@ export class RequestParkingComponent implements OnInit {
       this.distinctArea = Array.from(new Set(
         this.requestOptions
         .map((area: any) => area.ParkingArea)));
-
-
     });
   }
 
@@ -89,6 +88,10 @@ export class RequestParkingComponent implements OnInit {
       this.form.controls.parkingSpot.enable();
       this.setSpotData(this.selectedArea);
       this.areaSelected = true;
+      const req = this.requestOptions;
+      // Gets spots for selected area
+      const coordinates = req.find(data => data.ParkingArea === this.selectedArea);
+      this.drawingCo = coordinates.AreaLocation;
       this.longitude = '25.672261';
       this.latitude = '-33.999720';
     }
@@ -100,7 +103,7 @@ export class RequestParkingComponent implements OnInit {
     this.spotsAssociated = [];
     this.parkingSpot = null;
     this.spotSelected = null;
-    // gets spots for selected area
+    // Gets spots for selected area
     for (const key of req) {
       if (key.ParkingArea === selectedArea) {
         this.spotsAssociated.push(key);
