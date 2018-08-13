@@ -11,20 +11,24 @@ import { AppService, BASE_URL } from '../../app.service';
 })
 export class UpdateUserInfoComponent implements OnInit {
 
+  // Viewing of inputs from html
   @ViewChild('inputCell') viewCell: ElementRef;
   @ViewChild('inputEmail') viewEmail: ElementRef;
   @ViewChild('inputNewPass') viewNewPass: ElementRef;
 
   form: FormGroup;
   formBuilder: FormBuilder;
+
   // FormControl variables
   cellNo: any;
   email: any;
   newPass: any;
   confirmNewPass: any;
 
+  // Vairable to check if feilds are "clean"
   clean = true;
 
+  // Json data
   userInfoJson: any;
   updateResponse: any;
 
@@ -35,8 +39,11 @@ export class UpdateUserInfoComponent implements OnInit {
   disablePass: boolean;
   disableConfirm: boolean;
 
+  // Regex for validation
   cellReg = new RegExp(/[0-9]{10}/);
-  strongPassReg = new RegExp(/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{10,}$/);
+  strongPassReg = new RegExp(
+    /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{10,}$/
+  );
 
   // Hides password
   hide = true;
@@ -61,7 +68,7 @@ export class UpdateUserInfoComponent implements OnInit {
     this.email = new FormControl({value: '', disabled: this.disableEmail}, [Validators.email]);
     this.cellNo = new FormControl({value: '', disabled: this.disableCell}, [Validators.pattern(this.cellReg)]);
     this.newPass = new FormControl({ value: '', disabled: this.disablePass}, [Validators.pattern(this.strongPassReg)]);
-    this.confirmNewPass = new FormControl({ value: '', disabled: this.disableConfirm});
+    this.confirmNewPass = new FormControl({ value: '', disabled: this.disableConfirm}, [Validators.pattern(this.newPass.value)]);
     this.form = this.fb.group({
       'email': this.email,
       'cellNo': this.cellNo,
@@ -80,13 +87,14 @@ export class UpdateUserInfoComponent implements OnInit {
   // Enables or Disables cell feild depending on state
   changeCell() {
     if (this.disableCell === true) {
-      this.cellNo.reset({value: '', disabled: false}, [Validators.pattern(this.cellReg)]);
+      this.form.controls.cellNo.enable();
       this.disableCell = false;
       this.resetCell = true;
       this.clean = false;
       this.viewCell.nativeElement.focus();
     } else {
-      this.cellNo.reset({value: '', disabled: true}, [Validators.pattern(this.cellReg)]);
+      this.form.controls.cellNo.disable();
+      this.form.controls.cellNo.setValue('');
       this.disableCell = true;
       this.resetCell = false;
       this.checkFeilds();
@@ -96,13 +104,14 @@ export class UpdateUserInfoComponent implements OnInit {
   // Enables or Disables email feild depending on state
   changeEmail() {
     if (this.disableEmail === true) {
-      this.email.reset({value: '', disabled: false}, [Validators.email]);
+      this.form.controls.email.enable();
       this.disableEmail = false;
       this.resetEmail = true;
       this.clean = false;
       this.viewEmail.nativeElement.focus();
     } else {
-      this.email.reset({value: '', disabled: true}, [Validators.email]);
+      this.form.controls.email.disable();
+      this.form.controls.email.setValue('');
       this.disableEmail = true;
       this.resetEmail = false;
       this.checkFeilds();
@@ -165,14 +174,15 @@ export class UpdateUserInfoComponent implements OnInit {
   // Prepares data to be sent to backend
   async prepareUpdate() {
     // Aquires update information entered by user
-    this.newPass = this.form.value.newPass;
-    this.confirmNewPass = this.form.value.confirmNewPass;
+    const newPass = this.newPass.value;
+    const newEmail = this.email.value;
+    const newCell = this.cellNo.value;
     // Sends update information to json
     this.userInfoJson = {
       'PersonnelID': this.appService.getState('FacilityID'),
-      'PersonnelPhoneNumber': String(this.cellNo.value),
-      'PersonnelEmail': this.email.value,
-      'PersonnelPassword': this.newPass
+      'PersonnelPhoneNumber': newCell,
+      'PersonnelEmail': newEmail,
+      'PersonnelPassword': newPass
     };
     console.log( this.userInfoJson);
 
@@ -190,25 +200,29 @@ export class UpdateUserInfoComponent implements OnInit {
 
   // Verifys information entered by user
   verifyUpdateInfo() {
-    this.newPass = this.form.value.newPass;
-    this.confirmNewPass = this.form.value.confirmNewPass;
-    // Will validate which option to choose send data, close dialog
-    if (this.newPass === this.confirmNewPass && this.confirmNewPass === this.newPass) {
+    const newPass = this.newPass.value;
+    const confirmNewPass = this.confirmNewPass.value;
+    // Checks passwords entered
+    if (newPass === confirmNewPass && confirmNewPass === newPass) {
       this.prepareUpdate();
-    } else if (this.newPass === '' && this.confirmNewPass === '') {
-      this.prepareUpdate();
+    } else if (newPass === '' && confirmNewPass === '') {
+        this.prepareUpdate();
+    } else if (newPass === undefined && confirmNewPass === undefined) {
+        this.prepareUpdate();
     } else {
-      this.openSnackBarFail();
+        this.openSnackBarFail();
     }
   }
 
   // Clears user entered data
   cancle() {
     // Phone clear
-    this.cellNo.reset({value: '', disabled: true}, [Validators.pattern(this.cellReg)]);
+    this.form.controls.cellNo.disable();
+    this.form.controls.cellNo.setValue('');
     this.disableCell = true;
     // Email clear
-    this.email.reset({value: '', disabled: true}, [Validators.email]);
+    this.form.controls.email.disable();
+    this.form.controls.email.setValue('');
     this.disableEmail = true;
     // Password clear
     this.form.controls.newPass.disable();

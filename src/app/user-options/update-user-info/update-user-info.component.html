@@ -12,7 +12,7 @@
                   #inputCell 
                   maxlength="10" 
                   placeholder="Cell-Phone Number"
-                  [formControl]="cellNo">
+                  formControlName="cellNo">
           <mat-hint align="end">{{ inputCell.value?.length || 0 }}/10</mat-hint>
           <mat-error *ngIf="cellNo.invalid">Please enter all 10 digits!</mat-error>
         </mat-form-field>
@@ -27,7 +27,7 @@
           <input  matInput
                   #inputEmail
                   placeholder="E-mail Address"
-                  [formControl]="email">
+                  formControlName="email">
           <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-checkbox
@@ -43,7 +43,7 @@
                   placeholder="New Password"
                   [type]="hide ? 'password' : 'text'"
                   formControlName="newPass">
-                  <mat-error *ngIf="newPass.invalid">Please enter all 10 digits!</mat-error>
+          <mat-error *ngIf="newPass.invalid">Please enter all 10 digits!</mat-error>
         </mat-form-field>
         <mat-checkbox
           [checked]="resetPass"
@@ -51,6 +51,25 @@
           [labelPosition]="checkBoxPos">
         </mat-checkbox>
         <br>
+        <!-- Hints for password entry -->
+        <div *ngIf="newPass.value?.length > 0">
+          <mat-hint align="end">
+              Min Uppercase: {{ inputCell.value?.length || 0 }}/2
+            </mat-hint>
+          <br>
+          <mat-hint align="end">
+            Min Numbers: {{ inputCell.value?.length || 0 }}/2
+          </mat-hint>
+          <br>
+          <mat-hint align="end">
+            Min Specail Characters: {{ inputCell.value?.length || 0 }}/2
+          </mat-hint>
+          <br>
+          <mat-hint align="end">
+            Min Characters: {{ inputCell.value?.length || 0 }}/10
+          </mat-hint>
+          </div>
+          <br>
         <mat-form-field>
           <input matInput
                   placeholder="Confirm Password"
@@ -73,7 +92,7 @@
       </button>
       <!-- Update button -->
       <button
-        [disabled]="email.invalid || cellNo.invalid || clean" 
+        [disabled]="email.invalid || cellNo.invalid || clean || newPass.invalid" 
         mat-stroked-button
         color="accent"
         (click)="verifyUpdateInfo()">
