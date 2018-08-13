@@ -4,8 +4,6 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 import {AppService, BASE_URL} from '../../app.service';
-import { DomSanitizer } from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-request-parking',
@@ -35,8 +33,7 @@ export class RequestParkingComponent implements OnInit {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private http: HttpClient,
-    private appService: AppService,
-    private sanitizer: DomSanitizer
+    private appService: AppService
     // private uniparkPage: UniparkPageComponent
   ) { }
 
@@ -50,10 +47,13 @@ export class RequestParkingComponent implements OnInit {
     // Gets request data fromn backend
     this.http.get(`${BASE_URL}/parking/request/info/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => { this.requestOptions = response;
+
       // Gets distinct parking areas for displaying in select
-      this.distinctArea = Array.from(new Set(this.requestOptions
-        .map(area => area.ParkingArea)
-      ));
+      this.distinctArea = Array.from(new Set(
+        this.requestOptions
+        .map((area: any) => area.ParkingArea)));
+
+
     });
   }
 

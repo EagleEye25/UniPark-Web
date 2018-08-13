@@ -77,6 +77,21 @@ export class UpdateUserInfoComponent implements OnInit {
     });
   }
 
+  testMinUpper() {
+    const minUpper = new RegExp(/(?=.*[A-Z].*[A-Z])/);
+    return minUpper.test(this.newPass.value);
+  }
+
+  testMinNum() {
+    const minNum = new RegExp(/(?=.*[0-9].*[0-9])/);
+    return minNum.test(this.newPass.value);
+  }
+
+  testMinSpecial() {
+    const minSpecial = new RegExp(/(?=.*[!@#$&*])/);
+    return minSpecial.test(this.newPass.value);
+  }
+
   // Only allows numbers to be typed
   onlyNumberKey(event) {
     return (event.charCode === 8 || event.charCode === 0)

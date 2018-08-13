@@ -37,13 +37,13 @@
         </mat-checkbox>
         <br>
         <!-- Mat form feild: password -->
-        <mat-form-field>
+        <mat-form-field> 
           <input matInput
                   #inputNewPass 
                   placeholder="New Password"
                   [type]="hide ? 'password' : 'text'"
                   formControlName="newPass">
-          <mat-error *ngIf="newPass.invalid">Please enter all 10 digits!</mat-error>
+          <mat-error *ngIf="newPass.invalid">Doesn't meet requrements!</mat-error>
         </mat-form-field>
         <mat-checkbox
           [checked]="resetPass"
@@ -52,24 +52,20 @@
         </mat-checkbox>
         <br>
         <!-- Hints for password entry -->
-        <div *ngIf="newPass.value?.length > 0">
-          <mat-hint align="end">
-              Min Uppercase: {{ inputCell.value?.length || 0 }}/2
-            </mat-hint>
-          <br>
-          <mat-hint align="end">
-            Min Numbers: {{ inputCell.value?.length || 0 }}/2
-          </mat-hint>
-          <br>
-          <mat-hint align="end">
-            Min Specail Characters: {{ inputCell.value?.length || 0 }}/2
-          </mat-hint>
-          <br>
-          <mat-hint align="end">
-            Min Characters: {{ inputCell.value?.length || 0 }}/10
-          </mat-hint>
+        <div class="requirement" *ngIf="newPass.value?.length > 0">
+          <div *ngIf="!testMinUpper()">
+              *Minimum 2 Uppercase Characters.
           </div>
-          <br>
+          <div *ngIf="!testMinNum()">
+              *Minimum 2 Numbers.
+          </div>
+          <div *ngIf="!testMinSpecial()">
+              *Minimum 1 Specail Characters.
+          </div>
+          <div *ngIf="newPass.value?.length < 10">
+              *Minimum 10 Characters.
+          </div>
+        </div>
         <mat-form-field>
           <input matInput
                   placeholder="Confirm Password"
