@@ -10,6 +10,7 @@ import { UserInfoComponent } from './user-options/user-info/user-info.component'
 import { UpdateUserInfoComponent } from './user-options/update-user-info/update-user-info.component';
 import { RequestParkingComponent } from './user-options/request-parking/request-parking.component';
 import { InfringementsComponent } from './user-options/infringements/infringements.component';
+import { ViewRequestsComponent } from './user-options/view-requests/view-requests.component';
 
 /* actual routing */
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path: 'update-user-info', component: UpdateUserInfoComponent, pathMatch: 'full'},
     { path: 'assigned-parking', component: ViewAssignedParkingComponent, pathMatch: 'full'},
     { path: 'request-parking', component: RequestParkingComponent, pathMatch: 'full'},
-    { path: 'infringments', component: InfringementsComponent, pathMatch: 'full'}
+    { path: 'infringments', component: InfringementsComponent, pathMatch: 'full'},
+    { path: 'view-requests', component: ViewRequestsComponent, pathMatch: 'full'}
   ]}
 ];
 

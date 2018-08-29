@@ -23,6 +23,7 @@ import { HelpComponent } from './user-options/help/help.component';
 import { routing } from './app.routing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MapComponent } from './map/map.component';
+import { ViewRequestsComponent } from './user-options/view-requests/view-requests.component';
 
 
 
@@ -39,6 +40,7 @@ import { MapComponent } from './map/map.component';
     HelpComponent,
     InfringementsComponent,
     MapComponent,
+    ViewRequestsComponent,
   ],
   imports: [
     BrowserModule,
