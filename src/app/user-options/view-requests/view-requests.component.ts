@@ -10,7 +10,7 @@ import { AppService, BASE_URL } from '../../app.service';
 })
 export class ViewRequestsComponent implements OnInit {
 
-  displayColumns = ['Date', 'Description'];
+  displayColumns = ['Date', 'Description', 'Cancel'];
   tableData: any;
   viewRequests: any;
 
@@ -24,7 +24,7 @@ export class ViewRequestsComponent implements OnInit {
 
   ngOnInit() {
     // Gathers infringement data from backend
-    this.http.get(`${BASE_URL}//` + this.appService.getState('FacilityID'))
+    this.http.get(`${BASE_URL}/infringements/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => { this.viewRequests = response;
       // Removes unnecessary chars from data
       for (let k = 0; k < this.viewRequests.length; k++) {
@@ -44,6 +44,9 @@ export class ViewRequestsComponent implements OnInit {
     this.tableData.filter = filterValue;
   }
 
+  cancelRequest(requestID) {
+    console.log(requestID);
+  }
 }
 
 // Interface for table

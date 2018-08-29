@@ -21,6 +21,18 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
           <td mat-cell *matCellDef="let report"> {{report.Description}} </td>
         </ng-container>
+        <!-- Cancel Column -->
+        <ng-container matColumnDef="Cancel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cancel </th>
+            <td mat-cell *matCellDef="let report">
+                <button mat-button 
+                  color="warn"
+                  (click)="cancelRequest(report.Date)">
+                  <mat-icon svgIcon="cancel"></mat-icon>
+                  Cancel
+                </button>
+            </td>
+          </ng-container>
       
       <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
