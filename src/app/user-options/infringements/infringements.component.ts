@@ -10,7 +10,7 @@ import { AppService, BASE_URL } from '../../app.service';
 })
 export class InfringementsComponent implements OnInit {
 
-  displayColumns = ['Date', 'Description'];
+  displayColumns = ['Date', 'Description', 'ReportType', 'Amount'];
   tableData: any;
   infringBackend: any;
 
@@ -68,4 +68,6 @@ export class InfringementsComponent implements OnInit {
 export interface Infringemenets {
   Date: string;
   Description: string;
+  ReportType: string;
+  Amount: string;
 }
