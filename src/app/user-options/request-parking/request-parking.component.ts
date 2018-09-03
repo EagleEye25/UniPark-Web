@@ -132,6 +132,7 @@ export class RequestParkingComponent implements OnInit {
       .catch(console.error);
       if (reqResponse && reqResponse.data.trim() === 'SUCCESS') {
         this.openSnackBarPass();
+        this.cancle();
       } else {
         this.openSnackBarFail();
       }

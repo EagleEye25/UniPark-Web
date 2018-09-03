@@ -58,7 +58,13 @@ export class MapComponent implements OnInit {
             properties: {},
             geometry: {
               type: 'LineString',
-              coordinates: [this.drawingCo]
+              coordinates: [
+                [25.671593861831553, -33.999276966925336],
+                [25.67162962855278, -34.00027525171899],
+                [25.673096063558916, -34.00029501956639],
+                [25.6723621395964, -33.99928685095348],
+                [null]
+              ]
             }
           }
         },

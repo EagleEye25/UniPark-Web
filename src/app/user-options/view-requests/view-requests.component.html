@@ -4,41 +4,53 @@
   <img src="assets/images/user-options/infringements/infringements.png" alt="Infringements.png">
   <hr>
   <mat-dialog-content>
-    <!-- Filter table input-->
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
     <!-- Mat table to display user infringements -->
-    <div>
+    <div *ngIf="!empty">
+      <!-- Filter table input-->
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
       <table mat-table [dataSource]="tableData" class="table" matSort>
         <!-- Date Column -->
         <ng-container matColumnDef="Date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-          <td mat-cell *matCellDef="let report"> {{report.Date}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date: </th>
+          <td mat-cell *matCellDef="let request"> {{request.RequestDate}} </td>
         </ng-container>
-        <!-- Description Column -->
-        <ng-container matColumnDef="Description">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-          <td mat-cell *matCellDef="let report"> {{report.Description}} </td>
+        <!-- ParkingArea Column -->
+        <ng-container matColumnDef="ParkingArea">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Area: </th>
+          <td mat-cell *matCellDef="let request"> {{request.ParkingArea}} </td>
+        </ng-container>
+        <!-- ParkingSpace Column -->
+        <ng-container matColumnDef="ParkingSpace">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Space: </th>
+          <td mat-cell *matCellDef="let request"> {{request.ParkingSpace}} </td>
+        </ng-container>
+        <!-- FEE Column -->
+        <ng-container matColumnDef="FEE">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fee: </th>
+          <td mat-cell *matCellDef="let request"> R{{request.Fee}} </td>
         </ng-container>
         <!-- Cancel Column -->
         <ng-container matColumnDef="Cancel">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cancel </th>
-            <td mat-cell *matCellDef="let report">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cancel: </th>
+            <td mat-cell *matCellDef="let request">
                 <button mat-button 
                   color="warn"
-                  (click)="cancelRequest(report.Date)">
+                  (click)="cancelRequest(request.ID)">
                   <mat-icon svgIcon="cancel"></mat-icon>
                   Cancel
                 </button>
             </td>
           </ng-container>
-      
       <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
       </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <div *ngIf="empty">
+      <p>NO PENDING REQUESTS</p>
+    </div>
   </mat-dialog-content>
   <hr>
   <br>
