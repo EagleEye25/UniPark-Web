@@ -9,7 +9,7 @@ $custom-theme: mat-dark-theme($custom-primary, $custom-accent);
 
 //Alternative Theme
 $alt-primary: mat-palette($mat-green, A400);
-$alt-accent:  mat-palette($mat-teal, A200);
+$alt-accent:  mat-palette($mat-green, A700);
 
 $alt-theme: mat-dark-theme($alt-primary, $alt-accent);
 

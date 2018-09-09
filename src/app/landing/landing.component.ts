@@ -25,11 +25,5 @@ export class LandingComponent implements OnInit {
     this.loginDialogRef = this.dialog.open(LoginDialogComponent, {
       disableClose: true,
     });
-
-    this.loginDialogRef.afterClosed().subscribe(
-      loginData => {
-        console.log('Dialog output:', loginData);
-      }
-    );
   }
 }
