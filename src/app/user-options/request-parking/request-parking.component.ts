@@ -23,6 +23,8 @@ export class RequestParkingComponent implements OnInit {
   longitude: any;
   latitude: any;
 
+  markerEmpty = false;
+
   distinctArea: any;
   drawingCo: any;
   spotsAssociated = [];
@@ -48,7 +50,6 @@ export class RequestParkingComponent implements OnInit {
     // Gets request data fromn backend
     this.http.get(`${BASE_URL}/parking/request/info/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => { this.requestOptions = response;
-
       // Gets distinct parking areas for displaying in select
       this.distinctArea = Array.from(new Set(
         this.requestOptions
@@ -77,6 +78,7 @@ export class RequestParkingComponent implements OnInit {
     this.spotSelected = false;
     this.selectedArea = null;
     this.selectedSpot = null;
+    this.form.controls.parkingSpot.disable();
     this.form.controls.parkingArea.reset();
     this.form.controls.parkingSpot.reset();
   }
@@ -92,8 +94,14 @@ export class RequestParkingComponent implements OnInit {
       // Gets spots for selected area
       const coordinates = req.find(data => data.ParkingArea === this.selectedArea);
       this.drawingCo = coordinates.AreaLocation;
-      this.longitude = '25.672261';
-      this.latitude = '-33.999720';
+      if (this.drawingCo) {
+        this.drawingCo = this.drawingCo.split(',');
+        this.longitude = this.drawingCo[1];
+        this.latitude = this.drawingCo[0];
+        console.log(this.drawingCo);
+      } else {
+        this.markerEmpty = true;
+      }
     }
   }
 

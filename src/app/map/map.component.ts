@@ -15,17 +15,20 @@ export class MapComponent implements OnInit {
 
   @Input() longitude: any;
   @Input() latitude: any;
+  @Input() parkingArea: any;
   mapBoxAPI: any;
   marker: any;
 
   // TODO: find out syntax for insertion
-  drawingCo: any = [
-    [25.671593861831553, -33.999276966925336],
-    [25.67162962855278, -34.00027525171899],
-    [25.673096063558916, -34.00029501956639],
-    [25.6723621395964, -33.99928685095348],
-    [25.67159911649287, -33.999291792979406]
-  ];
+  testing = [
+    {
+      line: [[ 25.672959, -34.000911],
+       [ 25.672761, -34.000715],
+       [ 25.673141, -34.000720],
+       [ 25.673174, -34.001031],
+       [ 25.672761, -34.001022]]
+}
+];
 
   constructor(
     private appService: AppService
@@ -34,11 +37,14 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.generateMap();
   }
 
   // Generates map data
   generateMap() {
+    const dataSet = '../../assets/datasets/' + this.parkingArea + '.geojson';
+    console.log(dataSet);
     const latLng = new mapboxgl.LngLat(this.longitude, this.latitude);
     const map = new mapboxgl.Map({
       container: 'map',
@@ -46,38 +52,26 @@ export class MapComponent implements OnInit {
       center: latLng,
       zoom: 16,
     });
-
-    map.on('load', function() {
-      map.addLayer({
-        id: 'route',
-        type: 'line',
-        source: {
+      map.on('load', function() {
+        map.addSource('lines', {
           type: 'geojson',
-          data: {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-              type: 'LineString',
-              coordinates: [
-                [25.671593861831553, -33.999276966925336],
-                [25.67162962855278, -34.00027525171899],
-                [25.673096063558916, -34.00029501956639],
-                [25.6723621395964, -33.99928685095348],
-                [null]
-              ]
-            }
+          data: dataSet
+        });
+
+        map.addLayer({
+          id: 'route',
+          type: 'line',
+          source: 'lines',
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#75f380',
+            'line-width': 3
           }
-        },
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#75f380',
-          'line-width': 3
-        }
-    });
-    });
+        });
+      });
 
     this.marker = new mapboxgl.Marker({
       offset: [0, 0]
@@ -87,5 +81,4 @@ export class MapComponent implements OnInit {
     // this.map.scrollZoom.disable();
     // this.map.dragPan.disable();
   }
-
 }
