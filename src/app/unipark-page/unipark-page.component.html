@@ -1,56 +1,56 @@
 <div class="alternative">
   <mat-toolbar color="primary">
-      <!-- Displays UniPark image -->
-      <img src="assets/images/branding/up.png" alt="UniPark">
-      <span class="spacer"></span>
-      <p>{{ userName }} &nbsp; {{ userSur }}</p>
-
-          <!-- View User Information -->
-          <button mat-button (click)="openUserInfoDialog()">
-            <mat-icon svgIcon="account-card-details"></mat-icon>
-            <span>User Information</span>
-          </button>
-          <!-- Update User Info -->
-          <button mat-button (click)="openUpdateUserInfoDialog()">
-            <mat-icon svgIcon="account-settings-variant"></mat-icon>
-            <span>Update User Info</span>
-            </button>
-          <!-- View User Parking Area -->
-          <button mat-button (click)="openAssignedParkingDialog()">
-            <mat-icon svgIcon="parking"></mat-icon>
-            <span>Assigned Parking</span>
-          </button>
-          <!-- Request Parking -->
-          <button mat-button (click)="openRequestParkingDialog()">
-            <mat-icon svgIcon="car-connected"></mat-icon>
-            <span>Request Parking</span>
-          </button>
-          <!-- Help -->
-          <button mat-button (click)="openHelpDialog()">
-            <mat-icon svgIcon="help"></mat-icon>
-            <span>Help</span>
-          </button>
-          <!-- Logout -->
-          <button mat-button routerLink="/">
-            <mat-icon svgIcon="logout"></mat-icon>
-            <span>Logout</span>
-          </button>
+    <!-- Displays UniPark image -->
+    <img src="assets/images/branding/up.png" alt="UniPark">
+    <span class="spacer"></span>
+      <!-- View User Information -->
+      <a mat-button routerLink="./user-information"
+          routerLinkActive="mat-accent">
+        <mat-icon svgIcon="account-card-details"></mat-icon>
+        <span>User Information</span>
+      </a>
+      <!-- Update User Info -->
+      <a mat-button routerLink="./update-user-info"
+        routerLinkActive="mat-accent">
+        <mat-icon svgIcon="account-settings-variant"></mat-icon>
+        <span>Update User Info</span>
+      </a>
+      <!-- View User Parking Area -->
+      <a mat-button routerLink="./assigned-parking"
+          routerLinkActive="mat-accent">
+        <mat-icon svgIcon="parking"></mat-icon>
+        <span>Assigned Parking</span>
+      </a>
+      <!-- Request Parking -->
+      <a mat-button routerLink="./request-parking"
+          routerLinkActive="mat-accent">
+        <mat-icon svgIcon="car-connected"></mat-icon>
+        <span>Request Parking</span>
+      </a>
+      <!-- View Requests -->
+      <a mat-button routerLink="./view-requests"
+          routerLinkActive="mat-accent">
+        <mat-icon svgIcon="filter-variant"></mat-icon>
+        <span>View Requests</span>
+      </a>
+      <!-- Infringements -->
+      <a mat-button routerLink="./infringments"
+          routerLinkActive="mat-accent">
+        <mat-icon svgIcon="alert-octagon"></mat-icon>
+        <span>Infringments</span>
+      </a>
+      <!-- Help -->
+      <button mat-button (click)="openHelpDialog()">
+        <mat-icon svgIcon="help"></mat-icon>
+        <span>Help</span>
+      </button>
+      <!-- Logout -->
+      <button mat-button routerLink="/"
+        (click)="logoutUser()">
+        <mat-icon svgIcon="logout"></mat-icon>
+        <span>Logout</span>
+      </button>
   </mat-toolbar>
-  
-  <!-- going to incorportate user options into dialogs, while on defualt unipark page
-      will display unipark shit etc 
-  Tab group for all user options 
-  <mat-tab-group>
-    User Information 
-    <mat-tab label="User Information">
-      Content 1
-    </mat-tab>
-    Parking area information
-    <mat-tab label="Parking Area">
-      Content 2
-    </mat-tab>
-    <mat-tab label="U">
-        Content 2
-      </mat-tab>
-  </mat-tab-group> -->
 </div>
+
+<router-outlet></router-outlet>
