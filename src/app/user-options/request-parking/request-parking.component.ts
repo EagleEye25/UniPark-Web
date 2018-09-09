@@ -1,12 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { mapboxgl } from 'mapbox-gl';
 
 import {AppService, BASE_URL} from '../../app.service';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-request-parking',
@@ -21,9 +18,15 @@ export class RequestParkingComponent implements OnInit {
   parkingSpot: string;
   selectedArea: string;
   selectedSpot: any;
-  disableSelect = new FormControl(true);
+  disableSpot: boolean;
+
+  longitude: any;
+  latitude: any;
+
+  markerEmpty = false;
 
   distinctArea: any;
+  drawingCo: any;
   spotsAssociated = [];
 
   areaSelected = false;
@@ -31,34 +34,37 @@ export class RequestParkingComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<RequestParkingComponent>,
     private snackBar: MatSnackBar,
     private http: HttpClient,
     private appService: AppService
     // private uniparkPage: UniparkPageComponent
   ) { }
 
+  // Initializes on load
   ngOnInit() {
+    this.disableSpot = true;
     this.form = this.fb.group({
       parkingArea: [this.parkingArea, []],
-      parkingSpot: [this.parkingSpot, []]
+      parkingSpot: new FormControl({ value: '', disabled: this.disableSpot}),
     });
+    // Gets request data fromn backend
     this.http.get(`${BASE_URL}/parking/request/info/` + this.appService.getState('FacilityID'))
     .subscribe((response: any) => { this.requestOptions = response;
       // Gets distinct parking areas for displaying in select
-      this.distinctArea = Array.from(new Set(this.requestOptions
-        .map(area => area.ParkingArea)
-      ));
+      this.distinctArea = Array.from(new Set(
+        this.requestOptions
+        .map((area: any) => area.ParkingArea)));
     });
   }
 
+  // opens the snackBar with error
   openSnackBarFail() {
-    // opens the snackBar with error
     this.snackBar.open('Request Failed', 'OK', {
       duration: 2000,
     });
   }
 
+  // opens the snackBar with success
   openSnackBarPass() {
     // opens the snackBar with error
     this.snackBar.open('Successfully Requested!', 'OK', {
@@ -67,25 +73,45 @@ export class RequestParkingComponent implements OnInit {
   }
 
   // Closes dialog
-  closeDialog(): void {
-    this.dialogRef.close();
+  cancle(): void {
+    this.areaSelected = false;
+    this.spotSelected = false;
+    this.selectedArea = null;
+    this.selectedSpot = null;
+    this.form.controls.parkingSpot.disable();
+    this.form.controls.parkingArea.reset();
+    this.form.controls.parkingSpot.reset();
   }
 
   // Gets selected area
   getAreaFromSelect() {
     this.selectedArea = this.form.value.parkingArea;
     if (this.selectedArea) {
-      this.disableSelect = new FormControl(false);
+      this.form.controls.parkingSpot.enable();
+      this.setSpotData(this.selectedArea);
+      this.areaSelected = true;
+      const req = this.requestOptions;
+      // Gets spots for selected area
+      const coordinates = req.find(data => data.ParkingArea === this.selectedArea);
+      this.drawingCo = coordinates.AreaLocation;
+      if (this.drawingCo) {
+        this.drawingCo = this.drawingCo.split(',');
+        this.longitude = this.drawingCo[1];
+        this.latitude = this.drawingCo[0];
+        console.log(this.drawingCo);
+      } else {
+        this.markerEmpty = true;
+      }
     }
-    this.setSpotData(this.selectedArea);
-    this.areaSelected = true;
   }
 
+  // Sets spot data to be used in control
   setSpotData(selectedArea: any) {
     const req = this.requestOptions;
     this.spotsAssociated = [];
     this.parkingSpot = null;
-    // gets spots for selected area
+    this.spotSelected = null;
+    // Gets spots for selected area
     for (const key of req) {
       if (key.ParkingArea === selectedArea) {
         this.spotsAssociated.push(key);
@@ -93,20 +119,31 @@ export class RequestParkingComponent implements OnInit {
     }
   }
 
+  // Gets spot from select
   getSpotFormSelect() {
     this.selectedSpot = this.form.value.parkingSpot;
-    this.spotSelected = true;
+    if (this.selectedSpot) {
+      this.spotSelected = true;
+    }
   }
 
-  submitRequestParking() {
+  // Submits the request data to backend
+  async submitRequestParking() {
     Number(this.selectedSpot);
     if (this.selectedArea === undefined || this.selectedSpot === undefined) {
       this.openSnackBarFail();
     } else {
         // sends request info to backend
-      this.http.post(`${BASE_URL}/request-parking`,
+        const reqResponse: any = await this.http.post(`${BASE_URL}/request-parking`,
       {PersonnelID: this.appService.getState('FacilityID'), ParkingSpaceID: this.selectedSpot})
-      .subscribe(this.openSnackBarPass.bind(this), this.openSnackBarFail.bind(this));
+      .toPromise()
+      .catch(console.error);
+      if (reqResponse && reqResponse.data.trim() === 'SUCCESS') {
+        this.openSnackBarPass();
+        this.cancle();
+      } else {
+        this.openSnackBarFail();
+      }
     }
   }
 
@@ -118,7 +155,7 @@ export class RequestParkingComponent implements OnInit {
           this.submitRequestParking();
         break;
         case 27:
-          this.closeDialog();
+          this.cancle();
         break;
       }
     }

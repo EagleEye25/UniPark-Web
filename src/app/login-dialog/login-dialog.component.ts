@@ -45,6 +45,7 @@ export class LoginDialogComponent implements OnInit {
     });
   }
 
+  // opens the snackBar with error
   openSnackBarFail() {
     // opens the snackBar with error
     this.snackBar.open('Incorrect login details', 'OK', {
@@ -52,6 +53,7 @@ export class LoginDialogComponent implements OnInit {
     });
   }
 
+  // Gets login details, sends to backend (verification done on backend)
   aquireLoginDetails() {
     // aquire login details from dialog
     this.facilityNo = this.form.value.facilityNo;
@@ -63,8 +65,8 @@ export class LoginDialogComponent implements OnInit {
       .subscribe(this.loginUser.bind(this), this.openSnackBarFail.bind(this));
   }
 
+  // sends the user to unipark page, as successful login
   loginUser() {
-    // If information is incorrect, will inform user
     this.appService.setState('FacilityID', this.facilityNo);
     // Open unipark page, close modal
     this.dialogRef.close(this.form.value);

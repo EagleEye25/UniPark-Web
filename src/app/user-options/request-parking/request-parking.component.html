@@ -1,9 +1,9 @@
-<div class="alternative">
+<div class="alternative center">
   <!-- Display of login modal -->
   <!-- Displays request parking image -->
-  <img src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
+  <img class="padding-image" src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
   <hr>
-  <div>
+  <div class="padding-feilds">
     <mat-dialog-content [formGroup]="form">
     <!-- Mat form feild: parking area -->
       <mat-form-field>
@@ -21,8 +21,7 @@
       <!-- Mat form feild: parking spot -->
       <mat-form-field>
         <mat-select placeholder="Parking Spot" 
-                    formControlName="parkingSpot" 
-                    [disabled]="disableSelect.value" 
+                    formControlName="parkingSpot"  
                     matInput
                     [(value)]= "parkingSpot"
                     (selectionChange)='getSpotFormSelect()'>
@@ -32,21 +31,30 @@
         </mat-select>
       </mat-form-field>
     </mat-dialog-content>
-    <br>
+  </div>
+  <br>
+  <div *ngIf="areaSelected && !markerEmpty" class="padding-map">
+    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{selectedArea}}></app-map>
+  </div>
   <hr>
+  <div class="padding-buttons">
   <mat-dialog-actions>
     <!-- Close button -->
-    <button mat-button mat-dialog-close>
+    <button mat-button
+      color="warn"
+     (click)="cancle()">
       <mat-icon svgIcon="cancel"></mat-icon>
       Cancel
     </button>
     <!-- Update button -->
-    <button mat-button
-      [disabled]="(areaSelected === false && spotSelected === false)"
+    <button mat-stroked-button
+      color="accent"
+      [disabled]="(!areaSelected || !spotSelected)"
       (click)="submitRequestParking()">
       <mat-icon svgIcon="cube-send"></mat-icon> 
       request
     </button>
   </mat-dialog-actions>
+  </div>
 </div>
   

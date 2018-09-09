@@ -21,6 +21,9 @@ import { InfringementsComponent } from './user-options/infringements/infringemen
 import { HelpComponent } from './user-options/help/help.component';
 
 import { routing } from './app.routing';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MapComponent } from './map/map.component';
+import { ViewRequestsComponent } from './user-options/view-requests/view-requests.component';
 
 
 
@@ -36,6 +39,8 @@ import { routing } from './app.routing';
     RequestParkingComponent,
     HelpComponent,
     InfringementsComponent,
+    MapComponent,
+    ViewRequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,8 @@ import { routing } from './app.routing';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    routing
+    routing,
+    FlexLayoutModule
   ],
   entryComponents: [
     LoginDialogComponent,

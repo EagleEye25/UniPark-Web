@@ -22,12 +22,16 @@
   <br>
 <mat-dialog-actions>
   <!-- Close button -->
-  <button mat-button (click)="closeDialog()">
+  <button mat-button 
+    color="warn" 
+    (click)="closeDialog()">
     <mat-icon svgIcon="cancel"></mat-icon>
     Cancel
   </button>
   <!-- Login button -->
-  <button mat-button (click)="aquireLoginDetails()">
+  <button mat-stroked-button
+    color="accent" 
+    (click)="aquireLoginDetails()">
     <mat-icon svgIcon="login-variant"></mat-icon> 
     Login
   </button>  

@@ -1,69 +1,99 @@
-<div class="alternative">
+<div class="alternative center">
     <!-- Display of login modal -->
     <!-- Displays request parking image -->
-    <img src="assets/images/user-options/update-info/update-info.png" alt="User Info">
+    <img class="padding-image" src="assets/images/user-options/update-info/update-info.png" alt="User Info">
     <hr>
-    <mat-dialog-content [formGroup]="form">
-      <!-- Mat form feild: cell phone number -->
-      <mat-form-field hintLabel="Max 10 digits">
-        <input matInput 
-                #input maxlength="10" 
-                placeholder="Cell-Phone Number"
-                formControlName="cellNo"
-                [disabled]="disabledCell">
-        <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
-      </mat-form-field>
-      <mat-checkbox
+    <div class="padding-feilds">
+      <mat-dialog-content [formGroup]="form">
+        <!-- Mat form feild: cell phone number -->
+        <mat-form-field hintLabel="Max 10 digits">
+          <input (keypress)= "onlyNumberKey($event)"
+                  matInput 
+                  #inputCell 
+                  maxlength="10" 
+                  placeholder="Cell-Phone Number"
+                  formControlName="cellNo">
+          <mat-hint align="end">{{ inputCell.value?.length || 0 }}/10</mat-hint>
+          <mat-error *ngIf="cellNo.invalid">Please enter all 10 digits!</mat-error>
+        </mat-form-field>
+        <mat-checkbox
+          [checked]="resetCell"
+          (change)="changeCell()"
           [labelPosition]="checkBoxPos">
-      </mat-checkbox>
-      <br>
-      <!-- Mat form feild: email address -->
-      <mat-form-field>
-        <input matInput  
-                placeholder="E-mail Address"
-                [formControl]="email" required
-                [disabled]="disabledEmail">
-        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
-      </mat-form-field>
-      <mat-checkbox
+        </mat-checkbox>
+        <br>
+        <!-- Mat form feild: email address -->
+        <mat-form-field>
+          <input  matInput
+                  #inputEmail
+                  placeholder="E-mail Address"
+                  formControlName="email">
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-checkbox
+          [checked]="resetEmail"
+          (change)="changeEmail()"
           [labelPosition]="checkBoxPos">
-      </mat-checkbox>
-      <br>
-      <!-- Mat form feild: password -->
-      <mat-form-field>
-        <input matInput 
-                placeholder="New Password"
-                [type]="hide ? 'password' : 'text'"
-                formControlName="newPass"
-                [disabled]="disabledPass">
-      </mat-form-field>
-      <mat-checkbox
-          [(ngModel)]="disabledPass"
+        </mat-checkbox>
+        <br>
+        <!-- Mat form feild: password -->
+        <mat-form-field> 
+          <input matInput
+                  #inputNewPass 
+                  placeholder="New Password"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="newPass">
+          <mat-error *ngIf="newPass.invalid">Doesn't meet requrements!</mat-error>
+        </mat-form-field>
+        <mat-checkbox
+          [checked]="resetPass"
+          (change)="changePassword()"
           [labelPosition]="checkBoxPos">
-      </mat-checkbox>
-      <br>
-      <mat-form-field>
-        <input matInput placeholder="Confirm Password"
-                [type]="hide ? 'password' : 'text'"
-                formControlName="confirmNewPass"
-                [disabled]="disabledPass">
-        <mat-icon matSuffix
-          (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>
-      </mat-form-field>
-  </mat-dialog-content>
+        </mat-checkbox>
+        <br>
+        <!-- Hints for password entry -->
+        <div class="requirement" *ngIf="newPass.value?.length > 0">
+          <div *ngIf="!testMinUpper()">
+              *Minimum 2 Uppercase Characters.
+          </div>
+          <div *ngIf="!testMinNum()">
+              *Minimum 2 Numbers.
+          </div>
+          <div *ngIf="!testMinSpecial()">
+              *Minimum 1 Specail Characters.
+          </div>
+          <div *ngIf="newPass.value?.length < 10">
+              *Minimum 10 Characters.
+          </div>
+        </div>
+        <mat-form-field>
+          <input matInput
+                  placeholder="Confirm Password"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="confirmNewPass">
+          <mat-icon matSuffix
+            (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>
+        </mat-form-field>
+      </mat-dialog-content>
+    </div>
     <hr>
     <br>
-    <mat-dialog-actions>
+    <div class="padding-buttons">
       <!-- Close button -->
-      <button mat-button mat-dialog-close>
+      <button mat-button 
+        color="warn"
+        (click)="cancle()">
         <mat-icon svgIcon="cancel"></mat-icon>
         Cancel
       </button>
       <!-- Update button -->
-      <button mat-button (click)="verifyUpdateInfo()">
+      <button
+        [disabled]="email.invalid || cellNo.invalid || clean || newPass.invalid" 
+        mat-stroked-button
+        color="accent"
+        (click)="verifyUpdateInfo()">
         <mat-icon svgIcon="cube-send"></mat-icon> 
         Update
       </button>
-    </mat-dialog-actions>
-  </div>
-  
+    </div>
+</div>

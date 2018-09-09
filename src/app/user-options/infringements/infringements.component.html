@@ -1,4 +1,4 @@
-<div class="alternative">
+<div class="alternative center">
   <!-- Display of login modal -->
   <!-- Displays user info image -->
   <img src="assets/images/user-options/infringements/infringements.png" alt="Infringements.png">
@@ -10,41 +10,34 @@
     </mat-form-field>
     <!-- Mat table to display user infringements -->
     <div>
-    <table mat-table [dataSource]="tableData" class="table" matSort>
-      <!-- Date Column -->
-      <ng-container matColumnDef="Date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let report"> {{report.Date}} </td>
-      </ng-container>
-      <!-- Description Column -->
-      <ng-container matColumnDef="Description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-        <td mat-cell *matCellDef="let report"> {{report.Description}} </td>
-      </ng-container>
-      <!-- Type Column -->
-      <ng-container matColumnDef="Report Type">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Type </th>
-        <td mat-cell *matCellDef="let report"> {{report.ReportType}} </td>
-      </ng-container>
-      <!-- Status Column -->
-      <ng-container matColumnDef="Status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-        <td mat-cell *matCellDef="let report"> {{report.Status}} </td>
-      </ng-container>
-    
-     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
-    </table>
-  </div>
+      <table mat-table [dataSource]="tableData" class="table" matSort>
+        <!-- Date Column -->
+        <ng-container matColumnDef="Date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <td mat-cell *matCellDef="let report"> {{report.Date}} </td>
+        </ng-container>
+        <!-- Description Column -->
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <td mat-cell *matCellDef="let report"> {{report.Description}} </td>
+        </ng-container>
+        <!-- Report Type Column -->
+        <ng-container matColumnDef="ReportType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Type </th>
+          <td mat-cell *matCellDef="let report"> {{report.ReportType}} </td>
+        </ng-container>
+        <!-- Amount Column -->
+        <ng-container matColumnDef="Amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+          <td mat-cell *matCellDef="let report"> R{{report.Amount}} </td>
+        </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+      </table>
+    </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </mat-dialog-content>
   <hr>
   <br>
-  <mat-dialog-actions>
-    <!-- Close button -->
-    <button mat-button mat-dialog-close class="center">
-    <mat-icon svgIcon="close"></mat-icon>
-      Close
-    </button>
-</mat-dialog-actions>
 </div>
