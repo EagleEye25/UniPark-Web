@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-const appState = {FacilityID: 's216017173'};
+const appState = {};
+
+// const appState = {FacilityID: 's216017173'};
 
 @Injectable({
   providedIn: 'root'

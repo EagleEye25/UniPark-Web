@@ -208,6 +208,7 @@ export class UpdateUserInfoComponent implements OnInit {
     console.log(updateResponse);
     if (updateResponse && updateResponse.data.trim() === 'SUCCESS') {
       this.openSnackBarSuccess();
+      this.cancle();
     } else {
       this.openSnackBarFail();
     }
