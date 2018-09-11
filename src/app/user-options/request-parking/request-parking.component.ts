@@ -98,6 +98,8 @@ export class RequestParkingComponent implements OnInit {
         this.drawingCo = this.drawingCo.split(',');
         this.longitude = this.drawingCo[1];
         this.latitude = this.drawingCo[0];
+        console.log(this.longitude);
+        console.log(this.latitude);
         console.log(this.drawingCo);
       } else {
         this.markerEmpty = true;
