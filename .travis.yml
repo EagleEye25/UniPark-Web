@@ -21,7 +21,7 @@ before_script:
 
 script:
   - npm install codecov -g
-  - echo 'Build Dist' && echo -en 'travis_fold:start:script.build\\r'
+  - echo 'Build Docs' && echo -en 'travis_fold:start:script.build\\r'
 
   - ng build --base-href="./"
 
@@ -36,15 +36,15 @@ script:
   - ng test --single-run --code-coverage
 
   - echo -en 'travis_fold:end:script.test\\r'
-  - echo 'Package Dist' && echo -en 'travis_fold:start:script.dist\\r'
+  - echo 'Package Docs' && echo -en 'travis_fold:start:script.docs\\r'
 
-  - cd dist
-  - zip -r $TRAVIS_BUILD_DIR/dist.zip *
+  - cd docs
+  - zip -r $TRAVIS_BUILD_DIR/docs.zip *
 
   - cd $TRAVIS_BUILD_DIR
-  - sha256sum $TRAVIS_BUILD_DIR/dist.zip > $TRAVIS_BUILD_DIR/dist.zip.sha256sum.txt
-  - cat $TRAVIS_BUILD_DIR/dist.zip.sha256sum.txt
+  - sha256sum $TRAVIS_BUILD_DIR/docs.zip > $TRAVIS_BUILD_DIR/docs.zip.sha256sum.txt
+  - cat $TRAVIS_BUILD_DIR/docs.zip.sha256sum.txt
 
-  - echo -en 'travis_fold:end:script.dist\\r'
+  - echo -en 'travis_fold:end:script.docs\\r'
 after_success:
   - codecov
