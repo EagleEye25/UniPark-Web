@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AppService, MAPBOX_API } from '../app.service';
 
 import * as mapboxgl from 'mapbox-gl';
@@ -11,13 +11,14 @@ import * as mapboxgl from 'mapbox-gl';
     './map.component.scss'
   ]
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges {
 
   @Input() longitude: any;
   @Input() latitude: any;
   @Input() parkingArea: any;
   mapBoxAPI: any;
   marker: any;
+  old: any;
 
   // TODO: find out syntax for insertion
   testing = [
@@ -37,8 +38,15 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log('lat: ', this.latitude, 'long: ', this.longitude);
     this.generateMap();
+    this.old = this.longitude;
+  }
+
+  ngOnChanges(): void {
+    if (this.old !== this.longitude) {
+      this.generateMap();
+    }
   }
 
   // Generates map data
@@ -46,6 +54,7 @@ export class MapComponent implements OnInit {
     const dataSet = '../../assets/datasets/' + this.parkingArea + '.geojson';
     console.log(dataSet);
     const latLng = new mapboxgl.LngLat(this.longitude, this.latitude);
+    console.log('latlon: ', latLng);
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/eagleeye25/cjjyumx0a8cph2smuvg6kgp39',
@@ -74,7 +83,7 @@ export class MapComponent implements OnInit {
       });
 
     this.marker = new mapboxgl.Marker({
-      offset: [0, 0]
+      offset: [2, 2]
     })
     .setLngLat(latLng)
     .addTo(map);

@@ -17,8 +17,11 @@
       </mat-list-item>
     </mat-list>
   </div>
-  <div class="padding-map">
-    <app-map longitude="25.672261" latitude="-33.999720"></app-map>
+  <div *ngIf="ParkingName && !markerEmpty" class="padding-map">
+    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{ParkingName}} ></app-map>
+  </div>
+  <div *ngIf="markerEmpty">
+    <p>No map data to display.</p>
   </div>
   <hr>
 </div>
