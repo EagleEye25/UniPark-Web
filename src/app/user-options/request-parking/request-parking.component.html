@@ -36,6 +36,9 @@
   <div *ngIf="areaSelected && !markerEmpty" class="padding-map">
     <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{selectedArea}}></app-map>
   </div>
+  <div *ngIf="markerEmpty">
+    <p>No map data to display</p>
+  </div>
   <hr>
   <div class="padding-buttons">
   <mat-dialog-actions>
