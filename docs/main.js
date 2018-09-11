@@ -277,8 +277,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-// const appState = {};
-var appState = { FacilityID: 's216017173' };
+var appState = {};
+// const appState = {FacilityID: 's216017173'};
 var AppService = /** @class */ (function () {
     function AppService() {
     }
@@ -613,21 +613,13 @@ var MapComponent = /** @class */ (function () {
         Object.getOwnPropertyDescriptor(mapbox_gl__WEBPACK_IMPORTED_MODULE_2__, 'accessToken').set(_app_service__WEBPACK_IMPORTED_MODULE_1__["MAPBOX_API"]);
     }
     MapComponent.prototype.ngOnInit = function () {
-        console.log('lat: ', this.latitude, 'long: ', this.longitude);
         this.generateMap();
-        this.old = this.longitude;
-    };
-    MapComponent.prototype.ngOnChanges = function () {
-        if (this.old !== this.longitude) {
-            this.generateMap();
-        }
     };
     // Generates map data
     MapComponent.prototype.generateMap = function () {
         var dataSet = '../../assets/datasets/' + this.parkingArea + '.geojson';
         console.log(dataSet);
         var latLng = new mapbox_gl__WEBPACK_IMPORTED_MODULE_2__["LngLat"](this.longitude, this.latitude);
-        console.log('latlon: ', latLng);
         var map = new mapbox_gl__WEBPACK_IMPORTED_MODULE_2__["Map"]({
             container: 'map',
             style: 'mapbox://styles/eagleeye25/cjjyumx0a8cph2smuvg6kgp39',
@@ -654,7 +646,7 @@ var MapComponent = /** @class */ (function () {
             });
         });
         this.marker = new mapbox_gl__WEBPACK_IMPORTED_MODULE_2__["Marker"]({
-            offset: [2, 2]
+            offset: [0, 0]
         })
             .setLngLat(latLng)
             .addTo(map);
@@ -949,7 +941,7 @@ var UniparkPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n  <!-- Display of help modal -->\r\n  <!-- Displays help image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/help/help.png\" alt=\"HELP\">\r\n  <hr>\r\n  <p>\r\n    \r\n    <b><u>User Information</u></b>\r\n    <br>\r\n    Will display all of your information.\r\n    <br>\r\n    <br>\r\n    <b><u>Update User Info</u></b>\r\n    <br>\r\n    This allows you to update either your: Cell-Phone Number, E-mail Address, Password.\r\n    <br>\r\n    Cell-Phone Number: Needs to have 10 digits entered as specified.\r\n    <br>\r\n    E-mail Address: Only valid email addresses will be accepted.\r\n    <br>\r\n    Password: When entering a new password, it will need to be entered\r\n    again inorder to ensure that you entered the same password.\r\n    <br>\r\n    By pressing the <mat-icon svgIcon=\"eye\"></mat-icon> or <mat-icon svgIcon=\"eye-off\"></mat-icon> icon it will display,\r\n    hide your newly entered password.\r\n    <br>\r\n    <br>\r\n    <b><u>Assigned Parking</u></b>\r\n    <br>\r\n    Will display all parking information associated to you.\r\n    <br>\r\n    <br>\r\n    <b><u>Request Parking</u></b>\r\n    This allows you to request for a different parking area / spot within the facility.\r\n    <br>\r\n    Only options that are viable to you will given, they can be selected by pressing on \"Parking Area\" and chooing an option\r\n    <br>\r\n    and also \"parking Spot\", once both feilds have been chosen you will be required to \"Request\" the parking, this can be done\r\n    by pressing enter or clicking the \"Request\" button\r\n    <br>\r\n    <br>\r\n    Options can be closed by clicking \"close\" or by pressing \"Esc\".\r\n    <br>\r\n    Options can be completed by clicking \"Submit\"/\"Request\" or by pressing Enter\" on the keyboard.\r\n    <br>\r\n    <br>\r\n    By pressing \"Logout\" <mat-icon svgIcon=\"logout\"></mat-icon> you will be logged off from the web app, and taken back to the \"Dragon Code\" website.\r\n  </p>\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\"\r\n      mat-dialog-close>\r\n        <mat-icon svgIcon=\"close\"></mat-icon>\r\n          Close\r\n      </button>\r\n  </mat-dialog-actions>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative\">\r\n  <!-- Display of help modal -->\r\n  <!-- Displays help image -->\r\n  <img src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\r\n  <hr>\r\n  <p>\r\n    \r\n    <b><u>User Information</u></b>\r\n    <br>\r\n    Will display all of your information.\r\n    <br>\r\n    <br>\r\n    <b><u>Update User Info</u></b>\r\n    <br>\r\n    This allows you to update either your: Cell-Phone Number, E-mail Address, Password.\r\n    <br>\r\n    Cell-Phone Number: Needs to have 10 digits entered as specified.\r\n    <br>\r\n    E-mail Address: Only valid email addresses will be accepted.\r\n    <br>\r\n    Password: When entering a new password, it will need to be entered\r\n    again inorder to ensure that you entered the same password.\r\n    <br>\r\n    By pressing the <mat-icon svgIcon=\"eye\"></mat-icon> or <mat-icon svgIcon=\"eye-off\"></mat-icon> icon it will display,\r\n    hide your newly entered password.\r\n    <br>\r\n    <br>\r\n    <b><u>Assigned Parking</u></b>\r\n    <br>\r\n    Will display all parking information associated to you.\r\n    <br>\r\n    <br>\r\n    <b><u>Request Parking</u></b>\r\n    This allows you to request for a different parking area / spot within the facility.\r\n    <br>\r\n    Only options that are viable to you will given, they can be selected by pressing on \"Parking Area\" and chooing an option\r\n    <br>\r\n    and also \"parking Spot\", once both feilds have been chosen you will be required to \"Request\" the parking, this can be done\r\n    by pressing enter or clicking the \"Request\" button\r\n    <br>\r\n    <br>\r\n    Options can be closed by clicking \"close\" or by pressing \"Esc\".\r\n    <br>\r\n    Options can be completed by clicking \"Submit\"/\"Request\" or by pressing Enter\" on the keyboard.\r\n    <br>\r\n    <br>\r\n    By pressing \"Logout\" <mat-icon svgIcon=\"logout\"></mat-icon> you will be logged off from the web app, and taken back to the \"Dragon Code\" website.\r\n  </p>\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\"\r\n      mat-dialog-close>\r\n        <mat-icon svgIcon=\"close\"></mat-icon>\r\n          Close\r\n      </button>\r\n  </mat-dialog-actions>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -960,7 +952,7 @@ module.exports = "<div class=\"alternative\">\r\n  <!-- Display of help modal --
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
+module.exports = ""
 
 /***/ }),
 
@@ -1036,7 +1028,7 @@ var HelpComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/infringements/infringements.png\" alt=\"Infringements.png\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Filter table input-->\r\n    <mat-form-field>\r\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n    </mat-form-field>\r\n    <!-- Mat table to display user infringements -->\r\n    <div>\r\n      <table mat-table [dataSource]=\"tableData\" class=\"table\" matSort>\r\n        <!-- Date Column -->\r\n        <ng-container matColumnDef=\"Date\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.Date}} </td>\r\n        </ng-container>\r\n        <!-- Description Column -->\r\n        <ng-container matColumnDef=\"Description\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.Description}} </td>\r\n        </ng-container>\r\n        <!-- Report Type Column -->\r\n        <ng-container matColumnDef=\"ReportType\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Type </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.ReportType}} </td>\r\n        </ng-container>\r\n        <!-- Amount Column -->\r\n        <ng-container matColumnDef=\"Amount\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>\r\n          <td mat-cell *matCellDef=\"let report\"> R{{report.Amount}} </td>\r\n        </ng-container>\r\n      \r\n      <tr mat-header-row *matHeaderRowDef=\"displayColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayColumns;\"></tr>\r\n      </table>\r\n    </div>\r\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img src=\"assets/images/user-options/infringements/infringements.png\" alt=\"Infringements.png\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Filter table input-->\r\n    <mat-form-field>\r\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n    </mat-form-field>\r\n    <!-- Mat table to display user infringements -->\r\n    <div>\r\n      <table mat-table [dataSource]=\"tableData\" class=\"table\" matSort>\r\n        <!-- Date Column -->\r\n        <ng-container matColumnDef=\"Date\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.Date}} </td>\r\n        </ng-container>\r\n        <!-- Description Column -->\r\n        <ng-container matColumnDef=\"Description\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.Description}} </td>\r\n        </ng-container>\r\n        <!-- Report Type Column -->\r\n        <ng-container matColumnDef=\"ReportType\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Type </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.ReportType}} </td>\r\n        </ng-container>\r\n        <!-- Amount Column -->\r\n        <ng-container matColumnDef=\"Amount\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>\r\n          <td mat-cell *matCellDef=\"let report\"> R{{report.Amount}} </td>\r\n        </ng-container>\r\n      \r\n      <tr mat-header-row *matHeaderRowDef=\"displayColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayColumns;\"></tr>\r\n      </table>\r\n    </div>\r\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1047,7 +1039,7 @@ module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.table {\n  width: 100%;\n  height: 50%;\n  overflow: auto; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.table {\n  width: 100%;\n  height: 50%;\n  overflow: auto; }\n"
 
 /***/ }),
 
@@ -1158,7 +1150,7 @@ var InfringementsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays request parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/request-parking/request-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <div class=\"padding-feilds\">\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n    <!-- Mat form feild: parking area -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Area\" \r\n                    formControlName=\"parkingArea\"\r\n                    matInput\r\n                    [(value)]= \"parkingArea\"\r\n                    (selectionChange)='getAreaFromSelect()'>\r\n          <mat-option *ngFor=\"let ParkingArea of distinctArea\"  [value]=\"ParkingArea\">\r\n            {{ParkingArea}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: parking spot -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Spot\" \r\n                    formControlName=\"parkingSpot\"  \r\n                    matInput\r\n                    [(value)]= \"parkingSpot\"\r\n                    (selectionChange)='getSpotFormSelect()'>\r\n          <mat-option *ngFor=\"let ParkingSpot of spotsAssociated\" [value]=\"ParkingSpot.ParkingSpace\">\r\n            {{ParkingSpot.ParkingSpace}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n    </mat-dialog-content>\r\n  </div>\r\n  <br>\r\n  <div *ngIf=\"areaSelected && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{selectedArea}}></app-map>\r\n  </div>\r\n  <div *ngIf=\"markerEmpty\">\r\n    <p>No map data to display</p>\r\n  </div>\r\n  <hr>\r\n  <div class=\"padding-buttons\">\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button\r\n      color=\"warn\"\r\n     (click)=\"cancle()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Update button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\"\r\n      [disabled]=\"(!areaSelected || !spotSelected)\"\r\n      (click)=\"submitRequestParking()\">\r\n      <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n      request\r\n    </button>\r\n  </mat-dialog-actions>\r\n  </div>\r\n</div>\r\n  "
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays request parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/request-parking/request-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <div class=\"padding-feilds\">\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n    <!-- Mat form feild: parking area -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Area\" \r\n                    formControlName=\"parkingArea\"\r\n                    matInput\r\n                    [(value)]= \"parkingArea\"\r\n                    (selectionChange)='getAreaFromSelect()'>\r\n          <mat-option *ngFor=\"let ParkingArea of distinctArea\"  [value]=\"ParkingArea\">\r\n            {{ParkingArea}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: parking spot -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Spot\" \r\n                    formControlName=\"parkingSpot\"  \r\n                    matInput\r\n                    [(value)]= \"parkingSpot\"\r\n                    (selectionChange)='getSpotFormSelect()'>\r\n          <mat-option *ngFor=\"let ParkingSpot of spotsAssociated\" [value]=\"ParkingSpot.ParkingSpace\">\r\n            {{ParkingSpot.ParkingSpace}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n    </mat-dialog-content>\r\n  </div>\r\n  <br>\r\n  <div *ngIf=\"areaSelected && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{selectedArea}}></app-map>\r\n  </div>\r\n  <hr>\r\n  <div class=\"padding-buttons\">\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button\r\n      color=\"warn\"\r\n     (click)=\"cancle()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Update button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\"\r\n      [disabled]=\"(!areaSelected || !spotSelected)\"\r\n      (click)=\"submitRequestParking()\">\r\n      <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n      request\r\n    </button>\r\n  </mat-dialog-actions>\r\n  </div>\r\n</div>\r\n  "
 
 /***/ }),
 
@@ -1306,8 +1298,6 @@ var RequestParkingComponent = /** @class */ (function () {
                 this.drawingCo = this.drawingCo.split(',');
                 this.longitude = this.drawingCo[1];
                 this.latitude = this.drawingCo[0];
-                console.log(this.longitude);
-                console.log(this.latitude);
                 console.log(this.drawingCo);
             }
             else {
@@ -1420,7 +1410,7 @@ module.exports = "<div class=\"alternative center\">\r\n    <!-- Display of logi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.padding-feilds {\n  padding-left: 37%; }\n\n.padding-buttons {\n  padding-left: 36%; }\n\n.requirement {\n  padding-top: 0.5em;\n  color: orangered;\n  font-family: Arial, serif;\n  font-size: 9pt; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.padding-image {\n  padding-left: 35%; }\n\n.padding-feilds {\n  padding-left: 37%; }\n\n.padding-buttons {\n  padding-left: 36%; }\n\n.requirement {\n  padding-top: 0.5em;\n  color: orangered;\n  font-family: Arial, serif;\n  font-size: 9pt; }\n"
 
 /***/ }),
 
@@ -1775,7 +1765,7 @@ module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.padding-image {\n  padding-left: 35%; }\n"
 
 /***/ }),
 
@@ -1854,7 +1844,7 @@ var UserInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays assigned parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/assigned-parking/assigned-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <!-- Mat list to display assigned parking -->\r\n  <div class=\"padding-feilds\">\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Name: &nbsp;</strong> {{ ParkingName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Access Level: &nbsp;</strong> {{ ParkingAccessLevel }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Location: &nbsp;</strong> {{ Location }}\r\n      </mat-list-item>\r\n    </mat-list>\r\n  </div>\r\n  <div *ngIf=\"ParkingName && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{ParkingName}} ></app-map>\r\n  </div>\r\n  <div *ngIf=\"markerEmpty\">\r\n    <p>No map data to display.</p>\r\n  </div>\r\n  <hr>\r\n</div>\r\n  "
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays assigned parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/assigned-parking/assigned-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <!-- Mat list to display assigned parking -->\r\n  <div class=\"padding-feilds\">\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Name: &nbsp;</strong> {{ ParkingName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Access Level: &nbsp;</strong> {{ ParkingAccessLevel }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Location: &nbsp;</strong> {{ Location }}\r\n      </mat-list-item>\r\n    </mat-list>\r\n  </div>\r\n  <div class=\"padding-map\">\r\n    <app-map longitude=\"25.672261\" latitude=\"-33.999720\"></app-map>\r\n  </div>\r\n  <hr>\r\n</div>\r\n  "
 
 /***/ }),
 
@@ -1894,6 +1884,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+// import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 var ViewAssignedParkingComponent = /** @class */ (function () {
     function ViewAssignedParkingComponent(http, appService) {
         this.http = http;
@@ -1908,46 +1899,21 @@ var ViewAssignedParkingComponent = /** @class */ (function () {
             external device by a client program as a synchronous activity. Polling is most often used in
             terms of input/output, and is also referred to as polled or software-driven.
         */
-        /*
-         const pollData = () => {
-           const facilityID = this.appService.getState('FacilityID');
-           if (facilityID) {
-             this.http.get(`${BASE_URL}/parking/assigned/` + facilityID)
-               .subscribe((response: any) => {
-                 this.ParkingName = response.ParkingName;
-                 this.ParkingAccessLevel = response.ParkingAccessLevel;
-                 this.Location = response.Location;
-               });
-           } else {
-             setTimeout(pollData, 1000);
-           }
-         };
-         pollData();*/
-        this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_2__["BASE_URL"] + "/parking/assigned/" + this.appService.getState('FacilityID'))
-            .subscribe(function (response) {
-            _this.ParkingName = response.ParkingName;
-            _this.ParkingAccessLevel = response.ParkingAccessLevel;
-            _this.Location = response.Location;
-            _this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_2__["BASE_URL"] + "/parking/request/info/" + _this.appService.getState('FacilityID'))
-                .subscribe(function (resp) {
-                _this.requestOptions = resp;
-                var req = _this.requestOptions;
-                // Gets spots for selected area
-                var coordinates = req.find(function (data) { return data.ParkingArea === _this.ParkingName; });
-                _this.drawingCo = coordinates.AreaLocation;
-                if (_this.drawingCo) {
-                    _this.drawingCo = _this.drawingCo.split(',');
-                    _this.longitude = _this.drawingCo[1];
-                    _this.latitude = _this.drawingCo[0];
-                    console.log(_this.drawingCo);
-                    console.log(_this.longitude);
-                    console.log(_this.latitude);
-                }
-                else {
-                    _this.markerEmpty = true;
-                }
-            });
-        });
+        var pollData = function () {
+            var facilityID = _this.appService.getState('FacilityID');
+            if (facilityID) {
+                _this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_2__["BASE_URL"] + "/parking/assigned/" + facilityID)
+                    .subscribe(function (response) {
+                    _this.ParkingName = response.ParkingName;
+                    _this.ParkingAccessLevel = response.ParkingAccessLevel;
+                    _this.Location = response.Location;
+                });
+            }
+            else {
+                setTimeout(pollData, 1000);
+            }
+        };
+        pollData();
     };
     ViewAssignedParkingComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1972,7 +1938,7 @@ var ViewAssignedParkingComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/requests/requests.png\" alt=\"Requests.png\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Mat table to display user infringements -->\r\n    <div *ngIf=\"!empty\">\r\n      <!-- Filter table input-->\r\n      <mat-form-field>\r\n        <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n      </mat-form-field>\r\n      <table mat-table [dataSource]=\"tableData\" class=\"table\" matSort>\r\n        <!-- Date Column -->\r\n        <ng-container matColumnDef=\"Date\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.RequestDate}} </td>\r\n        </ng-container>\r\n        <!-- ParkingArea Column -->\r\n        <ng-container matColumnDef=\"ParkingArea\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Area: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.ParkingArea}} </td>\r\n        </ng-container>\r\n        <!-- ParkingSpace Column -->\r\n        <ng-container matColumnDef=\"ParkingSpace\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Space: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.ParkingSpace}} </td>\r\n        </ng-container>\r\n        <!-- FEE Column -->\r\n        <ng-container matColumnDef=\"FEE\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fee: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> R{{request.Fee}} </td>\r\n        </ng-container>\r\n        <!-- Cancel Column -->\r\n        <ng-container matColumnDef=\"Cancel\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cancel: </th>\r\n            <td mat-cell *matCellDef=\"let request\">\r\n                <button mat-button \r\n                  color=\"warn\"\r\n                  (click)=\"cancelRequest(request.ID)\">\r\n                  <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n                  Cancel\r\n                </button>\r\n            </td>\r\n          </ng-container>\r\n      <tr mat-header-row *matHeaderRowDef=\"displayColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayColumns;\"></tr>\r\n      </table>\r\n      <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n    </div>\r\n    <div *ngIf=\"empty\">\r\n      <p>NO PENDING REQUESTS</p>\r\n    </div>\r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img src=\"assets/images/user-options/infringements/infringements.png\" alt=\"Infringements.png\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Mat table to display user infringements -->\r\n    <div *ngIf=\"!empty\">\r\n      <!-- Filter table input-->\r\n      <mat-form-field>\r\n        <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n      </mat-form-field>\r\n      <table mat-table [dataSource]=\"tableData\" class=\"table\" matSort>\r\n        <!-- Date Column -->\r\n        <ng-container matColumnDef=\"Date\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.RequestDate}} </td>\r\n        </ng-container>\r\n        <!-- ParkingArea Column -->\r\n        <ng-container matColumnDef=\"ParkingArea\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Area: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.ParkingArea}} </td>\r\n        </ng-container>\r\n        <!-- ParkingSpace Column -->\r\n        <ng-container matColumnDef=\"ParkingSpace\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Space: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.ParkingSpace}} </td>\r\n        </ng-container>\r\n        <!-- FEE Column -->\r\n        <ng-container matColumnDef=\"FEE\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fee: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> R{{request.Fee}} </td>\r\n        </ng-container>\r\n        <!-- Cancel Column -->\r\n        <ng-container matColumnDef=\"Cancel\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cancel: </th>\r\n            <td mat-cell *matCellDef=\"let request\">\r\n                <button mat-button \r\n                  color=\"warn\"\r\n                  (click)=\"cancelRequest(request.ID)\">\r\n                  <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n                  Cancel\r\n                </button>\r\n            </td>\r\n          </ng-container>\r\n      <tr mat-header-row *matHeaderRowDef=\"displayColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayColumns;\"></tr>\r\n      </table>\r\n      <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n    </div>\r\n    <div *ngIf=\"empty\">\r\n      <p>NO PENDING REQUESTS</p>\r\n    </div>\r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1983,7 +1949,7 @@ module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.table {\n  width: 100%;\n  height: 50%;\n  overflow: auto; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.table {\n  width: 100%;\n  height: 50%;\n  overflow: auto; }\n"
 
 /***/ }),
 
