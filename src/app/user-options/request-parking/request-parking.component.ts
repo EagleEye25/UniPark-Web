@@ -101,6 +101,7 @@ export class RequestParkingComponent implements OnInit {
         console.log(this.longitude);
         console.log(this.latitude);
         console.log(this.drawingCo);
+        this.markerEmpty = false;
       } else {
         this.markerEmpty = true;
       }
