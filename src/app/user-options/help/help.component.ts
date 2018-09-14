@@ -8,10 +8,19 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class HelpComponent implements OnInit {
 
+  filter = '';
+
   constructor(
     private dialogRef: MatDialogRef<HelpComponent>) { }
 
   ngOnInit() {
+  }
+
+  // filter used on table
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.filter = filterValue;
   }
 
   // Closes the dialog

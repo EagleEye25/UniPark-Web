@@ -3,8 +3,64 @@
   <!-- Displays help image -->
   <img class="padding-image" src="assets/images/user-options/help/help.png" alt="HELP">
   <hr>
+  <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <!-- View User Info -->
+  <div *ngIf="filter == 'user' || filter === ''">
+    <p>
+      <b><u>User Information</u></b>
+      <br>
+      Will display all of your information.
+    </p>
+  </div>
+  <!-- Update User Info -->
+  <div *ngIf="filter == 'update' || filter === ''">
+    <p>
+      <b><u>Update User Information</u></b>
+      <br>
+      This allows you to update either your: Cell-Phone Number, E-mail Address, Password.
+      <br>
+      <b>Cell-Phone Number:</b> Needs to have 10 digits entered as specified.
+      <br>
+      <b>E-mail Address:</b> Only valid email addresses will be accepted.
+      <br>
+      <b>Password:</b> When entering a new password, it will need to be entered
+      again inorder to ensure that you entered the same password.
+      <br>
+      By pressing the <mat-icon svgIcon="eye"></mat-icon> or <mat-icon svgIcon="eye-off"></mat-icon> icon it will display,
+      hide your newly entered password.
+    </p>
+  </div>
+  <!-- Assigned Parking -->
+  <div *ngIf="filter == 'assign' || filter === '' || filter == 'assigned'">
+    <p>
+      <b><u>Assigned Parking</u></b>
+      <br>
+      Will display all parking information associated to you.
+    </p>
+  </div>
+  <!-- Request Parking -->
+  <div *ngIf="filter == 'request' || filter === ''">
+    <p>
+      <b><u>Request Parking</u></b>
+      This allows you to request for a different parking area / spot within the facility.
+    </p>
+    <div *ngIf="filter == 'user' || filter === ''">
+  <!-- View Requests -->
+  <div>
+    <p>
+
+    </p>
+  </div>
+  <!-- Infringments -->
+  <div *ngIf="filter == 'user' || filter === '' || filter == 'user information'">
+    <p>
+
+    </p>
+  </div>
   <p>
-    
+ <!--
     <b><u>User Information</u></b>
     <br>
     Will display all of your information.
@@ -46,6 +102,7 @@
     <br>
     By pressing "Logout" <mat-icon svgIcon="logout"></mat-icon> you will be logged off from the web app, and taken back to the "Dragon Code" website.
   </p>
+  -->
   <hr>
   <br>
   <mat-dialog-actions>
