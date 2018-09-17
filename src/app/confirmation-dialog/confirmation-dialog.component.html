@@ -1,0 +1,21 @@
+<div class="alternative">
+    {{message}}
+  <!-- no button -->
+  <div class="padding-buttons">
+    <!-- Close button -->
+    <button mat-button 
+      color="warn"
+      (click)="cancel()">
+      <mat-icon svgIcon="cancel"></mat-icon>
+      NO
+    </button>
+    <!-- yes button -->
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="confirm()">
+      <mat-icon svgIcon="cube-send"></mat-icon> 
+      YES
+    </button>
+  </div>
+</div>

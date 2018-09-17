@@ -24,6 +24,7 @@ import { routing } from './app.routing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MapComponent } from './map/map.component';
 import { ViewRequestsComponent } from './user-options/view-requests/view-requests.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -41,6 +42,7 @@ import { ViewRequestsComponent } from './user-options/view-requests/view-request
     InfringementsComponent,
     MapComponent,
     ViewRequestsComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { ViewRequestsComponent } from './user-options/view-requests/view-request
     UpdateUserInfoComponent,
     ViewAssignedParkingComponent,
     InfringementsComponent,
-    HelpComponent
+    HelpComponent,
+    ConfirmationDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

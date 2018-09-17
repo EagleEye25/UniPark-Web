@@ -20,6 +20,6 @@ export class AppService {
   }
 }
 
-// export const BASE_URL = 'https://unipark.lunatech.co.za';
-export const BASE_URL = 'http://localhost:9000';
+export const BASE_URL = 'https://unipark.lunatech.co.za';
+// export const BASE_URL = 'http://localhost:9000';
 export const MAPBOX_API = 'pk.eyJ1IjoiZWFnbGVleWUyNSIsImEiOiJjamp0NHcwbGcwaWVjM3BvMHdjOGx3dTZuIn0.wpJ4XdLSb2zBpJ8G36E7Fw';
