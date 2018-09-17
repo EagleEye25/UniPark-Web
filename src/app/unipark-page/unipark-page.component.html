@@ -1,7 +1,10 @@
 <div class="alternative">
   <mat-toolbar color="primary">
     <!-- Displays UniPark image -->
-    <img src="assets/images/branding/up.png" alt="UniPark">
+    <img src="assets/images/branding/up.png"
+      routerLink="./"
+      alt="UniPark"
+      style="cursor: pointer;">
     <span class="spacer"></span>
       <!-- View User Information -->
       <a mat-button routerLink="./user-information"
@@ -10,7 +13,8 @@
         <span>User Information</span>
       </a>
       <!-- Update User Info -->
-      <a mat-button routerLink="./update-user-info"
+      <a mat-button
+        routerLink="./update-user-info"
         routerLinkActive="mat-accent">
         <mat-icon svgIcon="account-settings-variant"></mat-icon>
         <span>Update User Info</span>
@@ -45,8 +49,8 @@
         <span>Help</span>
       </button>
       <!-- Logout -->
-      <button mat-button routerLink="/"
-        (click)="logoutUser()">
+      <button mat-button
+        (click)="openConfirmation()">
         <mat-icon svgIcon="logout"></mat-icon>
         <span>Logout</span>
       </button>

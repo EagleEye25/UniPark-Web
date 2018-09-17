@@ -3,8 +3,95 @@
   <!-- Displays help image -->
   <img class="padding-image" src="assets/images/user-options/help/help.png" alt="HELP">
   <hr>
+  <mat-form-field>
+    <input type="text" placeholder="Filter"
+            aria-label="Number"
+            matInput
+            [formControl]="autoComplete"
+            [matAutocomplete]="auto"
+            focus-me="false">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <!-- View User Info -->
+  <div *ngIf="filterValue == 'user information' || filterValue === ''">
+    <p>
+      <b><u>User Information</u></b>
+      <br>
+      Will display all of your information.
+    </p>
+  </div>
+  <!-- Update User Info -->
+  <div *ngIf="filterValue == 'update user info' || filterValue === ''">
+    <p>
+      <b><u>Update User Information</u></b>
+      <br>
+      This allows you to update either your: Cell-Phone Number, E-mail Address, Password.
+      <br>
+      <b>Cell-Phone Number:</b> Needs to have 10 digits entered as specified.
+      <br>
+      <b>E-mail Address:</b> Only valid email addresses will be accepted.
+      <br>
+      <b>Password:</b> When entering a new password, it will need to be entered
+      again inorder to ensure that you entered the same password.
+      <br>
+      By pressing the <mat-icon svgIcon="eye"></mat-icon> or <mat-icon svgIcon="eye-off"></mat-icon> icon it will display,
+      hide your newly entered password.
+    </p>
+  </div>
+  <!-- Assigned Parking -->
+  <div *ngIf="filterValue == 'assigned parking' || filterValue === '' || filterValue == 'assigned'">
+    <p>
+      <b><u>Assigned Parking</u></b>
+      <br>
+      Will display all parking information associated to you.
+    </p>
+  </div>
+  <!-- Request Parking -->
+  <div *ngIf="filterValue == 'request parking' || filterValue === ''">
+    <p>
+      <b><u>Request Parking</u></b>
+      <br>
+      This allows you to request for a different parking area / spot within the facility.
+      <br>
+      1) First select the desired parking area.
+      <br>
+      2) Then select a parking spot.
+      <br>
+      3) Finally click the request button.
+    </p>
+  </div>
+  <!-- View Requests -->
+  <div *ngIf="filterValue == 'view requests' || filterValue === ''">
+    <p>
+        <b><u>View Requests</u></b>
+        <br>
+        This will display all your currently (In progress) requests.
+        <br>
+        A request can be canceled by:
+        <br>
+        1) Clicking the Cancel button, a confirmation box will appear asking if you want to cancel.
+        <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;*Clicking NO will not cancel the request.
+        <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;*Clicking YES will cancel the request, and the request will be removed.
+    </p>
+  </div>
+  <!-- Infringments -->
+  <div *ngIf="filterValue == 'infringements' || filterValue === ''">
+    <p>
+      <b><u>Infringements</u></b>
+      <br>
+      This will display all infringements/reports that are against you,
+      <br>
+      and that still have to be paid to the facility.
+    </p>
+  </div>
   <p>
-    
+ <!--
     <b><u>User Information</u></b>
     <br>
     Will display all of your information.
@@ -46,6 +133,7 @@
     <br>
     By pressing "Logout" <mat-icon svgIcon="logout"></mat-icon> you will be logged off from the web app, and taken back to the "Dragon Code" website.
   </p>
+  -->
   <hr>
   <br>
   <mat-dialog-actions>

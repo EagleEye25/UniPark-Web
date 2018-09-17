@@ -4,7 +4,7 @@
   <img class="padding-image" src="assets/images/user-options/assigned-parking/assigned-parking.png" alt="User Info">
   <hr>
   <!-- Mat list to display assigned parking -->
-  <div class="padding-feilds">
+  <div class="padding-feilds" *ngIf="valid === true">
     <mat-list role="list">
       <mat-list-item role="listitem">
         <strong>Parking Name: &nbsp;</strong> {{ ParkingName }}
@@ -16,6 +16,9 @@
         <strong>Location: &nbsp;</strong> {{ Location }}
       </mat-list-item>
     </mat-list>
+  </div>
+  <div *ngIf="!ParkingName">
+    NO CURRENTLY ASSIGNED PARKING
   </div>
   <div *ngIf="ParkingName && !markerEmpty" class="padding-map">
     <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{ParkingName}} ></app-map>

@@ -19,6 +19,7 @@ export class ViewAssignedParkingComponent implements OnInit {
   longitude: any;
   latitude: any;
   markerEmpty: any;
+  valid: boolean;
 
   constructor(
     private http: HttpClient,
@@ -49,9 +50,11 @@ export class ViewAssignedParkingComponent implements OnInit {
     pollData();*/
     this.http.get(`${BASE_URL}/parking/assigned/` + this.appService.getState('FacilityID'))
       .subscribe((response: any) => {
-        this.ParkingName = response.ParkingName;
-        this.ParkingAccessLevel = response.ParkingAccessLevel;
-        this.Location = response.Location;
+        if (response) {
+          this.valid = true;
+          this.ParkingName = response.ParkingName;
+          this.ParkingAccessLevel = response.ParkingAccessLevel;
+          this.Location = response.Location;
           this.http.get(`${BASE_URL}/parking/request/info/` + this.appService.getState('FacilityID'))
           .subscribe((resp: any) => { this.requestOptions = resp;
             const req = this.requestOptions;
@@ -69,6 +72,9 @@ export class ViewAssignedParkingComponent implements OnInit {
               this.markerEmpty = true;
             }
           });
+        } else {
+          this.valid = false;
+        }
       });
   }
 }

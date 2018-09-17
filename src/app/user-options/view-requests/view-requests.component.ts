@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort, MatSnackBar, MatDialogRef, MatDialog } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { AppService, BASE_URL } from '../../app.service';
+import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-view-requests',
@@ -10,10 +11,13 @@ import { AppService, BASE_URL } from '../../app.service';
 })
 export class ViewRequestsComponent implements OnInit {
 
+  confirmDialogRef: MatDialogRef<ConfirmationDialogComponent>;
+
   displayColumns = ['Date', 'ParkingArea', 'ParkingSpace', 'FEE', 'Cancel'];
   tableData: any;
   viewRequests: any;
   empty = false;
+  confirm = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -21,6 +25,7 @@ export class ViewRequestsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
+    private dialog: MatDialog,
     private appService: AppService
   ) { }
 
@@ -70,8 +75,29 @@ export class ViewRequestsComponent implements OnInit {
     this.tableData.filter = filterValue;
   }
 
-  cancelRequest(requestID) {
-    // Gathers infringement data from backend
+  confirmFromEmitter(confirmation: boolean): void {
+    confirmation = true ? this.confirm = true : this.confirm = false;
+    console.log('here');
+  }
+
+  callConfrim(requestID: any) {
+    this.confirmDialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      disableClose: true,
+      data: {
+        state: 'view-requests',
+      }
+    });
+    this.confirmDialogRef.afterClosed()
+    .subscribe(result => {
+      this.confirm = result.confirmation;
+      this.cancelRequest(requestID);
+      console.log('res: ', result);
+    });
+  }
+
+  cancelRequest(requestID: any) {
+    if (this.confirm === true) {
+      // Gathers infringement data from backend
     this.http.get(`${BASE_URL}/request/cancel/` + requestID)
     .subscribe((response: any) => {
       if (response.data.trim() === 'SUCCESS') {
@@ -87,6 +113,7 @@ export class ViewRequestsComponent implements OnInit {
         this.openSnackBarFail();
       }
     });
+    }
   }
 }
 

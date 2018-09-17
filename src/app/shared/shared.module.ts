@@ -53,7 +53,8 @@ import { MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/mate
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatCheckboxModule,
@@ -85,7 +86,8 @@ import { MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/mate
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule
   ]
 })
 export class SharedModule {}
