@@ -249,6 +249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* actual routing */
 var routes = [
     { path: '', component: _landing_landing_component__WEBPACK_IMPORTED_MODULE_1__["LandingComponent"], pathMatch: 'full' },
+    { path: 'forgot-password', component: _user_options_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_9__["ForgotPasswordComponent"], pathMatch: 'full' },
     { path: 'admin', component: _unipark_page_unipark_page_component__WEBPACK_IMPORTED_MODULE_2__["UniparkPageComponent"], children: [
             { path: 'user-information', component: _user_options_user_info_user_info_component__WEBPACK_IMPORTED_MODULE_4__["UserInfoComponent"], pathMatch: 'full' },
             { path: 'update-user-info', component: _user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_5__["UpdateUserInfoComponent"], pathMatch: 'full' },
@@ -256,8 +257,7 @@ var routes = [
             { path: 'request-parking', component: _user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_6__["RequestParkingComponent"], pathMatch: 'full' },
             { path: 'infringments', component: _user_options_infringements_infringements_component__WEBPACK_IMPORTED_MODULE_7__["InfringementsComponent"], pathMatch: 'full' },
             { path: 'view-requests', component: _user_options_view_requests_view_requests_component__WEBPACK_IMPORTED_MODULE_8__["ViewRequestsComponent"], pathMatch: 'full' }
-        ] },
-    { path: 'forgot-password', component: _user_options_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_9__["ForgotPasswordComponent"], pathMatch: 'full' }
+        ] }
 ];
 var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_0__["PreloadAllModules"] });
 
@@ -528,7 +528,7 @@ var LandingComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n<!-- Display of login modal -->\r\n<img src=\"assets/images/login/login.png\" alt=\"Login\">\r\n  <hr>\r\n  <div *ngIf=\"!resp && !progress\">\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n        <!-- mat form feild: facilityNO -->\r\n        <mat-form-field>\r\n          <input matInput\r\n                  placeholder=\"Facility Number\"\r\n                  formControlName=\"facilityNo\">\r\n        </mat-form-field>\r\n          <br>\r\n        <!-- Mat form feild: password -->\r\n        <mat-form-field>\r\n          <input matInput \r\n                  placeholder=\"Password\"\r\n                  [type]=\"hide ? 'password' : 'text'\"\r\n                  formControlName=\"userPass\">\r\n          <mat-icon matSuffix \r\n            (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\r\n        </mat-form-field>\r\n      </mat-dialog-content>\r\n      <div>\r\n          <a href=\"/forgot-password\" class=\"forgot\">FORGOT PASSWORD</a>\r\n      </div>\r\n  </div>\r\n  <br>\r\n  <div align=\"center\" *ngIf=\"resp && progress\">\r\n      <mat-spinner></mat-spinner>\r\n  </div>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button \r\n      color=\"warn\" \r\n      (click)=\"closeDialog()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Login button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\" \r\n      (click)=\"aquireLoginDetails()\">\r\n      <mat-icon svgIcon=\"login-variant\"></mat-icon> \r\n      Login\r\n    </button>  \r\n  </mat-dialog-actions>\r\n</div>\r\n"
+module.exports = "<div>\r\n<!-- Display of login modal -->\r\n<img src=\"assets/images/login/login.png\" alt=\"Login\">\r\n  <hr>\r\n  <div *ngIf=\"!resp && !progress\">\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n        <!-- mat form feild: facilityNO -->\r\n        <mat-form-field>\r\n          <input matInput\r\n                  placeholder=\"Facility Number\"\r\n                  formControlName=\"facilityNo\">\r\n        </mat-form-field>\r\n          <br>\r\n        <!-- Mat form feild: password -->\r\n        <mat-form-field>\r\n          <input matInput \r\n                  placeholder=\"Password\"\r\n                  [type]=\"hide ? 'password' : 'text'\"\r\n                  formControlName=\"userPass\">\r\n          <mat-icon matSuffix \r\n            (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\r\n        </mat-form-field>\r\n      </mat-dialog-content>\r\n      <div>\r\n          <a (click)=forgotPass() class=\"forgot\">FORGOT PASSWORD</a>\r\n      </div>\r\n  </div>\r\n  <br>\r\n  <div align=\"center\" *ngIf=\"resp && progress\">\r\n      <mat-spinner></mat-spinner>\r\n  </div>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button \r\n      color=\"warn\" \r\n      (click)=\"closeDialog()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Login button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\" \r\n      (click)=\"aquireLoginDetails()\">\r\n      <mat-icon svgIcon=\"login-variant\"></mat-icon> \r\n      Login\r\n    </button>  \r\n  </mat-dialog-actions>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -612,6 +612,9 @@ var LoginDialogComponent = /** @class */ (function () {
         // sends login info, veriefied on backend
         this.http.post(_app_service__WEBPACK_IMPORTED_MODULE_6__["BASE_URL"] + "/personnel/login", { facilityNo: this.facilityNo, password: this.userPass })
             .subscribe(this.loginUser.bind(this), this.openSnackBarFail.bind(this));
+    };
+    LoginDialogComponent.prototype.forgotPass = function () {
+        this.router.navigateByUrl('/forgot-password');
     };
     // sends the user to unipark page, as successful login
     LoginDialogComponent.prototype.loginUser = function () {

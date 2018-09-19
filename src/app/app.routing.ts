@@ -16,6 +16,7 @@ import { ForgotPasswordComponent } from './user-options/forgot-password/forgot-p
 /* actual routing */
 const routes: Routes = [
   { path: '', component: LandingComponent, pathMatch: 'full' },
+  { path: 'forgot-password', component: ForgotPasswordComponent, pathMatch: 'full' },
   { path: 'admin', component: UniparkPageComponent, children: [
     { path: 'user-information', component: UserInfoComponent, pathMatch: 'full'},
     { path: 'update-user-info', component: UpdateUserInfoComponent, pathMatch: 'full'},
@@ -23,8 +24,7 @@ const routes: Routes = [
     { path: 'request-parking', component: RequestParkingComponent, pathMatch: 'full'},
     { path: 'infringments', component: InfringementsComponent, pathMatch: 'full'},
     { path: 'view-requests', component: ViewRequestsComponent, pathMatch: 'full'}
-  ]},
-  { path: 'forgot-password', component: ForgotPasswordComponent, pathMatch: 'full' }
+  ]}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules});
