@@ -29,6 +29,8 @@ export class LoginDialogComponent implements OnInit {
 
   // Declaration for http objects
   personelLoginInfo: any;
+  resp: boolean;
+  progress: boolean;
 
   constructor(
     private router: Router,
@@ -47,6 +49,8 @@ export class LoginDialogComponent implements OnInit {
 
   // opens the snackBar with error
   openSnackBarFail() {
+    this.resp = false;
+    this.progress = false;
     // opens the snackBar with error
     this.snackBar.open('Incorrect login details', 'OK', {
       duration: 2000,
@@ -55,6 +59,8 @@ export class LoginDialogComponent implements OnInit {
 
   // Gets login details, sends to backend (verification done on backend)
   aquireLoginDetails() {
+    this.resp = true;
+    this.progress = true;
     // aquire login details from dialog
     this.facilityNo = this.form.value.facilityNo;
     this.userPass = this.form.value.userPass;

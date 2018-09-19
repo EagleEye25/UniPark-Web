@@ -3,7 +3,7 @@
   <!-- Displays request parking image -->
   <img class="padding-image" src="assets/images/user-options/request-parking/request-parking.png" alt="User Info">
   <hr>
-  <div class="padding-feilds">
+  <div class="padding-feilds" *ngIf="!resp && !progress">
     <mat-dialog-content [formGroup]="form">
     <!-- Mat form feild: parking area -->
       <mat-form-field>
@@ -36,8 +36,11 @@
   <div *ngIf="areaSelected && !markerEmpty" class="padding-map">
     <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{selectedArea}}></app-map>
   </div>
-  <div *ngIf="markerEmpty">
+  <div *ngIf="markerEmpty && !resp && !progress">
     <p>No map data to display</p>
+  </div>
+  <div align="center" *ngIf="resp && progress">
+      <mat-spinner></mat-spinner>
   </div>
   <hr>
   <div class="padding-buttons">

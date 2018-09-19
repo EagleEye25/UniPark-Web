@@ -32,6 +32,9 @@ export class ConfirmationDialogComponent implements OnInit {
       case 'logout':
         this.message = 'Are you sure you want to logout?';
       break;
+      case 'unsuccessful':
+        this.message = 'Please ensure that all information was filled in correctly to YOUR user details';
+      break;
     }
   }
 

@@ -31,6 +31,8 @@ export class RequestParkingComponent implements OnInit {
 
   areaSelected = false;
   spotSelected = false;
+  progress: boolean;
+  resp: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -132,6 +134,8 @@ export class RequestParkingComponent implements OnInit {
 
   // Submits the request data to backend
   async submitRequestParking() {
+    this.resp = true;
+    this.progress = true;
     Number(this.selectedSpot);
     if (this.selectedArea === undefined || this.selectedSpot === undefined) {
       this.openSnackBarFail();
@@ -142,6 +146,8 @@ export class RequestParkingComponent implements OnInit {
       .toPromise()
       .catch(console.error);
       if (reqResponse && reqResponse.data.trim() === 'SUCCESS') {
+        this.resp = false;
+        this.progress = false;
         this.openSnackBarPass();
         this.cancle();
       } else {
