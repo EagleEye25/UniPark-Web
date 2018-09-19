@@ -50,13 +50,14 @@ export class UpdateUserInfoComponent implements OnInit {
   resetCell = false;
   resetEmail = false;
   resetPass = false;
+  resp = false;
+  progress = false;
 
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private http: HttpClient,
     private appService: AppService
-    // private uniparkPage: UniparkPageComponent
   ) { }
 
   // Initializes on load
@@ -207,6 +208,8 @@ export class UpdateUserInfoComponent implements OnInit {
     .catch(console.error);
     console.log(updateResponse);
     if (updateResponse && updateResponse.data.trim() === 'SUCCESS') {
+      this.resp = false;
+      this.progress = false;
       this.openSnackBarSuccess();
       this.cancle();
     } else {
@@ -216,6 +219,8 @@ export class UpdateUserInfoComponent implements OnInit {
 
   // Verifys information entered by user
   verifyUpdateInfo() {
+    this.resp = true;
+    this.progress = true;
     const newPass = this.newPass.value;
     const confirmNewPass = this.confirmNewPass.value;
     // Checks passwords entered

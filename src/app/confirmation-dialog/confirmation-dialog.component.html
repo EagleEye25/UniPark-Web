@@ -1,7 +1,8 @@
 <div class="alternative">
-    {{message}}
-  <!-- no button -->
-  <div class="padding-buttons">
+  <p>
+      {{message}}
+  </p>
+  <div class="center" *ngIf="state !== 'unsuccessful'">
     <!-- Close button -->
     <button mat-button 
       color="warn"
@@ -18,4 +19,16 @@
       YES
     </button>
   </div>
+  <!-- forgot password options -->
+  <div class="center" *ngIf="state === 'unsuccessful'">
+      <!-- OK button -->
+      <button
+        mat-stroked-button
+        color="accent"
+        mat-dialog-close>
+        <mat-icon svgIcon="thumb-up-outline"></mat-icon> 
+        OK
+      </button>
+    </div>
+
 </div>

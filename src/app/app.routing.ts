@@ -11,6 +11,7 @@ import { UpdateUserInfoComponent } from './user-options/update-user-info/update-
 import { RequestParkingComponent } from './user-options/request-parking/request-parking.component';
 import { InfringementsComponent } from './user-options/infringements/infringements.component';
 import { ViewRequestsComponent } from './user-options/view-requests/view-requests.component';
+import { ForgotPasswordComponent } from './user-options/forgot-password/forgot-password.component';
 
 /* actual routing */
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
     { path: 'request-parking', component: RequestParkingComponent, pathMatch: 'full'},
     { path: 'infringments', component: InfringementsComponent, pathMatch: 'full'},
     { path: 'view-requests', component: ViewRequestsComponent, pathMatch: 'full'}
-  ]}
+  ]},
+  { path: 'forgot-password', component: ForgotPasswordComponent, pathMatch: 'full' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules});

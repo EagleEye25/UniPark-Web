@@ -3,7 +3,7 @@
     <!-- Displays request parking image -->
     <img class="padding-image" src="assets/images/user-options/update-info/update-info.png" alt="User Info">
     <hr>
-    <div class="padding-feilds">
+    <div *ngIf="!resp && !progress">
       <mat-dialog-content [formGroup]="form">
         <!-- Mat form feild: cell phone number -->
         <mat-form-field hintLabel="Max 10 digits">
@@ -75,6 +75,9 @@
             (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>
         </mat-form-field>
       </mat-dialog-content>
+    </div>
+    <div align="center" *ngIf="resp && progress">
+      <mat-spinner></mat-spinner>
     </div>
     <hr>
     <br>

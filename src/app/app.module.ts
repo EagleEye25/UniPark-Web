@@ -25,6 +25,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MapComponent } from './map/map.component';
 import { ViewRequestsComponent } from './user-options/view-requests/view-requests.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ForgotPasswordComponent } from './user-options/forgot-password/forgot-password.component';
 
 
 
@@ -43,6 +44,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MapComponent,
     ViewRequestsComponent,
     ConfirmationDialogComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
