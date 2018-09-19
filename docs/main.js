@@ -249,6 +249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* actual routing */
 var routes = [
     { path: '', component: _landing_landing_component__WEBPACK_IMPORTED_MODULE_1__["LandingComponent"], pathMatch: 'full' },
+    { path: 'forgot-password', component: _user_options_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_9__["ForgotPasswordComponent"], pathMatch: 'full' },
     { path: 'admin', component: _unipark_page_unipark_page_component__WEBPACK_IMPORTED_MODULE_2__["UniparkPageComponent"], children: [
             { path: 'user-information', component: _user_options_user_info_user_info_component__WEBPACK_IMPORTED_MODULE_4__["UserInfoComponent"], pathMatch: 'full' },
             { path: 'update-user-info', component: _user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_5__["UpdateUserInfoComponent"], pathMatch: 'full' },
@@ -256,8 +257,7 @@ var routes = [
             { path: 'request-parking', component: _user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_6__["RequestParkingComponent"], pathMatch: 'full' },
             { path: 'infringments', component: _user_options_infringements_infringements_component__WEBPACK_IMPORTED_MODULE_7__["InfringementsComponent"], pathMatch: 'full' },
             { path: 'view-requests', component: _user_options_view_requests_view_requests_component__WEBPACK_IMPORTED_MODULE_8__["ViewRequestsComponent"], pathMatch: 'full' }
-        ] },
-    { path: 'forgot-password', component: _user_options_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_9__["ForgotPasswordComponent"], pathMatch: 'full' }
+        ] }
 ];
 var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_0__["PreloadAllModules"] });
 
