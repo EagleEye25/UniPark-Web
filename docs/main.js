@@ -123,6 +123,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
 /* harmony import */ var _map_map_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./map/map.component */ "./src/app/map/map.component.ts");
 /* harmony import */ var _user_options_view_requests_view_requests_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./user-options/view-requests/view-requests.component */ "./src/app/user-options/view-requests/view-requests.component.ts");
+/* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./confirmation-dialog/confirmation-dialog.component */ "./src/app/confirmation-dialog/confirmation-dialog.component.ts");
+/* harmony import */ var _user_options_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./user-options/forgot-password/forgot-password.component */ "./src/app/user-options/forgot-password/forgot-password.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -132,6 +134,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -174,6 +178,8 @@ var AppModule = /** @class */ (function () {
                 _user_options_infringements_infringements_component__WEBPACK_IMPORTED_MODULE_16__["InfringementsComponent"],
                 _map_map_component__WEBPACK_IMPORTED_MODULE_20__["MapComponent"],
                 _user_options_view_requests_view_requests_component__WEBPACK_IMPORTED_MODULE_21__["ViewRequestsComponent"],
+                _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_22__["ConfirmationDialogComponent"],
+                _user_options_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_23__["ForgotPasswordComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -194,7 +200,8 @@ var AppModule = /** @class */ (function () {
                 _user_options_update_user_info_update_user_info_component__WEBPACK_IMPORTED_MODULE_13__["UpdateUserInfoComponent"],
                 _user_options_view_assigned_parking_view_assigned_parking_component__WEBPACK_IMPORTED_MODULE_14__["ViewAssignedParkingComponent"],
                 _user_options_infringements_infringements_component__WEBPACK_IMPORTED_MODULE_16__["InfringementsComponent"],
-                _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_17__["HelpComponent"]
+                _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_17__["HelpComponent"],
+                _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_22__["ConfirmationDialogComponent"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
@@ -227,6 +234,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./user-options/request-parking/request-parking.component */ "./src/app/user-options/request-parking/request-parking.component.ts");
 /* harmony import */ var _user_options_infringements_infringements_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user-options/infringements/infringements.component */ "./src/app/user-options/infringements/infringements.component.ts");
 /* harmony import */ var _user_options_view_requests_view_requests_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user-options/view-requests/view-requests.component */ "./src/app/user-options/view-requests/view-requests.component.ts");
+/* harmony import */ var _user_options_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./user-options/forgot-password/forgot-password.component */ "./src/app/user-options/forgot-password/forgot-password.component.ts");
+
 
 
 
@@ -247,7 +256,8 @@ var routes = [
             { path: 'request-parking', component: _user_options_request_parking_request_parking_component__WEBPACK_IMPORTED_MODULE_6__["RequestParkingComponent"], pathMatch: 'full' },
             { path: 'infringments', component: _user_options_infringements_infringements_component__WEBPACK_IMPORTED_MODULE_7__["InfringementsComponent"], pathMatch: 'full' },
             { path: 'view-requests', component: _user_options_view_requests_view_requests_component__WEBPACK_IMPORTED_MODULE_8__["ViewRequestsComponent"], pathMatch: 'full' }
-        ] }
+        ] },
+    { path: 'forgot-password', component: _user_options_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_9__["ForgotPasswordComponent"], pathMatch: 'full' }
 ];
 var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_0__["PreloadAllModules"] });
 
@@ -277,8 +287,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var appState = {};
-// const appState = {FacilityID: 's216017173'};
+// const appState = {};
+var appState = { FacilityID: 's216017173' };
 var AppService = /** @class */ (function () {
     function AppService() {
     }
@@ -300,6 +310,104 @@ var AppService = /** @class */ (function () {
 var BASE_URL = 'https://unipark.lunatech.co.za';
 // export const BASE_URL = 'http://localhost:9000';
 var MAPBOX_API = 'pk.eyJ1IjoiZWFnbGVleWUyNSIsImEiOiJjamp0NHcwbGcwaWVjM3BvMHdjOGx3dTZuIn0.wpJ4XdLSb2zBpJ8G36E7Fw';
+
+
+/***/ }),
+
+/***/ "./src/app/confirmation-dialog/confirmation-dialog.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/confirmation-dialog/confirmation-dialog.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"alternative\">\r\n  <p>\r\n      {{message}}\r\n  </p>\r\n  <div class=\"center\" *ngIf=\"state !== 'unsuccessful'\">\r\n    <!-- Close button -->\r\n    <button mat-button \r\n      color=\"warn\"\r\n      (click)=\"cancel()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      NO\r\n    </button>\r\n    <!-- yes button -->\r\n    <button\r\n      mat-stroked-button\r\n      color=\"accent\"\r\n      (click)=\"confirm()\">\r\n      <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n      YES\r\n    </button>\r\n  </div>\r\n  <!-- forgot password options -->\r\n  <div class=\"center\" *ngIf=\"state === 'unsuccessful'\">\r\n      <!-- OK button -->\r\n      <button\r\n        mat-stroked-button\r\n        color=\"accent\"\r\n        mat-dialog-close>\r\n        <mat-icon svgIcon=\"thumb-up-outline\"></mat-icon> \r\n        OK\r\n      </button>\r\n    </div>\r\n\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/confirmation-dialog/confirmation-dialog.component.scss":
+/*!************************************************************************!*\
+  !*** ./src/app/confirmation-dialog/confirmation-dialog.component.scss ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%;\n  text-align: center; }\n"
+
+/***/ }),
+
+/***/ "./src/app/confirmation-dialog/confirmation-dialog.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/confirmation-dialog/confirmation-dialog.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: ConfirmationDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmationDialogComponent", function() { return ConfirmationDialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+var ConfirmationDialogComponent = /** @class */ (function () {
+    function ConfirmationDialogComponent(dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.confirmation = false;
+        this.message = '';
+    }
+    ConfirmationDialogComponent.prototype.ngOnInit = function () {
+        this.state = this.data.state;
+        this.checkState();
+        console.log('state: ', this.state);
+        console.log('confirm: ', this.confirmation);
+    };
+    ConfirmationDialogComponent.prototype.checkState = function () {
+        switch (this.state) {
+            case 'view-requests':
+                this.message = 'Are you sure you want to cancel this request?';
+                break;
+            case 'logout':
+                this.message = 'Are you sure you want to logout?';
+                break;
+            case 'unsuccessful':
+                this.message = 'Please ensure that all information was filled in correctly to YOUR user details';
+                break;
+        }
+    };
+    ConfirmationDialogComponent.prototype.confirm = function () {
+        this.confirmation = true;
+        this.dialogRef.close({ confirmation: this.confirmation });
+    };
+    ConfirmationDialogComponent.prototype.cancel = function () {
+        this.confirmation = false;
+        this.dialogRef.close({ confirmation: this.confirmation });
+    };
+    ConfirmationDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-confirmation-dialog',
+            template: __webpack_require__(/*! ./confirmation-dialog.component.html */ "./src/app/confirmation-dialog/confirmation-dialog.component.html"),
+            styles: [__webpack_require__(/*! ./confirmation-dialog.component.scss */ "./src/app/confirmation-dialog/confirmation-dialog.component.scss")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object])
+    ], ConfirmationDialogComponent);
+    return ConfirmationDialogComponent;
+}());
+
 
 
 /***/ }),
@@ -346,7 +454,7 @@ var CoreModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Toolbar with menu button, menu items -->\r\n<div>\r\n    <mat-toolbar color=\"primary\">\r\n        <!-- Displays DC image -->\r\n        <img src=\"assets/images/branding/dc.png\" alt=\"DC\">\r\n        <span class=\"spacer\"></span>\r\n        \r\n        <button mat-button (click)=\"openLoginDialog()\"\r\n          matTooltip=\"CLick here to login\"\r\n          matTooltipPosition=\"before\">\r\n          <mat-icon>fingerprint</mat-icon>\r\n          <span>Login</span>\r\n        </button>\r\n    </mat-toolbar>\r\n    <!-- TabGroup  under toolbar -->\r\n    <mat-tab-group>\r\n        <!-- Dragon code tab -->\r\n        <mat-tab label=\"Dragon Code\">\r\n          <!-- Displays Dragon Code image -->\r\n          <img src=\"assets/images/branding/dragon-code-name.gif\" alt=\"Dragon Code\" class=\"center\">\r\n          <!-- Dragon code information -->\r\n          <mat-tab-group class=\"center\">\r\n            <mat-tab label=\"Information\">\r\n              <p>\r\n                Dragon Code is a group of third year students from Mandela University, that have been given\r\n                the task to create an \"Advanced\", secure parking system for the university. In which they saw\r\n                greater opertunities, and decided to develope their project, so that it could be used by not\r\n                only the university, but any other minor, major facilities that wish to ensure that their\r\n                personnel have save parking areas, with little to no chance of theft of vehicles, and also\r\n                improve the way in which they monitor and control who has access to the facility, and when.\r\n              </p>\r\n            </mat-tab>\r\n            <!-- Crew images, names -->\r\n            <mat-tab label=\"Crew\">\r\n              <p><br></p>\r\n              <div class=\"align-text-picture\">\r\n                <!-- Jason Eybers INFO -->\r\n                  <img src=\"assets/images/crew/jason.png\" alt=\"Jason Eybers\">\r\n                  <p> Jason Eybers<br>(Steve Jobless) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/EagleEye25/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"linkedin-box\"\r\n                              onclick=\"window.open('https://www.linkedin.com/in/jason-henry-eybers-b63422157/')\"\r\n                              matTooltip=\"Linkedin\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"slack\"\r\n                              matTooltip=\"Slack username\"\r\n                              matTooltipPosition=\"below\">\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"twitter\"\r\n                              onclick=\"window.open('https://twitter.com/JasonEybers')\"\r\n                              matTooltip=\"Twitter\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"stack-overflow\"\r\n                              onclick=\"window.open('https://stackoverflow.com/users/9384658/eagleeye25')\"\r\n                              onclick=\"window.close()\"\r\n                              matTooltip=\"Stack-Overflow\"\r\n                              matTooltipPosition=\"below\">>s\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216017173@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Daniel Maree INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/daniel.png\" alt=\"Daniel Maree\">\r\n                  <p>Daniel Maree<br>(Copy Paster) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/DieWindpomp')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"linkedin-box\"\r\n                              onclick=\"window.open('https://www.linkedin.com/in/daniel-maree-53308b165/')\"\r\n                              matTooltip=\"Linkedin\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"instagram\"\r\n                              onclick=\"window.open('https://www.instagram.com/diewindpomp/')\"\r\n                              matTooltip=\"Instagram\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"facebook\"\r\n                              onclick=\"window.open('https://www.facebook.com/windpomp')\"\r\n                              matTooltip=\"Facebook\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216448816@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Wihan Du Plessis INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/wihan.png\" alt=\"Wihan Du Plessis\">\r\n                  <p>Wihan Du Plessis<br>(Data Monkey) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/EagleEye25/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216060184@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Kobus Esterhuizen INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/kobus.png\" alt=\"Kobus Esterhuizen\">\r\n                  <p>Kobus Esterhuizen<br>(Code-Modo Dragon) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/Kabousi/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216276586@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Maurice Garces De Gois INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/maurice.png\" alt=\"Maurice Garcies De Gois\">\r\n                  <p>Maurice Garces<br>De Gois<br>(Ctrl-SpaceFreak) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/Mauricegdg/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216111919@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n            </mat-tab>\r\n          </mat-tab-group>\r\n        </mat-tab>\r\n        <mat-tab label=\"UniPark\">\r\n          <!-- Displays UniPark image -->\r\n          <img src=\"assets/images/branding/unipark.png\" alt=\"UniPark\" class=\"center-unipark\">\r\n            <!-- Unipark information -->  \r\n            <mat-tab-group class=\"center\">\r\n              <!-- Information -->\r\n              <mat-tab label=\"What is UniPark\">\r\n                <p>UniPark is an open souce project for a fully automated parking system, that will allow users that\r\n                  have access to a facilities parking area to enter. \r\n                  The program is securely setup to prevent unauthorized users\r\n                  access to the facility, also to help the facility to control traffic, ensure that person/s\r\n                  in the facility park in the correct area, which is assigned to them. The aim of the system\r\n                  is to improve security of the facility, and ensure that little to no theft occurs regarding motor vehicles.\r\n                </p>\r\n              </mat-tab>\r\n              <!-- The looks tab -->\r\n              <mat-tab label=\"The Looks\">\r\n                <p> Picutres of unipark goes here when its completed! </p>\r\n              </mat-tab>\r\n              <!-- Intallation tab -->\r\n              <mat-tab label=\"Installation\">\r\n                <!-- install (developers) -->\r\n                <p>\r\n                  To access UniPark repository (Developers): &nbsp;\r\n                    <button mat-button \r\n                            onclick=\"window.open('https://github.com/EagleEye25/uniPark-BackEnd')\">\r\n                      <mat-icon svgIcon=\"github-circle\"></mat-icon>\r\n                      Repository\r\n                    </button>\r\n                  <!-- install -->\r\n                    <br>\r\n                  To install Unipark click: &nbsp;\r\n                    <button mat-button \r\n                            onclick=\"window.open('https://github.com/EagleEye25/uniPark-BackEnd')\">\r\n                      <mat-icon svgIcon=\"download\"></mat-icon>\r\n                      DownLoad\r\n                    </button>\r\n                </p>\r\n              </mat-tab>\r\n            </mat-tab-group>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n  </div>\r\n  "
+module.exports = "<!-- Toolbar with menu button, menu items -->\r\n<div>\r\n    <mat-toolbar color=\"primary\">\r\n        <!-- Displays DC image -->\r\n        <img src=\"assets/images/branding/dc.png\" alt=\"DC\">\r\n        <span class=\"spacer\"></span>\r\n        \r\n        <button mat-button (click)=\"openLoginDialog()\"\r\n          matTooltip=\"CLick here to login\"\r\n          matTooltipPosition=\"before\">\r\n          <mat-icon>fingerprint</mat-icon>\r\n          <span>Login</span>\r\n        </button>\r\n    </mat-toolbar>\r\n    <!-- TabGroup  under toolbar -->\r\n    <mat-tab-group>\r\n        <!-- Dragon code tab -->\r\n        <mat-tab label=\"Dragon Code\">\r\n          <!-- Displays Dragon Code image -->\r\n          <img src=\"assets/images/branding/dragon-code-name.gif\" alt=\"Dragon Code\" class=\"center\">\r\n          <!-- Dragon code information -->\r\n          <mat-tab-group class=\"center\">\r\n            <mat-tab label=\"Information\">\r\n              <p>\r\n                Dragon Code is a group of third year students from Mandela University, that have been given\r\n                the task to create an \"Advanced\", secure parking system for the university. In which they saw\r\n                greater opertunities, and decided to develope their project, so that it could be used by not\r\n                only the university, but any other minor, major facilities that wish to ensure that their\r\n                personnel have save parking areas, with little to no chance of theft of vehicles, and also\r\n                improve the way in which they monitor and control who has access to the facility, and when.\r\n              </p>\r\n            </mat-tab>\r\n            <!-- Crew images, names -->\r\n            <mat-tab label=\"Crew\">\r\n              <p><br></p>\r\n              <div class=\"align-text-picture\">\r\n                <!-- Jason Eybers INFO -->\r\n                  <img src=\"assets/images/crew/jason.png\" alt=\"Jason Eybers\">\r\n                  <p> Jason Eybers<br>(Steve Jobless) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/EagleEye25/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"linkedin-box\"\r\n                              onclick=\"window.open('https://www.linkedin.com/in/jason-henry-eybers-b63422157/')\"\r\n                              matTooltip=\"Linkedin\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"slack\"\r\n                              matTooltip=\"Slack username\"\r\n                              matTooltipPosition=\"below\">\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"twitter\"\r\n                              onclick=\"window.open('https://twitter.com/JasonEybers')\"\r\n                              matTooltip=\"Twitter\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"stack-overflow\"\r\n                              onclick=\"window.open('https://stackoverflow.com/users/9384658/eagleeye25')\"\r\n                              matTooltip=\"Stack-Overflow\"\r\n                              matTooltipPosition=\"below\">>s\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216017173@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Daniel Maree INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/daniel.png\" alt=\"Daniel Maree\">\r\n                  <p>Daniel Maree<br>(Copy Paster) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/DieWindpomp')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"linkedin-box\"\r\n                              onclick=\"window.open('https://www.linkedin.com/in/daniel-maree-53308b165/')\"\r\n                              matTooltip=\"Linkedin\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"instagram\"\r\n                              onclick=\"window.open('https://www.instagram.com/diewindpomp/')\"\r\n                              matTooltip=\"Instagram\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"facebook\"\r\n                              onclick=\"window.open('https://www.facebook.com/windpomp')\"\r\n                              matTooltip=\"Facebook\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216448816@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Wihan Du Plessis INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/wihan.png\" alt=\"Wihan Du Plessis\">\r\n                  <p>Wihan Du Plessis<br>(Data Monkey) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/EagleEye25/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216060184@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Kobus Esterhuizen INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/kobus.png\" alt=\"Kobus Esterhuizen\">\r\n                  <p>Kobus Esterhuizen<br>(Code-Modo Dragon) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/Kabousi/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216276586@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n              <!-- Maurice Garces De Gois INFO -->\r\n              <div class=\"align-text-picture\">\r\n                  <img src=\"assets/images/crew/maurice.png\" alt=\"Maurice Garcies De Gois\">\r\n                  <p>Maurice Garces<br>De Gois<br>(Ctrl-SpaceFreak) <br>\r\n                    <mat-icon svgIcon=\"github-circle\"\r\n                              onclick=\"window.open('https://github.com/Mauricegdg/')\"\r\n                              matTooltip=\"Github\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n\r\n                    <mat-icon svgIcon=\"email\"\r\n                              onclick=\"window.open('mailto:s216111919@mandela.ac.za?subject=Subject&body=message%20goes%20here')\"\r\n                              matTooltip=\"Email\"\r\n                              matTooltipPosition=\"below\">>\r\n                    </mat-icon>\r\n                  </p>\r\n              </div>\r\n            </mat-tab>\r\n          </mat-tab-group>\r\n        </mat-tab>\r\n        <mat-tab label=\"UniPark\">\r\n          <!-- Displays UniPark image -->\r\n          <img src=\"assets/images/branding/unipark.png\" alt=\"UniPark\" class=\"center-unipark\">\r\n            <!-- Unipark information -->  \r\n            <mat-tab-group class=\"center\">\r\n              <!-- Information -->\r\n              <mat-tab label=\"What is UniPark\">\r\n                <p>UniPark is an open souce project for a fully automated parking system, that will allow users that\r\n                  have access to a facilities parking area to enter. \r\n                  The program is securely setup to prevent unauthorized users\r\n                  access to the facility, also to help the facility to control traffic, ensure that person/s\r\n                  in the facility park in the correct area, which is assigned to them. The aim of the system\r\n                  is to improve security of the facility, and ensure that little to no theft occurs regarding motor vehicles.\r\n                </p>\r\n              </mat-tab>\r\n              <!-- The looks tab -->\r\n              <mat-tab label=\"The Looks\">\r\n                <p> Picutres of unipark goes here when its completed! </p>\r\n              </mat-tab>\r\n              <!-- Intallation tab -->\r\n              <mat-tab label=\"Installation\">\r\n                <!-- install (developers) -->\r\n                <p>\r\n                  To access UniPark repository (Developers): &nbsp;\r\n                    <button mat-button \r\n                            onclick=\"window.open('https://github.com/EagleEye25/uniPark-BackEnd')\">\r\n                      <mat-icon svgIcon=\"github-circle\"></mat-icon>\r\n                      Repository\r\n                    </button>\r\n                  <!-- install -->\r\n                    <br>\r\n                  To install Unipark click: &nbsp;\r\n                    <button mat-button \r\n                            onclick=\"window.open('https://github.com/EagleEye25/uniPark-BackEnd')\">\r\n                      <mat-icon svgIcon=\"download\"></mat-icon>\r\n                      DownLoad\r\n                    </button>\r\n                </p>\r\n              </mat-tab>\r\n            </mat-tab-group>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -420,7 +528,7 @@ var LandingComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <!-- Display of login modal -->\r\n<img src=\"assets/images/login/login.png\" alt=\"Login\">\r\n  <hr>\r\n<mat-dialog-content [formGroup]=\"form\">\r\n  <!-- mat form feild: facilityNO -->\r\n  <mat-form-field>\r\n    <input matInput\r\n            placeholder=\"Facility Number\"\r\n            formControlName=\"facilityNo\">\r\n  </mat-form-field>\r\n    <br>\r\n  <!-- Mat form feild: password -->\r\n  <mat-form-field>\r\n    <input matInput \r\n            placeholder=\"Password\"\r\n            [type]=\"hide ? 'password' : 'text'\"\r\n            formControlName=\"userPass\">\r\n    <mat-icon matSuffix \r\n      (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\r\n  </mat-form-field>\r\n</mat-dialog-content>\r\n  <br>\r\n<mat-dialog-actions>\r\n  <!-- Close button -->\r\n  <button mat-button \r\n    color=\"warn\" \r\n    (click)=\"closeDialog()\">\r\n    <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n    Cancel\r\n  </button>\r\n  <!-- Login button -->\r\n  <button mat-stroked-button\r\n    color=\"accent\" \r\n    (click)=\"aquireLoginDetails()\">\r\n    <mat-icon svgIcon=\"login-variant\"></mat-icon> \r\n    Login\r\n  </button>  \r\n</mat-dialog-actions>"
+module.exports = "<div>\r\n<!-- Display of login modal -->\r\n<img src=\"assets/images/login/login.png\" alt=\"Login\">\r\n  <hr>\r\n  <div *ngIf=\"!resp && !progress\">\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n        <!-- mat form feild: facilityNO -->\r\n        <mat-form-field>\r\n          <input matInput\r\n                  placeholder=\"Facility Number\"\r\n                  formControlName=\"facilityNo\">\r\n        </mat-form-field>\r\n          <br>\r\n        <!-- Mat form feild: password -->\r\n        <mat-form-field>\r\n          <input matInput \r\n                  placeholder=\"Password\"\r\n                  [type]=\"hide ? 'password' : 'text'\"\r\n                  formControlName=\"userPass\">\r\n          <mat-icon matSuffix \r\n            (click)=\"hide = !hide\">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>\r\n        </mat-form-field>\r\n      </mat-dialog-content>\r\n      <div>\r\n          <a href=\"/forgot-password\" class=\"forgot\">FORGOT PASSWORD</a>\r\n      </div>\r\n  </div>\r\n  <br>\r\n  <div align=\"center\" *ngIf=\"resp && progress\">\r\n      <mat-spinner></mat-spinner>\r\n  </div>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button \r\n      color=\"warn\" \r\n      (click)=\"closeDialog()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Login button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\" \r\n      (click)=\"aquireLoginDetails()\">\r\n      <mat-icon svgIcon=\"login-variant\"></mat-icon> \r\n      Login\r\n    </button>  \r\n  </mat-dialog-actions>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -431,7 +539,7 @@ module.exports = "  <!-- Display of login modal -->\r\n<img src=\"assets/images/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.mat-icon:hover {\n  cursor: pointer; }\n"
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.mat-icon:hover {\n  cursor: pointer; }\n\n.forgot {\n  color: red; }\n"
 
 /***/ }),
 
@@ -487,6 +595,8 @@ var LoginDialogComponent = /** @class */ (function () {
     };
     // opens the snackBar with error
     LoginDialogComponent.prototype.openSnackBarFail = function () {
+        this.resp = false;
+        this.progress = false;
         // opens the snackBar with error
         this.snackBar.open('Incorrect login details', 'OK', {
             duration: 2000,
@@ -494,6 +604,8 @@ var LoginDialogComponent = /** @class */ (function () {
     };
     // Gets login details, sends to backend (verification done on backend)
     LoginDialogComponent.prototype.aquireLoginDetails = function () {
+        this.resp = true;
+        this.progress = true;
         // aquire login details from dialog
         this.facilityNo = this.form.value.facilityNo;
         this.userPass = this.form.value.userPass;
@@ -615,11 +727,12 @@ var MapComponent = /** @class */ (function () {
     MapComponent.prototype.ngOnInit = function () {
         console.log('lat: ', this.latitude, 'long: ', this.longitude);
         this.generateMap();
-        this.old = this.longitude;
+        this.oldAera = this.latitude;
     };
     MapComponent.prototype.ngOnChanges = function () {
-        if (this.old !== this.longitude) {
+        if (this.oldAera !== this.latitude) {
             this.generateMap();
+            console.log('old: ', this.oldAera);
         }
     };
     // Generates map data
@@ -754,7 +867,8 @@ var SharedModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTooltipModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginatorModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSortModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatAutocompleteModule"]
             ],
             exports: [
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatCheckboxModule"],
@@ -786,7 +900,8 @@ var SharedModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTooltipModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginatorModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSortModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatAutocompleteModule"]
             ]
         })
     ], SharedModule);
@@ -804,7 +919,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n  <mat-toolbar color=\"primary\">\r\n    <!-- Displays UniPark image -->\r\n    <img src=\"assets/images/branding/up.png\" alt=\"UniPark\">\r\n    <span class=\"spacer\"></span>\r\n      <!-- View User Information -->\r\n      <a mat-button routerLink=\"./user-information\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"account-card-details\"></mat-icon>\r\n        <span>User Information</span>\r\n      </a>\r\n      <!-- Update User Info -->\r\n      <a mat-button routerLink=\"./update-user-info\"\r\n        routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"account-settings-variant\"></mat-icon>\r\n        <span>Update User Info</span>\r\n      </a>\r\n      <!-- View User Parking Area -->\r\n      <a mat-button routerLink=\"./assigned-parking\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"parking\"></mat-icon>\r\n        <span>Assigned Parking</span>\r\n      </a>\r\n      <!-- Request Parking -->\r\n      <a mat-button routerLink=\"./request-parking\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"car-connected\"></mat-icon>\r\n        <span>Request Parking</span>\r\n      </a>\r\n      <!-- View Requests -->\r\n      <a mat-button routerLink=\"./view-requests\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"filter-variant\"></mat-icon>\r\n        <span>View Requests</span>\r\n      </a>\r\n      <!-- Infringements -->\r\n      <a mat-button routerLink=\"./infringments\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"alert-octagon\"></mat-icon>\r\n        <span>Infringments</span>\r\n      </a>\r\n      <!-- Help -->\r\n      <button mat-button (click)=\"openHelpDialog()\">\r\n        <mat-icon svgIcon=\"help\"></mat-icon>\r\n        <span>Help</span>\r\n      </button>\r\n      <!-- Logout -->\r\n      <button mat-button routerLink=\"/\"\r\n        (click)=\"logoutUser()\">\r\n        <mat-icon svgIcon=\"logout\"></mat-icon>\r\n        <span>Logout</span>\r\n      </button>\r\n  </mat-toolbar>\r\n</div>\r\n\r\n<router-outlet></router-outlet>"
+module.exports = "<div class=\"alternative\">\r\n  <mat-toolbar color=\"primary\">\r\n    <!-- Displays UniPark image -->\r\n    <img src=\"assets/images/branding/up.png\"\r\n      routerLink=\"./\"\r\n      alt=\"UniPark\"\r\n      style=\"cursor: pointer;\">\r\n    <span class=\"spacer\"></span>\r\n      <!-- View User Information -->\r\n      <a mat-button routerLink=\"./user-information\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"account-card-details\"></mat-icon>\r\n        <span>User Information</span>\r\n      </a>\r\n      <!-- Update User Info -->\r\n      <a mat-button\r\n        routerLink=\"./update-user-info\"\r\n        routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"account-settings-variant\"></mat-icon>\r\n        <span>Update User Info</span>\r\n      </a>\r\n      <!-- View User Parking Area -->\r\n      <a mat-button routerLink=\"./assigned-parking\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"parking\"></mat-icon>\r\n        <span>Assigned Parking</span>\r\n      </a>\r\n      <!-- Request Parking -->\r\n      <a mat-button routerLink=\"./request-parking\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"car-connected\"></mat-icon>\r\n        <span>Request Parking</span>\r\n      </a>\r\n      <!-- View Requests -->\r\n      <a mat-button routerLink=\"./view-requests\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"filter-variant\"></mat-icon>\r\n        <span>View Requests</span>\r\n      </a>\r\n      <!-- Infringements -->\r\n      <a mat-button routerLink=\"./infringments\"\r\n          routerLinkActive=\"mat-accent\">\r\n        <mat-icon svgIcon=\"alert-octagon\"></mat-icon>\r\n        <span>Infringments</span>\r\n      </a>\r\n      <!-- Help -->\r\n      <button mat-button (click)=\"openHelpDialog()\">\r\n        <mat-icon svgIcon=\"help\"></mat-icon>\r\n        <span>Help</span>\r\n      </button>\r\n      <!-- Logout -->\r\n      <button mat-button\r\n        (click)=\"openConfirmation()\">\r\n        <mat-icon svgIcon=\"logout\"></mat-icon>\r\n        <span>Logout</span>\r\n      </button>\r\n  </mat-toolbar>\r\n</div>\r\n\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -815,7 +930,7 @@ module.exports = "<div class=\"alternative\">\r\n  <mat-toolbar color=\"primary\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".fill-remaining-space {\n  /*This fills the remaining space, by using flexbox.  \r\n Every toolbar row uses a flexbox row layout. */\n  flex: 1 1 auto; }\n\n.color {\n  background-color: #1fcc59; }\n"
+module.exports = ".fill-remaining-space {\n  /*This fills the remaining space, by using flexbox.  \r\n Every toolbar row uses a flexbox row layout. */\n  flex: 1 1 auto; }\n\n.color {\n  background-color: #1fcc59; }\n\n.img:hover {\n  cursor: pointer; }\n"
 
 /***/ }),
 
@@ -831,10 +946,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UniparkPageComponent", function() { return UniparkPageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../user-options/help/help.component */ "./src/app/user-options/help/help.component.ts");
-/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../app.service */ "./src/app/app.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _user_options_help_help_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../user-options/help/help.component */ "./src/app/user-options/help/help.component.ts");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app.service */ "./src/app/app.service.ts");
+/* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../confirmation-dialog/confirmation-dialog.component */ "./src/app/confirmation-dialog/confirmation-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -851,10 +966,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var UniparkPageComponent = /** @class */ (function () {
-    function UniparkPageComponent(router, dialog, http, appService) {
+    function UniparkPageComponent(router, dialog, appService) {
         this.router = router;
         this.dialog = dialog;
-        this.http = http;
         this.appService = appService;
     }
     // Initializes on load
@@ -864,64 +978,27 @@ var UniparkPageComponent = /** @class */ (function () {
             this.router.navigateByUrl('/');
         }
     };
-    UniparkPageComponent.prototype.logoutUser = function () {
-        this.appService.setState('FacilityID', null);
+    UniparkPageComponent.prototype.logoutUser = function (confirm) {
+        if (confirm === true) {
+            this.appService.setState('FacilityID', null);
+            this.router.navigateByUrl('/');
+        }
     };
-    /*
-    // Displays user-info modal
-    openUserInfoDialog(): void {
-      this.userInfoDialogRef = this.dialog.open(UserInfoComponent, {
-        disableClose: true,
-        // Sets data to appropriate variables
-        data: {
-          userName: this.personelInfo.PersonelName,
-          userPhone: this.personelInfo.PhoneNumber,
-          userEmail: this.personelInfo.Email,
-          userType: this.personelInfo.Type,
-          userLevel: this.personelInfo.PersonelLevel
-        }
-      });
-    }
-    */
-    /*
-    // Displays update-user-info modal
-    openUpdateUserInfoDialog(): void {
-      this.UpdateUserDialog = this.dialog.open(UpdateUserInfoComponent, {
-        disableClose: true,
-        // Sets data to appropriate variables
-        data: {
-          userPhone: this.personelInfo.PhoneNumber,
-          userEmail: this.personelInfo.Email
-        }
-      });
-    }
-    */
-    /*
-     // Displays assigned-parking modal
-     openAssignedParkingDialog(): void {
-       this.AssignedParkingDialog = this.dialog.open(ViewAssignedParkingComponent, {
-         disableClose: true,
-         // Sets data to appropriate variables
-         data: {
-           parkingName: this.personelParkingInfo.ParkingName,
-           parkingAL: this.personelParkingInfo.ParkingAccessLevel,
-           parkingLocation: this.personelParkingInfo.Location
-         }
-       });
-     }
-     */
-    /*
-     // Displays request-parking modal
-     openRequestParkingDialog(): void {
-       this.RequestParkingDialog = this.dialog.open(RequestParkingComponent, {
-         disableClose: true
-       });
-     }
-   */
-    // Displays user-info modal
     UniparkPageComponent.prototype.openHelpDialog = function () {
-        this.helpDialog = this.dialog.open(_user_options_help_help_component__WEBPACK_IMPORTED_MODULE_4__["HelpComponent"], {
+        this.helpDialog = this.dialog.open(_user_options_help_help_component__WEBPACK_IMPORTED_MODULE_3__["HelpComponent"]);
+    };
+    UniparkPageComponent.prototype.openConfirmation = function () {
+        var _this = this;
+        this.confirmDialog = this.dialog.open(_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmationDialogComponent"], {
             disableClose: true,
+            data: {
+                state: 'logout',
+            }
+        });
+        this.confirmDialog.afterClosed()
+            .subscribe(function (result) {
+            _this.confirm = result.confirmation;
+            _this.logoutUser(result.confirmation);
         });
     };
     UniparkPageComponent = __decorate([
@@ -931,11 +1008,306 @@ var UniparkPageComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./unipark-page.component.scss */ "./src/app/unipark-page/unipark-page.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
-            _app_service__WEBPACK_IMPORTED_MODULE_5__["AppService"]])
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"],
+            _app_service__WEBPACK_IMPORTED_MODULE_4__["AppService"]])
     ], UniparkPageComponent);
     return UniparkPageComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/user-options/forgot-password/forgot-password.component.html":
+/*!*****************************************************************************!*\
+  !*** ./src/app/user-options/forgot-password/forgot-password.component.html ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"alternative center\">\r\n  <mat-horizontal-stepper [linear]=\"isLinear\" #stepper>\r\n    <!-- Step 1 -->\r\n    <mat-step [stepControl]=\"form1\">\r\n      <form [formGroup]=\"form1\">\r\n        <ng-template matStepLabel>Fill out your information</ng-template>\r\n        <p>Enter your account information into the feilds below:</p>\r\n        <!-- Name -->\r\n        <mat-form-field>\r\n          <input matInput\r\n                  (keypress)= \"checkStep1()\"\r\n                  placeholder=\"First name, Last name\"\r\n                  formControlName=\"name\"\r\n                  required>\r\n        </mat-form-field>\r\n        <br>\r\n        <!-- Cell No -->\r\n        <mat-form-field>\r\n          <input matInput\r\n            (keypress)= \"onlyNumberKey($event)\"\r\n            placeholder=\"Cell Phone Number\"\r\n            #inputCell\r\n            maxlength=\"10\"\r\n            formControlName=\"cell\"\r\n            required>\r\n          <mat-hint align=\"end\">{{ inputCell.value?.length || 0 }}/10</mat-hint>\r\n          <mat-error *ngIf=\"cell.invalid\">Please enter all 10 digits!</mat-error>\r\n        </mat-form-field>\r\n        <br>\r\n        <!-- Email -->\r\n        <mat-form-field>\r\n          <input matInput\r\n            (keypress)= \"checkStep1()\"\r\n            #inputEmail\r\n            placeholder=\"Emaill Address\"\r\n            formControlName=\"email\"\r\n            required>\r\n          <mat-error *ngIf=\"email.invalid\">{{ getErrorMessage() }}</mat-error>\r\n        </mat-form-field>\r\n        <br>\r\n        <!-- Facility Number -->\r\n        <mat-form-field>\r\n          <input matInput\r\n                  (keypress)= \"checkStep1()\"                 \r\n                  placeholder=\"Facility Number\"\r\n                  formControlName=\"facilityNo\"\r\n                  required>\r\n        </mat-form-field>\r\n        <!-- Next button -->\r\n        <div>\r\n          <button mat-stroked-button\r\n            color=\"accent\"\r\n            [disabled]=\"!phase1 || email.invalid || cell.invalid\"\r\n            matStepperNext>\r\n              Next\r\n          </button>\r\n        </div>\r\n      </form>\r\n    </mat-step>\r\n    <!-- Step 2 -->\r\n    <mat-step [stepControl]=\"form2\">\r\n      <form [formGroup]=\"form2\">\r\n        <ng-template matStepLabel>Enter New Password</ng-template>\r\n        <p>Enter new password into the feilds below:</p>\r\n        <mat-form-field> \r\n            <input matInput\r\n                    #inputNewPass\r\n                    (keypress)=\"checkFeilds()\"\r\n                    placeholder=\"New Password\"\r\n                    [type]=\"hide ? 'password' : 'text'\"\r\n                    formControlName=\"newPass\">\r\n            <mat-error *ngIf=\"newPass.invalid\">Doesn't meet requrements!</mat-error>\r\n          </mat-form-field>\r\n          <br>\r\n          <!-- Hints for password entry -->\r\n          <div class=\"requirement\" *ngIf=\"newPass.value?.length > 0\">\r\n            <div *ngIf=\"!testMinUpper()\">\r\n                *Minimum 2 Uppercase Characters.\r\n            </div>\r\n            <div *ngIf=\"!testMinNum()\">\r\n                *Minimum 2 Numbers.\r\n            </div>\r\n            <div *ngIf=\"!testMinSpecial()\">\r\n                *Minimum 1 Special Characters.\r\n            </div>\r\n            <div *ngIf=\"newPass.value?.length < 10\">\r\n                *Minimum 10 Characters.\r\n            </div>\r\n          </div>\r\n          <mat-form-field>\r\n            <input matInput\r\n                    (keypress)=\"checkFeilds()\"\r\n                    placeholder=\"Confirm Password\"\r\n                    [type]=\"hide ? 'password' : 'text'\"\r\n                    formControlName=\"confirmNewPass\">\r\n            <mat-icon matSuffix\r\n              (click)=\"hide = !hide\">{{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>\r\n          </mat-form-field>\r\n        <!-- Next Button -->\r\n        <div>\r\n          <button mat-button\r\n            matStepperPrevious\r\n            [disabled]=\"clean || newPass.invalid\">\r\n            Back\r\n          </button>\r\n          <button mat-stroked-button\r\n              color=\"accent\"\r\n              matStepperNext\r\n              [disabled]=\"clean || newPass.invalid\">\r\n            Next\r\n          </button>\r\n        </div>\r\n      </form>\r\n    </mat-step>\r\n    <!-- Step 3 -->\r\n    <mat-step>\r\n      <ng-template matStepLabel>Completion</ng-template>\r\n      <div *ngIf=\"!resp && !progress\">\r\n        <p>\r\n            Please press <b>PROCEED</b> to finalize the change password process.\r\n        </p>\r\n        <div>\r\n          <button mat-button matStepperPrevious>Back</button>\r\n          &nbsp;\r\n          <button mat-stroked-button color=\"warn\" (click)=\"stepper.reset()\">Reset</button>\r\n          &nbsp;\r\n          <button\r\n            mat-stroked-button\r\n            color=\"accent\"\r\n            (click)=\"verifyUpdateInfo()\">\r\n            <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n            PROCEED\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </mat-step>\r\n  </mat-horizontal-stepper>\r\n  <div align=\"center\" *ngIf=\"resp && progress\">\r\n    <mat-spinner></mat-spinner>\r\n  </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/user-options/forgot-password/forgot-password.component.scss":
+/*!*****************************************************************************!*\
+  !*** ./src/app/user-options/forgot-password/forgot-password.component.scss ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.padding-feilds {\n  padding-left: 37%; }\n\n.padding-buttons {\n  padding-left: 36%; }\n\n.requirement {\n  padding-top: 0.5em;\n  color: orangered;\n  font-family: Arial, serif;\n  font-size: 9pt; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
+
+/***/ }),
+
+/***/ "./src/app/user-options/forgot-password/forgot-password.component.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/user-options/forgot-password/forgot-password.component.ts ***!
+  \***************************************************************************/
+/*! exports provided: ForgotPasswordComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ForgotPasswordComponent", function() { return ForgotPasswordComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../app.service */ "./src/app/app.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../confirmation-dialog/confirmation-dialog.component */ "./src/app/confirmation-dialog/confirmation-dialog.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+var ForgotPasswordComponent = /** @class */ (function () {
+    function ForgotPasswordComponent(router, fb, snackBar, dialog, http) {
+        this.router = router;
+        this.fb = fb;
+        this.snackBar = snackBar;
+        this.dialog = dialog;
+        this.http = http;
+        this.phase1 = false;
+        // Vairable to check if feilds are "clean"
+        this.clean = true;
+        // Hides password
+        this.hide = true;
+        this.isLinear = true;
+        // Regex for validation
+        this.cellReg = new RegExp(/[0-9]{10}/);
+        this.strongPassReg = new RegExp(/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{10,}$/);
+        this.nameT = false;
+        this.cellT = false;
+        this.emailT = false;
+        this.resp = false;
+        this.progress = false;
+    }
+    ForgotPasswordComponent.prototype.ngOnInit = function () {
+        // Form Controls
+        this.cell = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]({ value: '', disabled: false }, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern(this.cellReg)]);
+        this.email = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]({ value: '', disabled: false }, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]);
+        this.name = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]({ value: '', disabled: false }, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
+        this.facilityNo = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]({ value: '', disabled: false }, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
+        this.form1 = this.fb.group({
+            'name': this.name,
+            'cell': this.cell,
+            'email': this.email,
+            'facilityNo': this.facilityNo
+        });
+        this.newPass = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]({ value: '', disabled: false }, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern(this.strongPassReg)]);
+        this.confirmNewPass = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]({ value: '', disabled: false });
+        this.form2 = this.fb.group({
+            'newPass': this.newPass,
+            'confirmNewPass': this.confirmNewPass
+        });
+    };
+    ForgotPasswordComponent.prototype.checkStep1 = function () {
+        if (this.name.value === '' ||
+            this.cell.value === '' ||
+            this.email.value === '' ||
+            this.facilityNo.value === '') {
+            this.phase1 = false;
+        }
+        else {
+            this.phase1 = true;
+        }
+    };
+    ForgotPasswordComponent.prototype.testMinUpper = function () {
+        var minUpper = new RegExp(/(?=.*[A-Z].*[A-Z])/);
+        return minUpper.test(this.newPass.value);
+    };
+    ForgotPasswordComponent.prototype.testMinNum = function () {
+        var minNum = new RegExp(/(?=.*[0-9].*[0-9])/);
+        return minNum.test(this.newPass.value);
+    };
+    ForgotPasswordComponent.prototype.testMinSpecial = function () {
+        var minSpecial = new RegExp(/(?=.*[!@#$&*])/);
+        return minSpecial.test(this.newPass.value);
+    };
+    ForgotPasswordComponent.prototype.callDialog = function () {
+        this.dialogRef = this.dialog.open(_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_7__["ConfirmationDialogComponent"], {
+            disableClose: true,
+            data: {
+                state: 'unsuccessful',
+            }
+        });
+    };
+    // Only allows numbers to be typed
+    ForgotPasswordComponent.prototype.onlyNumberKey = function (event) {
+        this.checkStep1();
+        return (event.charCode === 8 || event.charCode === 0)
+            ? null
+            : event.charCode >= 48 && event.charCode <= 57;
+    };
+    // Finds if the email entered is correct or not
+    ForgotPasswordComponent.prototype.getErrorMessage = function () {
+        return this.email.hasError('email') ? 'Not a valid email' : '';
+    };
+    // checks if all feilds are empty
+    ForgotPasswordComponent.prototype.checkFeilds = function () {
+        var pass = this.form2.value.newPass;
+        var cPass = this.form2.value.confirmNewPass;
+        !cPass ? this.clean = true : this.clean = false;
+    };
+    // Opens the snackBar with error
+    ForgotPasswordComponent.prototype.openSnackBarFail = function () {
+        this.snackBar.open('Update Failed', 'OK', {
+            duration: 2000,
+        });
+    };
+    // Opens the snackBar with success
+    ForgotPasswordComponent.prototype.openSnackBarSuccess = function () {
+        this.snackBar.open('Update Success', 'OK', {
+            duration: 2000,
+        });
+    };
+    // Verifys information entered by user
+    ForgotPasswordComponent.prototype.verifyUpdateInfo = function () {
+        var _this = this;
+        this.resp = true;
+        this.progress = true;
+        // Get user data
+        var pollData = function () {
+            var facilityID = _this.facilityNo.value.toLowerCase().trim();
+            if (facilityID) {
+                // Gets user info from backend
+                _this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_4__["BASE_URL"] + "/personnel/specified/" + facilityID)
+                    .subscribe(function (response) {
+                    if (response) {
+                        _this.PersonelName = response.PersonelName.toLowerCase();
+                        _this.PhoneNumber = response.PhoneNumber;
+                        _this.Email = response.Email;
+                        // variables for data usage
+                        var name_1 = _this.name.value.toLowerCase().trim();
+                        var cell = _this.cell.value;
+                        var email = _this.email.value.trim();
+                        var newPass = _this.newPass.value;
+                        var confirmNewPass = _this.confirmNewPass.value;
+                        // test data
+                        _this.PersonelName === name_1 ? _this.nameT = true : _this.nameT = false;
+                        _this.PhoneNumber === cell ? _this.cellT = true : _this.cellT = false;
+                        _this.Email === email ? _this.emailT = true : _this.emailT = false;
+                        if (_this.nameT && _this.cellT && _this.emailT) {
+                            // Checks passwords entered
+                            if (newPass === confirmNewPass && confirmNewPass === newPass
+                                && _this.emailT && _this.cellT && _this.nameT) {
+                                _this.prepareUpdate();
+                            }
+                            else {
+                                _this.callDialog();
+                            }
+                        }
+                        else {
+                            _this.callDialog();
+                        }
+                    }
+                    else {
+                        _this.callDialog();
+                    }
+                });
+            }
+            else {
+                _this.callDialog();
+            }
+        };
+        pollData();
+    };
+    // Prepares data to be sent to backend
+    ForgotPasswordComponent.prototype.prepareUpdate = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var newPass, facility, updateResponse;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        newPass = this.newPass.value;
+                        facility = this.facilityNo.value;
+                        // Sends update information to json
+                        this.userInfoJson = {
+                            'PersonnelID': facility,
+                            'PersonnelPhoneNumber': '',
+                            'PersonnelEmail': '',
+                            'PersonnelPassword': newPass
+                        };
+                        return [4 /*yield*/, this.http.put(_app_service__WEBPACK_IMPORTED_MODULE_4__["BASE_URL"] + "/personnel/update", this.userInfoJson)
+                                .toPromise()
+                                .catch(console.error)];
+                    case 1:
+                        updateResponse = _a.sent();
+                        if (updateResponse && updateResponse.data.trim() === 'SUCCESS') {
+                            this.openSnackBarSuccess();
+                            this.router.navigateByUrl('/');
+                        }
+                        else {
+                            this.callDialog();
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ForgotPasswordComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-forgot-password',
+            template: __webpack_require__(/*! ./forgot-password.component.html */ "./src/app/user-options/forgot-password/forgot-password.component.html"),
+            styles: [__webpack_require__(/*! ./forgot-password.component.scss */ "./src/app/user-options/forgot-password/forgot-password.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialog"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], ForgotPasswordComponent);
+    return ForgotPasswordComponent;
 }());
 
 
@@ -949,7 +1321,7 @@ var UniparkPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative\">\r\n  <!-- Display of help modal -->\r\n  <!-- Displays help image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/help/help.png\" alt=\"HELP\">\r\n  <hr>\r\n  <p>\r\n    \r\n    <b><u>User Information</u></b>\r\n    <br>\r\n    Will display all of your information.\r\n    <br>\r\n    <br>\r\n    <b><u>Update User Info</u></b>\r\n    <br>\r\n    This allows you to update either your: Cell-Phone Number, E-mail Address, Password.\r\n    <br>\r\n    Cell-Phone Number: Needs to have 10 digits entered as specified.\r\n    <br>\r\n    E-mail Address: Only valid email addresses will be accepted.\r\n    <br>\r\n    Password: When entering a new password, it will need to be entered\r\n    again inorder to ensure that you entered the same password.\r\n    <br>\r\n    By pressing the <mat-icon svgIcon=\"eye\"></mat-icon> or <mat-icon svgIcon=\"eye-off\"></mat-icon> icon it will display,\r\n    hide your newly entered password.\r\n    <br>\r\n    <br>\r\n    <b><u>Assigned Parking</u></b>\r\n    <br>\r\n    Will display all parking information associated to you.\r\n    <br>\r\n    <br>\r\n    <b><u>Request Parking</u></b>\r\n    This allows you to request for a different parking area / spot within the facility.\r\n    <br>\r\n    Only options that are viable to you will given, they can be selected by pressing on \"Parking Area\" and chooing an option\r\n    <br>\r\n    and also \"parking Spot\", once both feilds have been chosen you will be required to \"Request\" the parking, this can be done\r\n    by pressing enter or clicking the \"Request\" button\r\n    <br>\r\n    <br>\r\n    Options can be closed by clicking \"close\" or by pressing \"Esc\".\r\n    <br>\r\n    Options can be completed by clicking \"Submit\"/\"Request\" or by pressing Enter\" on the keyboard.\r\n    <br>\r\n    <br>\r\n    By pressing \"Logout\" <mat-icon svgIcon=\"logout\"></mat-icon> you will be logged off from the web app, and taken back to the \"Dragon Code\" website.\r\n  </p>\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\"\r\n      mat-dialog-close>\r\n        <mat-icon svgIcon=\"close\"></mat-icon>\r\n          Close\r\n      </button>\r\n  </mat-dialog-actions>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative\">\r\n  <!-- Display of help modal -->\r\n  <!-- Displays help image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/help/help.png\" alt=\"HELP\">\r\n  <hr>\r\n  <mat-form-field>\r\n    <input type=\"text\" placeholder=\"Filter\"\r\n            aria-label=\"Number\"\r\n            matInput\r\n            [formControl]=\"autoComplete\"\r\n            [matAutocomplete]=\"auto\"\r\n            focus-me=\"false\">\r\n    <mat-autocomplete #auto=\"matAutocomplete\">\r\n      <mat-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\r\n        {{option}}\r\n      </mat-option>\r\n    </mat-autocomplete>\r\n  </mat-form-field>\r\n  <!-- View User Info -->\r\n  <div *ngIf=\"filterValue == 'user information' || filterValue === ''\">\r\n    <p>\r\n      <b><u>User Information</u></b>\r\n      <br>\r\n      Will display all of your information.\r\n    </p>\r\n  </div>\r\n  <!-- Update User Info -->\r\n  <div *ngIf=\"filterValue == 'update user info' || filterValue === ''\">\r\n    <p>\r\n      <b><u>Update User Information</u></b>\r\n      <br>\r\n      This allows you to update either your: Cell-Phone Number, E-mail Address, Password.\r\n      <br>\r\n      <b>Cell-Phone Number:</b> Needs to have 10 digits entered as specified.\r\n      <br>\r\n      <b>E-mail Address:</b> Only valid email addresses will be accepted.\r\n      <br>\r\n      <b>Password:</b> When entering a new password, it will need to be entered\r\n      again inorder to ensure that you entered the same password.\r\n      <br>\r\n      By pressing the <mat-icon svgIcon=\"eye\"></mat-icon> or <mat-icon svgIcon=\"eye-off\"></mat-icon> icon it will display,\r\n      hide your newly entered password.\r\n    </p>\r\n  </div>\r\n  <!-- Assigned Parking -->\r\n  <div *ngIf=\"filterValue == 'assigned parking' || filterValue === '' || filterValue == 'assigned'\">\r\n    <p>\r\n      <b><u>Assigned Parking</u></b>\r\n      <br>\r\n      Will display all parking information associated to you.\r\n    </p>\r\n  </div>\r\n  <!-- Request Parking -->\r\n  <div *ngIf=\"filterValue == 'request parking' || filterValue === ''\">\r\n    <p>\r\n      <b><u>Request Parking</u></b>\r\n      <br>\r\n      This allows you to request for a different parking area / spot within the facility.\r\n      <br>\r\n      1) First select the desired parking area.\r\n      <br>\r\n      2) Then select a parking spot.\r\n      <br>\r\n      3) Finally click the request button.\r\n    </p>\r\n  </div>\r\n  <!-- View Requests -->\r\n  <div *ngIf=\"filterValue == 'view requests' || filterValue === ''\">\r\n    <p>\r\n        <b><u>View Requests</u></b>\r\n        <br>\r\n        This will display all your currently (In progress) requests.\r\n        <br>\r\n        A request can be canceled by:\r\n        <br>\r\n        1) Clicking the Cancel button, a confirmation box will appear asking if you want to cancel.\r\n        <br>\r\n          &nbsp;&nbsp;&nbsp;&nbsp;*Clicking NO will not cancel the request.\r\n        <br>\r\n          &nbsp;&nbsp;&nbsp;&nbsp;*Clicking YES will cancel the request, and the request will be removed.\r\n    </p>\r\n  </div>\r\n  <!-- Infringments -->\r\n  <div *ngIf=\"filterValue == 'infringements' || filterValue === ''\">\r\n    <p>\r\n      <b><u>Infringements</u></b>\r\n      <br>\r\n      This will display all infringements/reports that are against you,\r\n      <br>\r\n      and that still have to be paid to the facility.\r\n    </p>\r\n  </div>\r\n  <p>\r\n <!--\r\n    <b><u>User Information</u></b>\r\n    <br>\r\n    Will display all of your information.\r\n    <br>\r\n    <br>\r\n    <b><u>Update User Info</u></b>\r\n    <br>\r\n    This allows you to update either your: Cell-Phone Number, E-mail Address, Password.\r\n    <br>\r\n    Cell-Phone Number: Needs to have 10 digits entered as specified.\r\n    <br>\r\n    E-mail Address: Only valid email addresses will be accepted.\r\n    <br>\r\n    Password: When entering a new password, it will need to be entered\r\n    again inorder to ensure that you entered the same password.\r\n    <br>\r\n    By pressing the <mat-icon svgIcon=\"eye\"></mat-icon> or <mat-icon svgIcon=\"eye-off\"></mat-icon> icon it will display,\r\n    hide your newly entered password.\r\n    <br>\r\n    <br>\r\n    <b><u>Assigned Parking</u></b>\r\n    <br>\r\n    Will display all parking information associated to you.\r\n    <br>\r\n    <br>\r\n    <b><u>Request Parking</u></b>\r\n    This allows you to request for a different parking area / spot within the facility.\r\n    <br>\r\n    Only options that are viable to you will given, they can be selected by pressing on \"Parking Area\" and chooing an option\r\n    <br>\r\n    and also \"parking Spot\", once both feilds have been chosen you will be required to \"Request\" the parking, this can be done\r\n    by pressing enter or clicking the \"Request\" button\r\n    <br>\r\n    <br>\r\n    Options can be closed by clicking \"close\" or by pressing \"Esc\".\r\n    <br>\r\n    Options can be completed by clicking \"Submit\"/\"Request\" or by pressing Enter\" on the keyboard.\r\n    <br>\r\n    <br>\r\n    By pressing \"Logout\" <mat-icon svgIcon=\"logout\"></mat-icon> you will be logged off from the web app, and taken back to the \"Dragon Code\" website.\r\n  </p>\r\n  -->\r\n  <hr>\r\n  <br>\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\"\r\n      mat-dialog-close>\r\n        <mat-icon svgIcon=\"close\"></mat-icon>\r\n          Close\r\n      </button>\r\n  </mat-dialog-actions>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -976,6 +1348,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HelpComponent", function() { return HelpComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -987,11 +1361,26 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var HelpComponent = /** @class */ (function () {
     function HelpComponent(dialogRef) {
         this.dialogRef = dialogRef;
+        this.autoComplete = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+        this.options = ['User Information', 'Update User Info', 'Assigned Parking',
+            'Request Parking', 'View Requests', 'Infringements', 'Logout'];
+        this.filterValue = '';
     }
     HelpComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.filteredOptions = this.autoComplete.valueChanges
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) { return _this.filter(value); }));
+    };
+    // filter used on table
+    HelpComponent.prototype.filter = function (value) {
+        var filterValue = value.toLowerCase();
+        this.filterValue = filterValue;
+        return this.options.filter(function (option) { return option.toLowerCase().includes(filterValue); });
     };
     // Closes the dialog
     HelpComponent.prototype.closeDialog = function () {
@@ -1036,7 +1425,7 @@ var HelpComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/infringements/infringements.png\" alt=\"Infringements.png\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Filter table input-->\r\n    <mat-form-field>\r\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n    </mat-form-field>\r\n    <!-- Mat table to display user infringements -->\r\n    <div>\r\n      <table mat-table [dataSource]=\"tableData\" class=\"table\" matSort>\r\n        <!-- Date Column -->\r\n        <ng-container matColumnDef=\"Date\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.Date}} </td>\r\n        </ng-container>\r\n        <!-- Description Column -->\r\n        <ng-container matColumnDef=\"Description\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.Description}} </td>\r\n        </ng-container>\r\n        <!-- Report Type Column -->\r\n        <ng-container matColumnDef=\"ReportType\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Type </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.ReportType}} </td>\r\n        </ng-container>\r\n        <!-- Amount Column -->\r\n        <ng-container matColumnDef=\"Amount\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>\r\n          <td mat-cell *matCellDef=\"let report\"> R{{report.Amount}} </td>\r\n        </ng-container>\r\n      \r\n      <tr mat-header-row *matHeaderRowDef=\"displayColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayColumns;\"></tr>\r\n      </table>\r\n    </div>\r\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/infringements/infringements.png\" alt=\"Infringements.png\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Filter table input-->\r\n    <mat-form-field>\r\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n    </mat-form-field>\r\n    <!-- Mat table to display user infringements -->\r\n    <div>\r\n      <table mat-table [dataSource]=\"tableData\" class=\"table\" matSort>\r\n        <!-- Date Column -->\r\n        <ng-container matColumnDef=\"Date\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.Date}} </td>\r\n        </ng-container>\r\n        <!-- Description Column -->\r\n        <ng-container matColumnDef=\"Description\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.Description}} </td>\r\n        </ng-container>\r\n        <!-- Report Type Column -->\r\n        <ng-container matColumnDef=\"ReportType\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Type </th>\r\n          <td mat-cell *matCellDef=\"let report\"> {{report.ReportType}} </td>\r\n        </ng-container>\r\n        <!-- Amount Column -->\r\n        <ng-container matColumnDef=\"Amount\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>\r\n          <td  class=\"ammount\" mat-cell *matCellDef=\"let report\"> R{{report.Amount}} </td>\r\n        </ng-container>\r\n      \r\n      <tr mat-header-row *matHeaderRowDef=\"displayColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayColumns;\"></tr>\r\n      </table>\r\n    </div>\r\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1047,7 +1436,7 @@ module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.table {\n  width: 100%;\n  height: 50%;\n  overflow: auto; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.table {\n  width: 100%;\n  height: 50%;\n  overflow: auto; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n\n.ammount {\n  color: red; }\n"
 
 /***/ }),
 
@@ -1158,7 +1547,7 @@ var InfringementsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays request parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/request-parking/request-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <div class=\"padding-feilds\">\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n    <!-- Mat form feild: parking area -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Area\" \r\n                    formControlName=\"parkingArea\"\r\n                    matInput\r\n                    [(value)]= \"parkingArea\"\r\n                    (selectionChange)='getAreaFromSelect()'>\r\n          <mat-option *ngFor=\"let ParkingArea of distinctArea\"  [value]=\"ParkingArea\">\r\n            {{ParkingArea}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: parking spot -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Spot\" \r\n                    formControlName=\"parkingSpot\"  \r\n                    matInput\r\n                    [(value)]= \"parkingSpot\"\r\n                    (selectionChange)='getSpotFormSelect()'>\r\n          <mat-option *ngFor=\"let ParkingSpot of spotsAssociated\" [value]=\"ParkingSpot.ParkingSpace\">\r\n            {{ParkingSpot.ParkingSpace}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n    </mat-dialog-content>\r\n  </div>\r\n  <br>\r\n  <div *ngIf=\"areaSelected && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{selectedArea}}></app-map>\r\n  </div>\r\n  <div *ngIf=\"markerEmpty\">\r\n    <p>No map data to display</p>\r\n  </div>\r\n  <hr>\r\n  <div class=\"padding-buttons\">\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button\r\n      color=\"warn\"\r\n     (click)=\"cancle()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Update button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\"\r\n      [disabled]=\"(!areaSelected || !spotSelected)\"\r\n      (click)=\"submitRequestParking()\">\r\n      <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n      request\r\n    </button>\r\n  </mat-dialog-actions>\r\n  </div>\r\n</div>\r\n  "
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays request parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/request-parking/request-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <div class=\"padding-feilds\" *ngIf=\"!resp && !progress\">\r\n    <mat-dialog-content [formGroup]=\"form\">\r\n    <!-- Mat form feild: parking area -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Area\" \r\n                    formControlName=\"parkingArea\"\r\n                    matInput\r\n                    [(value)]= \"parkingArea\"\r\n                    (selectionChange)='getAreaFromSelect()'>\r\n          <mat-option *ngFor=\"let ParkingArea of distinctArea\"  [value]=\"ParkingArea\">\r\n            {{ParkingArea}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n      <br>\r\n      <!-- Mat form feild: parking spot -->\r\n      <mat-form-field>\r\n        <mat-select placeholder=\"Parking Spot\" \r\n                    formControlName=\"parkingSpot\"  \r\n                    matInput\r\n                    [(value)]= \"parkingSpot\"\r\n                    (selectionChange)='getSpotFormSelect()'>\r\n          <mat-option *ngFor=\"let ParkingSpot of spotsAssociated\" [value]=\"ParkingSpot.ParkingSpace\">\r\n            {{ParkingSpot.ParkingSpace}}\r\n          </mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n    </mat-dialog-content>\r\n  </div>\r\n  <br>\r\n  <div *ngIf=\"areaSelected && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{selectedArea}}></app-map>\r\n  </div>\r\n  <div *ngIf=\"markerEmpty && !resp && !progress\">\r\n    <p>No map data to display</p>\r\n  </div>\r\n  <div align=\"center\" *ngIf=\"resp && progress\">\r\n      <mat-spinner></mat-spinner>\r\n  </div>\r\n  <hr>\r\n  <div class=\"padding-buttons\">\r\n  <mat-dialog-actions>\r\n    <!-- Close button -->\r\n    <button mat-button\r\n      color=\"warn\"\r\n     (click)=\"cancle()\">\r\n      <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n      Cancel\r\n    </button>\r\n    <!-- Update button -->\r\n    <button mat-stroked-button\r\n      color=\"accent\"\r\n      [disabled]=\"(!areaSelected || !spotSelected)\"\r\n      (click)=\"submitRequestParking()\">\r\n      <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n      request\r\n    </button>\r\n  </mat-dialog-actions>\r\n  </div>\r\n</div>\r\n  "
 
 /***/ }),
 
@@ -1309,6 +1698,7 @@ var RequestParkingComponent = /** @class */ (function () {
                 console.log(this.longitude);
                 console.log(this.latitude);
                 console.log(this.drawingCo);
+                this.markerEmpty = false;
             }
             else {
                 this.markerEmpty = true;
@@ -1343,6 +1733,8 @@ var RequestParkingComponent = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.resp = true;
+                        this.progress = true;
                         Number(this.selectedSpot);
                         if (!(this.selectedArea === undefined || this.selectedSpot === undefined)) return [3 /*break*/, 1];
                         this.openSnackBarFail();
@@ -1353,6 +1745,8 @@ var RequestParkingComponent = /** @class */ (function () {
                     case 2:
                         reqResponse = _a.sent();
                         if (reqResponse && reqResponse.data.trim() === 'SUCCESS') {
+                            this.resp = false;
+                            this.progress = false;
                             this.openSnackBarPass();
                             this.cancle();
                         }
@@ -1409,7 +1803,7 @@ var RequestParkingComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n    <!-- Display of login modal -->\r\n    <!-- Displays request parking image -->\r\n    <img class=\"padding-image\" src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\r\n    <hr>\r\n    <div class=\"padding-feilds\">\r\n      <mat-dialog-content [formGroup]=\"form\">\r\n        <!-- Mat form feild: cell phone number -->\r\n        <mat-form-field hintLabel=\"Max 10 digits\">\r\n          <input (keypress)= \"onlyNumberKey($event)\"\r\n                  matInput \r\n                  #inputCell \r\n                  maxlength=\"10\" \r\n                  placeholder=\"Cell-Phone Number\"\r\n                  formControlName=\"cellNo\">\r\n          <mat-hint align=\"end\">{{ inputCell.value?.length || 0 }}/10</mat-hint>\r\n          <mat-error *ngIf=\"cellNo.invalid\">Please enter all 10 digits!</mat-error>\r\n        </mat-form-field>\r\n        <mat-checkbox\r\n          [checked]=\"resetCell\"\r\n          (change)=\"changeCell()\"\r\n          [labelPosition]=\"checkBoxPos\">\r\n        </mat-checkbox>\r\n        <br>\r\n        <!-- Mat form feild: email address -->\r\n        <mat-form-field>\r\n          <input  matInput\r\n                  #inputEmail\r\n                  placeholder=\"E-mail Address\"\r\n                  formControlName=\"email\">\r\n          <mat-error *ngIf=\"email.invalid\">{{ getErrorMessage() }}</mat-error>\r\n        </mat-form-field>\r\n        <mat-checkbox\r\n          [checked]=\"resetEmail\"\r\n          (change)=\"changeEmail()\"\r\n          [labelPosition]=\"checkBoxPos\">\r\n        </mat-checkbox>\r\n        <br>\r\n        <!-- Mat form feild: password -->\r\n        <mat-form-field> \r\n          <input matInput\r\n                  #inputNewPass \r\n                  placeholder=\"New Password\"\r\n                  [type]=\"hide ? 'password' : 'text'\"\r\n                  formControlName=\"newPass\">\r\n          <mat-error *ngIf=\"newPass.invalid\">Doesn't meet requrements!</mat-error>\r\n        </mat-form-field>\r\n        <mat-checkbox\r\n          [checked]=\"resetPass\"\r\n          (change)=\"changePassword()\"\r\n          [labelPosition]=\"checkBoxPos\">\r\n        </mat-checkbox>\r\n        <br>\r\n        <!-- Hints for password entry -->\r\n        <div class=\"requirement\" *ngIf=\"newPass.value?.length > 0\">\r\n          <div *ngIf=\"!testMinUpper()\">\r\n              *Minimum 2 Uppercase Characters.\r\n          </div>\r\n          <div *ngIf=\"!testMinNum()\">\r\n              *Minimum 2 Numbers.\r\n          </div>\r\n          <div *ngIf=\"!testMinSpecial()\">\r\n              *Minimum 1 Special Characters.\r\n          </div>\r\n          <div *ngIf=\"newPass.value?.length < 10\">\r\n              *Minimum 10 Characters.\r\n          </div>\r\n        </div>\r\n        <mat-form-field>\r\n          <input matInput\r\n                  placeholder=\"Confirm Password\"\r\n                  [type]=\"hide ? 'password' : 'text'\"\r\n                  formControlName=\"confirmNewPass\">\r\n          <mat-icon matSuffix\r\n            (click)=\"hide = !hide\">{{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>\r\n        </mat-form-field>\r\n      </mat-dialog-content>\r\n    </div>\r\n    <hr>\r\n    <br>\r\n    <div class=\"padding-buttons\">\r\n      <!-- Close button -->\r\n      <button mat-button \r\n        color=\"warn\"\r\n        (click)=\"cancle()\">\r\n        <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n        Cancel\r\n      </button>\r\n      <!-- Update button -->\r\n      <button\r\n        [disabled]=\"email.invalid || cellNo.invalid || clean || newPass.invalid\" \r\n        mat-stroked-button\r\n        color=\"accent\"\r\n        (click)=\"verifyUpdateInfo()\">\r\n        <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n        Update\r\n      </button>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative center\">\r\n    <!-- Display of login modal -->\r\n    <!-- Displays request parking image -->\r\n    <img class=\"padding-image\" src=\"assets/images/user-options/update-info/update-info.png\" alt=\"User Info\">\r\n    <hr>\r\n    <div *ngIf=\"!resp && !progress\">\r\n      <mat-dialog-content [formGroup]=\"form\">\r\n        <!-- Mat form feild: cell phone number -->\r\n        <mat-form-field hintLabel=\"Max 10 digits\">\r\n          <input (keypress)= \"onlyNumberKey($event)\"\r\n                  matInput \r\n                  #inputCell \r\n                  maxlength=\"10\" \r\n                  placeholder=\"Cell-Phone Number\"\r\n                  formControlName=\"cellNo\">\r\n          <mat-hint align=\"end\">{{ inputCell.value?.length || 0 }}/10</mat-hint>\r\n          <mat-error *ngIf=\"cellNo.invalid\">Please enter all 10 digits!</mat-error>\r\n        </mat-form-field>\r\n        <mat-checkbox\r\n          [checked]=\"resetCell\"\r\n          (change)=\"changeCell()\"\r\n          [labelPosition]=\"checkBoxPos\">\r\n        </mat-checkbox>\r\n        <br>\r\n        <!-- Mat form feild: email address -->\r\n        <mat-form-field>\r\n          <input  matInput\r\n                  #inputEmail\r\n                  placeholder=\"E-mail Address\"\r\n                  formControlName=\"email\">\r\n          <mat-error *ngIf=\"email.invalid\">{{ getErrorMessage() }}</mat-error>\r\n        </mat-form-field>\r\n        <mat-checkbox\r\n          [checked]=\"resetEmail\"\r\n          (change)=\"changeEmail()\"\r\n          [labelPosition]=\"checkBoxPos\">\r\n        </mat-checkbox>\r\n        <br>\r\n        <!-- Mat form feild: password -->\r\n        <mat-form-field> \r\n          <input matInput\r\n                  #inputNewPass \r\n                  placeholder=\"New Password\"\r\n                  [type]=\"hide ? 'password' : 'text'\"\r\n                  formControlName=\"newPass\">\r\n          <mat-error *ngIf=\"newPass.invalid\">Doesn't meet requrements!</mat-error>\r\n        </mat-form-field>\r\n        <mat-checkbox\r\n          [checked]=\"resetPass\"\r\n          (change)=\"changePassword()\"\r\n          [labelPosition]=\"checkBoxPos\">\r\n        </mat-checkbox>\r\n        <br>\r\n        <!-- Hints for password entry -->\r\n        <div class=\"requirement\" *ngIf=\"newPass.value?.length > 0\">\r\n          <div *ngIf=\"!testMinUpper()\">\r\n              *Minimum 2 Uppercase Characters.\r\n          </div>\r\n          <div *ngIf=\"!testMinNum()\">\r\n              *Minimum 2 Numbers.\r\n          </div>\r\n          <div *ngIf=\"!testMinSpecial()\">\r\n              *Minimum 1 Special Characters.\r\n          </div>\r\n          <div *ngIf=\"newPass.value?.length < 10\">\r\n              *Minimum 10 Characters.\r\n          </div>\r\n        </div>\r\n        <mat-form-field>\r\n          <input matInput\r\n                  placeholder=\"Confirm Password\"\r\n                  [type]=\"hide ? 'password' : 'text'\"\r\n                  formControlName=\"confirmNewPass\">\r\n          <mat-icon matSuffix\r\n            (click)=\"hide = !hide\">{{ hide ? 'visibility' : 'visibility_off' }} </mat-icon>\r\n        </mat-form-field>\r\n      </mat-dialog-content>\r\n    </div>\r\n    <div align=\"center\" *ngIf=\"resp && progress\">\r\n      <mat-spinner></mat-spinner>\r\n    </div>\r\n    <hr>\r\n    <br>\r\n    <div class=\"padding-buttons\">\r\n      <!-- Close button -->\r\n      <button mat-button \r\n        color=\"warn\"\r\n        (click)=\"cancle()\">\r\n        <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n        Cancel\r\n      </button>\r\n      <!-- Update button -->\r\n      <button\r\n        [disabled]=\"email.invalid || cellNo.invalid || clean || newPass.invalid\" \r\n        mat-stroked-button\r\n        color=\"accent\"\r\n        (click)=\"verifyUpdateInfo()\">\r\n        <mat-icon svgIcon=\"cube-send\"></mat-icon> \r\n        Update\r\n      </button>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1420,7 +1814,7 @@ module.exports = "<div class=\"alternative center\">\r\n    <!-- Display of logi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%; }\n\n.padding-feilds {\n  padding-left: 37%; }\n\n.padding-buttons {\n  padding-left: 36%; }\n\n.requirement {\n  padding-top: 0.5em;\n  color: orangered;\n  font-family: Arial, serif;\n  font-size: 9pt; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
+module.exports = ".center {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: 50%;\n  text-align: center; }\n\n.requirement {\n  padding-top: 0.5em;\n  color: orangered;\n  font-family: Arial, serif;\n  font-size: 9pt; }\n\n.padding-image {\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  width: auto; }\n"
 
 /***/ }),
 
@@ -1489,9 +1883,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 var UpdateUserInfoComponent = /** @class */ (function () {
-    function UpdateUserInfoComponent(fb, snackBar, http, appService
-    // private uniparkPage: UniparkPageComponent
-    ) {
+    function UpdateUserInfoComponent(fb, snackBar, http, appService) {
         this.fb = fb;
         this.snackBar = snackBar;
         this.http = http;
@@ -1508,6 +1900,8 @@ var UpdateUserInfoComponent = /** @class */ (function () {
         this.resetCell = false;
         this.resetEmail = false;
         this.resetPass = false;
+        this.resp = false;
+        this.progress = false;
     }
     // Initializes on load
     UpdateUserInfoComponent.prototype.ngOnInit = function () {
@@ -1650,6 +2044,8 @@ var UpdateUserInfoComponent = /** @class */ (function () {
                         updateResponse = _a.sent();
                         console.log(updateResponse);
                         if (updateResponse && updateResponse.data.trim() === 'SUCCESS') {
+                            this.resp = false;
+                            this.progress = false;
                             this.openSnackBarSuccess();
                             this.cancle();
                         }
@@ -1663,6 +2059,8 @@ var UpdateUserInfoComponent = /** @class */ (function () {
     };
     // Verifys information entered by user
     UpdateUserInfoComponent.prototype.verifyUpdateInfo = function () {
+        this.resp = true;
+        this.progress = true;
         var newPass = this.newPass.value;
         var confirmNewPass = this.confirmNewPass.value;
         // Checks passwords entered
@@ -1746,9 +2144,7 @@ var UpdateUserInfoComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
-            _app_service__WEBPACK_IMPORTED_MODULE_4__["AppService"]
-            // private uniparkPage: UniparkPageComponent
-        ])
+            _app_service__WEBPACK_IMPORTED_MODULE_4__["AppService"]])
     ], UpdateUserInfoComponent);
     return UpdateUserInfoComponent;
 }());
@@ -1854,7 +2250,7 @@ var UserInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays assigned parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/assigned-parking/assigned-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <!-- Mat list to display assigned parking -->\r\n  <div class=\"padding-feilds\">\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Name: &nbsp;</strong> {{ ParkingName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Access Level: &nbsp;</strong> {{ ParkingAccessLevel }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Location: &nbsp;</strong> {{ Location }}\r\n      </mat-list-item>\r\n    </mat-list>\r\n  </div>\r\n  <div *ngIf=\"ParkingName && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{ParkingName}} ></app-map>\r\n  </div>\r\n  <div *ngIf=\"markerEmpty\">\r\n    <p>No map data to display.</p>\r\n  </div>\r\n  <hr>\r\n</div>\r\n  "
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays assigned parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/assigned-parking/assigned-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <!-- Mat list to display assigned parking -->\r\n  <div class=\"padding-feilds\" *ngIf=\"valid === true\">\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Name: &nbsp;</strong> {{ ParkingName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Access Level: &nbsp;</strong> {{ ParkingAccessLevel }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Location: &nbsp;</strong> {{ Location }}\r\n      </mat-list-item>\r\n    </mat-list>\r\n  </div>\r\n  <div *ngIf=\"!ParkingName\">\r\n    NO CURRENTLY ASSIGNED PARKING\r\n  </div>\r\n  <div *ngIf=\"ParkingName && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{ParkingName}} ></app-map>\r\n  </div>\r\n  <div *ngIf=\"markerEmpty\">\r\n    <p>No map data to display.</p>\r\n  </div>\r\n  <hr>\r\n</div>\r\n  "
 
 /***/ }),
 
@@ -1925,28 +2321,34 @@ var ViewAssignedParkingComponent = /** @class */ (function () {
          pollData();*/
         this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_2__["BASE_URL"] + "/parking/assigned/" + this.appService.getState('FacilityID'))
             .subscribe(function (response) {
-            _this.ParkingName = response.ParkingName;
-            _this.ParkingAccessLevel = response.ParkingAccessLevel;
-            _this.Location = response.Location;
-            _this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_2__["BASE_URL"] + "/parking/request/info/" + _this.appService.getState('FacilityID'))
-                .subscribe(function (resp) {
-                _this.requestOptions = resp;
-                var req = _this.requestOptions;
-                // Gets spots for selected area
-                var coordinates = req.find(function (data) { return data.ParkingArea === _this.ParkingName; });
-                _this.drawingCo = coordinates.AreaLocation;
-                if (_this.drawingCo) {
-                    _this.drawingCo = _this.drawingCo.split(',');
-                    _this.longitude = _this.drawingCo[1];
-                    _this.latitude = _this.drawingCo[0];
-                    console.log(_this.drawingCo);
-                    console.log(_this.longitude);
-                    console.log(_this.latitude);
-                }
-                else {
-                    _this.markerEmpty = true;
-                }
-            });
+            if (response) {
+                _this.valid = true;
+                _this.ParkingName = response.ParkingName;
+                _this.ParkingAccessLevel = response.ParkingAccessLevel;
+                _this.Location = response.Location;
+                _this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_2__["BASE_URL"] + "/parking/request/info/" + _this.appService.getState('FacilityID'))
+                    .subscribe(function (resp) {
+                    _this.requestOptions = resp;
+                    var req = _this.requestOptions;
+                    // Gets spots for selected area
+                    var coordinates = req.find(function (data) { return data.ParkingArea === _this.ParkingName; });
+                    _this.drawingCo = coordinates.AreaLocation;
+                    if (_this.drawingCo) {
+                        _this.drawingCo = _this.drawingCo.split(',');
+                        _this.longitude = _this.drawingCo[1];
+                        _this.latitude = _this.drawingCo[0];
+                        console.log(_this.drawingCo);
+                        console.log(_this.longitude);
+                        console.log(_this.latitude);
+                    }
+                    else {
+                        _this.markerEmpty = true;
+                    }
+                });
+            }
+            else {
+                _this.valid = false;
+            }
         });
     };
     ViewAssignedParkingComponent = __decorate([
@@ -1972,7 +2374,7 @@ var ViewAssignedParkingComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/requests/requests.png\" alt=\"Requests.png\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Mat table to display user infringements -->\r\n    <div *ngIf=\"!empty\">\r\n      <!-- Filter table input-->\r\n      <mat-form-field>\r\n        <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n      </mat-form-field>\r\n      <table mat-table [dataSource]=\"tableData\" class=\"table\" matSort>\r\n        <!-- Date Column -->\r\n        <ng-container matColumnDef=\"Date\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.RequestDate}} </td>\r\n        </ng-container>\r\n        <!-- ParkingArea Column -->\r\n        <ng-container matColumnDef=\"ParkingArea\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Area: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.ParkingArea}} </td>\r\n        </ng-container>\r\n        <!-- ParkingSpace Column -->\r\n        <ng-container matColumnDef=\"ParkingSpace\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Space: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.ParkingSpace}} </td>\r\n        </ng-container>\r\n        <!-- FEE Column -->\r\n        <ng-container matColumnDef=\"FEE\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fee: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> R{{request.Fee}} </td>\r\n        </ng-container>\r\n        <!-- Cancel Column -->\r\n        <ng-container matColumnDef=\"Cancel\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cancel: </th>\r\n            <td mat-cell *matCellDef=\"let request\">\r\n                <button mat-button \r\n                  color=\"warn\"\r\n                  (click)=\"cancelRequest(request.ID)\">\r\n                  <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n                  Cancel\r\n                </button>\r\n            </td>\r\n          </ng-container>\r\n      <tr mat-header-row *matHeaderRowDef=\"displayColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayColumns;\"></tr>\r\n      </table>\r\n      <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n    </div>\r\n    <div *ngIf=\"empty\">\r\n      <p>NO PENDING REQUESTS</p>\r\n    </div>\r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n</div>\r\n"
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays user info image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/requests/requests.png\" alt=\"Requests.png\">\r\n  <hr>\r\n  <mat-dialog-content>\r\n    <!-- Mat table to display user infringements -->\r\n    <div *ngIf=\"!empty\">\r\n      <!-- Filter table input-->\r\n      <mat-form-field>\r\n        <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\r\n      </mat-form-field>\r\n      <table mat-table [dataSource]=\"tableData\" class=\"table\" matSort>\r\n        <!-- Date Column -->\r\n        <ng-container matColumnDef=\"Date\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.RequestDate}} </td>\r\n        </ng-container>\r\n        <!-- ParkingArea Column -->\r\n        <ng-container matColumnDef=\"ParkingArea\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Area: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.ParkingArea}} </td>\r\n        </ng-container>\r\n        <!-- ParkingSpace Column -->\r\n        <ng-container matColumnDef=\"ParkingSpace\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Parking Space: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> {{request.ParkingSpace}} </td>\r\n        </ng-container>\r\n        <!-- FEE Column -->\r\n        <ng-container matColumnDef=\"FEE\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fee: </th>\r\n          <td mat-cell *matCellDef=\"let request\"> R{{request.Fee}} </td>\r\n        </ng-container>\r\n        <!-- Cancel Column -->\r\n        <ng-container matColumnDef=\"Cancel\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cancel: </th>\r\n            <td mat-cell *matCellDef=\"let request\">\r\n                <button mat-button \r\n                  color=\"warn\"\r\n                  (click)=\"callConfrim(request.ID)\">\r\n                  <mat-icon svgIcon=\"cancel\"></mat-icon>\r\n                  Cancel\r\n                </button>\r\n            </td>\r\n          </ng-container>\r\n      <tr mat-header-row *matHeaderRowDef=\"displayColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayColumns;\"></tr>\r\n      </table>\r\n      <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n    </div>\r\n    <div *ngIf=\"empty\">\r\n      <p>NO PENDING REQUESTS</p>\r\n    </div>\r\n  </mat-dialog-content>\r\n  <hr>\r\n  <br>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2001,6 +2403,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../app.service */ "./src/app/app.service.ts");
+/* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../confirmation-dialog/confirmation-dialog.component */ "./src/app/confirmation-dialog/confirmation-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2014,13 +2417,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ViewRequestsComponent = /** @class */ (function () {
-    function ViewRequestsComponent(http, snackBar, appService) {
+    function ViewRequestsComponent(http, snackBar, dialog, appService) {
         this.http = http;
         this.snackBar = snackBar;
+        this.dialog = dialog;
         this.appService = appService;
         this.displayColumns = ['Date', 'ParkingArea', 'ParkingSpace', 'FEE', 'Cancel'];
         this.empty = false;
+        this.confirm = false;
     }
     ViewRequestsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2066,25 +2472,46 @@ var ViewRequestsComponent = /** @class */ (function () {
         filterValue = filterValue.toLowerCase();
         this.tableData.filter = filterValue;
     };
-    ViewRequestsComponent.prototype.cancelRequest = function (requestID) {
+    ViewRequestsComponent.prototype.confirmFromEmitter = function (confirmation) {
+        confirmation = true ? this.confirm = true : undefined;
+        console.log('here');
+    };
+    ViewRequestsComponent.prototype.callConfrim = function (requestID) {
         var _this = this;
-        // Gathers infringement data from backend
-        this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_3__["BASE_URL"] + "/request/cancel/" + requestID)
-            .subscribe(function (response) {
-            if (response.data.trim() === 'SUCCESS') {
-                for (var k = 0; k < _this.viewRequests.length; k++) {
-                    if (_this.viewRequests[k].ID === requestID) {
-                        _this.viewRequests.splice(k, 1);
-                    }
-                }
-                _this.viewRequests.length < 1 ? _this.empty = true : _this.empty = false;
-                _this.sendTableData();
-                _this.openSnackBarPass();
-            }
-            else {
-                _this.openSnackBarFail();
+        this.confirmDialogRef = this.dialog.open(_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_4__["ConfirmationDialogComponent"], {
+            disableClose: true,
+            data: {
+                state: 'view-requests',
             }
         });
+        this.confirmDialogRef.afterClosed()
+            .subscribe(function (result) {
+            _this.confirm = result.confirmation;
+            _this.cancelRequest(requestID);
+            console.log('res: ', result);
+        });
+    };
+    ViewRequestsComponent.prototype.cancelRequest = function (requestID) {
+        var _this = this;
+        if (this.confirm === true) {
+            // Gathers infringement data from backend
+            this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_3__["BASE_URL"] + "/request/cancel/" + requestID)
+                .subscribe(function (response) {
+                if (response.data.trim() === 'SUCCESS') {
+                    for (var k = 0; k < _this.viewRequests.length; k++) {
+                        if (_this.viewRequests[k].ID === requestID) {
+                            _this.viewRequests.splice(k, 1);
+                        }
+                    }
+                    _this.viewRequests.length < 1 ? _this.empty = true : _this.empty = false;
+                    _this.sendTableData();
+                    _this.openSnackBarPass();
+                }
+                else {
+                    _this.openSnackBarFail();
+                }
+            });
+        }
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"]),
@@ -2102,6 +2529,7 @@ var ViewRequestsComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBar"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"],
             _app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"]])
     ], ViewRequestsComponent);
     return ViewRequestsComponent;
