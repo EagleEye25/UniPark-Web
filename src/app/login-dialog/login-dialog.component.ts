@@ -71,10 +71,6 @@ export class LoginDialogComponent implements OnInit {
       .subscribe(this.loginUser.bind(this), this.openSnackBarFail.bind(this));
   }
 
-  forgotPass() {
-    this.router.navigateByUrl('/forgot-password');
-  }
-
   // sends the user to unipark page, as successful login
   loginUser() {
     this.appService.setState('FacilityID', this.facilityNo);
