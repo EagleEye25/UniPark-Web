@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, DoCheck } from '@angular/core';
 import { AppService, MAPBOX_API } from '../app.service';
 
 import * as mapboxgl from 'mapbox-gl';
@@ -18,7 +18,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() parkingArea: any;
   mapBoxAPI: any;
   marker: any;
-  old: any;
+  oldAera: any;
 
   // TODO: find out syntax for insertion
   testing = [
@@ -40,12 +40,13 @@ export class MapComponent implements OnInit, OnChanges {
   ngOnInit() {
     console.log('lat: ', this.latitude, 'long: ', this.longitude);
     this.generateMap();
-    this.old = this.longitude;
+    this.oldAera = this.latitude;
   }
 
   ngOnChanges(): void {
-    if (this.old !== this.longitude) {
+    if (this.oldAera !== this.latitude) {
       this.generateMap();
+      console.log('old: ', this.oldAera);
     }
   }
 

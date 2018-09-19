@@ -29,7 +29,7 @@
         <!-- Amount Column -->
         <ng-container matColumnDef="Amount">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
-          <td mat-cell *matCellDef="let report"> R{{report.Amount}} </td>
+          <td  class="ammount" mat-cell *matCellDef="let report"> R{{report.Amount}} </td>
         </ng-container>
       
       <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>

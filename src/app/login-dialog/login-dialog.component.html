@@ -1,38 +1,48 @@
-  <!-- Display of login modal -->
+<div>
+<!-- Display of login modal -->
 <img src="assets/images/login/login.png" alt="Login">
   <hr>
-<mat-dialog-content [formGroup]="form">
-  <!-- mat form feild: facilityNO -->
-  <mat-form-field>
-    <input matInput
-            placeholder="Facility Number"
-            formControlName="facilityNo">
-  </mat-form-field>
-    <br>
-  <!-- Mat form feild: password -->
-  <mat-form-field>
-    <input matInput 
-            placeholder="Password"
-            [type]="hide ? 'password' : 'text'"
-            formControlName="userPass">
-    <mat-icon matSuffix 
-      (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-  </mat-form-field>
-</mat-dialog-content>
+  <div *ngIf="!resp && !progress">
+    <mat-dialog-content [formGroup]="form">
+        <!-- mat form feild: facilityNO -->
+        <mat-form-field>
+          <input matInput
+                  placeholder="Facility Number"
+                  formControlName="facilityNo">
+        </mat-form-field>
+          <br>
+        <!-- Mat form feild: password -->
+        <mat-form-field>
+          <input matInput 
+                  placeholder="Password"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="userPass">
+          <mat-icon matSuffix 
+            (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+      </mat-dialog-content>
+      <div>
+          <a href="/forgot-password" class="forgot">FORGOT PASSWORD</a>
+      </div>
+  </div>
   <br>
-<mat-dialog-actions>
-  <!-- Close button -->
-  <button mat-button 
-    color="warn" 
-    (click)="closeDialog()">
-    <mat-icon svgIcon="cancel"></mat-icon>
-    Cancel
-  </button>
-  <!-- Login button -->
-  <button mat-stroked-button
-    color="accent" 
-    (click)="aquireLoginDetails()">
-    <mat-icon svgIcon="login-variant"></mat-icon> 
-    Login
-  </button>  
-</mat-dialog-actions>
+  <div align="center" *ngIf="resp && progress">
+      <mat-spinner></mat-spinner>
+  </div>
+  <mat-dialog-actions>
+    <!-- Close button -->
+    <button mat-button 
+      color="warn" 
+      (click)="closeDialog()">
+      <mat-icon svgIcon="cancel"></mat-icon>
+      Cancel
+    </button>
+    <!-- Login button -->
+    <button mat-stroked-button
+      color="accent" 
+      (click)="aquireLoginDetails()">
+      <mat-icon svgIcon="login-variant"></mat-icon> 
+      Login
+    </button>  
+  </mat-dialog-actions>
+</div>

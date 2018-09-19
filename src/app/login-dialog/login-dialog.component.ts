@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Output, EventEmitter, HostListener, NgModule } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
@@ -29,6 +29,8 @@ export class LoginDialogComponent implements OnInit {
 
   // Declaration for http objects
   personelLoginInfo: any;
+  resp: boolean;
+  progress: boolean;
 
   constructor(
     private router: Router,
@@ -47,6 +49,8 @@ export class LoginDialogComponent implements OnInit {
 
   // opens the snackBar with error
   openSnackBarFail() {
+    this.resp = false;
+    this.progress = false;
     // opens the snackBar with error
     this.snackBar.open('Incorrect login details', 'OK', {
       duration: 2000,
@@ -55,6 +59,8 @@ export class LoginDialogComponent implements OnInit {
 
   // Gets login details, sends to backend (verification done on backend)
   aquireLoginDetails() {
+    this.resp = true;
+    this.progress = true;
     // aquire login details from dialog
     this.facilityNo = this.form.value.facilityNo;
     this.userPass = this.form.value.userPass;

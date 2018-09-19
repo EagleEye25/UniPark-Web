@@ -1,0 +1,34 @@
+<div class="alternative">
+  <p>
+      {{message}}
+  </p>
+  <div class="center" *ngIf="state !== 'unsuccessful'">
+    <!-- Close button -->
+    <button mat-button 
+      color="warn"
+      (click)="cancel()">
+      <mat-icon svgIcon="cancel"></mat-icon>
+      NO
+    </button>
+    <!-- yes button -->
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="confirm()">
+      <mat-icon svgIcon="cube-send"></mat-icon> 
+      YES
+    </button>
+  </div>
+  <!-- forgot password options -->
+  <div class="center" *ngIf="state === 'unsuccessful'">
+      <!-- OK button -->
+      <button
+        mat-stroked-button
+        color="accent"
+        mat-dialog-close>
+        <mat-icon svgIcon="thumb-up-outline"></mat-icon> 
+        OK
+      </button>
+    </div>
+
+</div>
