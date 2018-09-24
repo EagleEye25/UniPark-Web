@@ -61,6 +61,8 @@ export class RequestParkingComponent implements OnInit {
 
   // opens the snackBar with error
   openSnackBarFail() {
+    this.resp = false;
+    this.progress = false;
     this.snackBar.open('Request Failed', 'OK', {
       duration: 2000,
     });

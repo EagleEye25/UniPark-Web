@@ -20,12 +20,14 @@ export class ViewAssignedParkingComponent implements OnInit {
   latitude: any;
   markerEmpty: any;
   valid: boolean;
+  resp: boolean;
 
   constructor(
     private http: HttpClient,
     private appService: AppService) { }
 
   ngOnInit() {
+    this.resp = true;
     // Gets user parking info from backend
     /* Polling
         Computer Science
@@ -51,6 +53,7 @@ export class ViewAssignedParkingComponent implements OnInit {
     this.http.get(`${BASE_URL}/parking/assigned/` + this.appService.getState('FacilityID'))
       .subscribe((response: any) => {
         if (response) {
+          this.resp = false;
           this.valid = true;
           this.ParkingName = response.ParkingName;
           this.ParkingAccessLevel = response.ParkingAccessLevel;

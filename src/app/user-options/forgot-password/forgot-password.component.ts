@@ -185,18 +185,29 @@ export class ForgotPasswordComponent implements OnInit {
               // Checks passwords entered
               if (newPass === confirmNewPass && confirmNewPass === newPass
                 && this.emailT && this.cellT && this.nameT) {
+                this.resp = true;
+                this.progress = true;
                 this.prepareUpdate();
               } else {
+                this.resp = false;
+                this.progress = false;
+                console.log('here');
                 this.callDialog();
               }
             } else {
+              this.resp = false;
+              this.progress = false;
               this.callDialog();
             }
           } else {
+            this.resp = false;
+            this.progress = false;
             this.callDialog();
           }
         });
       } else {
+        this.resp = false;
+        this.progress = false;
         this.callDialog();
       }
     };

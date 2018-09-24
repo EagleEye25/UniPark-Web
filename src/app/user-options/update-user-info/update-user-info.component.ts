@@ -175,6 +175,8 @@ export class UpdateUserInfoComponent implements OnInit {
 
   // Opens the snackBar with error
   openSnackBarFail() {
+    this.resp = false;
+    this.progress = false;
     this.snackBar.open('Update Failed', 'OK', {
       duration: 2000,
     });

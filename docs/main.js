@@ -287,8 +287,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-// const appState = {};
-var appState = { FacilityID: 's216017173' };
+var appState = {};
+// const appState = {FacilityID: 's216017173'};
 var AppService = /** @class */ (function () {
     function AppService() {
     }
@@ -309,6 +309,7 @@ var AppService = /** @class */ (function () {
 
 var BASE_URL = 'https://unipark.lunatech.co.za';
 // export const BASE_URL = 'http://localhost:9000';
+// export const BASE_URL = 'http://sict-iis.nmmu.ac.za:9000';
 var MAPBOX_API = 'pk.eyJ1IjoiZWFnbGVleWUyNSIsImEiOiJjamp0NHcwbGcwaWVjM3BvMHdjOGx3dTZuIn0.wpJ4XdLSb2zBpJ8G36E7Fw';
 
 
@@ -1245,22 +1246,33 @@ var ForgotPasswordComponent = /** @class */ (function () {
                             // Checks passwords entered
                             if (newPass === confirmNewPass && confirmNewPass === newPass
                                 && _this.emailT && _this.cellT && _this.nameT) {
+                                _this.resp = true;
+                                _this.progress = true;
                                 _this.prepareUpdate();
                             }
                             else {
+                                _this.resp = false;
+                                _this.progress = false;
+                                console.log('here');
                                 _this.callDialog();
                             }
                         }
                         else {
+                            _this.resp = false;
+                            _this.progress = false;
                             _this.callDialog();
                         }
                     }
                     else {
+                        _this.resp = false;
+                        _this.progress = false;
                         _this.callDialog();
                     }
                 });
             }
             else {
+                _this.resp = false;
+                _this.progress = false;
                 _this.callDialog();
             }
         };
@@ -1662,6 +1674,8 @@ var RequestParkingComponent = /** @class */ (function () {
     };
     // opens the snackBar with error
     RequestParkingComponent.prototype.openSnackBarFail = function () {
+        this.resp = false;
+        this.progress = false;
         this.snackBar.open('Request Failed', 'OK', {
             duration: 2000,
         });
@@ -2013,6 +2027,8 @@ var UpdateUserInfoComponent = /** @class */ (function () {
     };
     // Opens the snackBar with error
     UpdateUserInfoComponent.prototype.openSnackBarFail = function () {
+        this.resp = false;
+        this.progress = false;
         this.snackBar.open('Update Failed', 'OK', {
             duration: 2000,
         });
@@ -2254,7 +2270,7 @@ var UserInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays assigned parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/assigned-parking/assigned-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <!-- Mat list to display assigned parking -->\r\n  <div class=\"padding-feilds\" *ngIf=\"valid === true\">\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Name: &nbsp;</strong> {{ ParkingName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Access Level: &nbsp;</strong> {{ ParkingAccessLevel }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Location: &nbsp;</strong> {{ Location }}\r\n      </mat-list-item>\r\n    </mat-list>\r\n  </div>\r\n  <div *ngIf=\"!ParkingName\">\r\n    NO CURRENTLY ASSIGNED PARKING\r\n  </div>\r\n  <div *ngIf=\"ParkingName && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{ParkingName}} ></app-map>\r\n  </div>\r\n  <div *ngIf=\"markerEmpty\">\r\n    <p>No map data to display.</p>\r\n  </div>\r\n  <hr>\r\n</div>\r\n  "
+module.exports = "<div class=\"alternative center\">\r\n  <!-- Display of login modal -->\r\n  <!-- Displays assigned parking image -->\r\n  <img class=\"padding-image\" src=\"assets/images/user-options/assigned-parking/assigned-parking.png\" alt=\"User Info\">\r\n  <hr>\r\n  <!-- Mat list to display assigned parking -->\r\n  <div class=\"padding-feilds\" *ngIf=\"valid === true\">\r\n    <mat-list role=\"list\">\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Name: &nbsp;</strong> {{ ParkingName }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Parking Access Level: &nbsp;</strong> {{ ParkingAccessLevel }}\r\n      </mat-list-item>\r\n      <mat-list-item role=\"listitem\">\r\n        <strong>Location: &nbsp;</strong> {{ Location }}\r\n      </mat-list-item>\r\n    </mat-list>\r\n  </div>\r\n  <div *ngIf=\"!ParkingName && !resp\">\r\n    NO CURRENTLY ASSIGNED PARKING\r\n  </div>\r\n  <div *ngIf=\"ParkingName && !markerEmpty\" class=\"padding-map\">\r\n    <app-map longitude={{longitude}} latitude={{latitude}} parkingArea={{ParkingName}} ></app-map>\r\n  </div>\r\n  <div *ngIf=\"markerEmpty\">\r\n    <p>No map data to display.</p>\r\n  </div>\r\n  <div align=\"center\" *ngIf=\"resp\">\r\n    <mat-spinner></mat-spinner>\r\n</div>\r\n  <hr>\r\n</div>\r\n  "
 
 /***/ }),
 
@@ -2301,6 +2317,7 @@ var ViewAssignedParkingComponent = /** @class */ (function () {
     }
     ViewAssignedParkingComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.resp = true;
         // Gets user parking info from backend
         /* Polling
             Computer Science
@@ -2326,6 +2343,7 @@ var ViewAssignedParkingComponent = /** @class */ (function () {
         this.http.get(_app_service__WEBPACK_IMPORTED_MODULE_2__["BASE_URL"] + "/parking/assigned/" + this.appService.getState('FacilityID'))
             .subscribe(function (response) {
             if (response) {
+                _this.resp = false;
                 _this.valid = true;
                 _this.ParkingName = response.ParkingName;
                 _this.ParkingAccessLevel = response.ParkingAccessLevel;
